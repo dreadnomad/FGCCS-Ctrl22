@@ -31,6 +31,11 @@ This document collects notes and thoughts on porting and adapting the SmartEVSE 
 - Connector ICD is a 6-pin terminal used for PIC debugging and programming
 - Connector P1 is a 4-pin socket used for connecting an optional residual current monitor (RCM), which can also be connected to Pins 3, 4 and 7 of CON1
 
+- PWM output to CP line is generated on pin RC2 and fed to comparator IC2A, which operates with a Vref of 1.65V (3.3V / 2)
+- CP signals are buffered by IC2B and fed to ADC input AN0 (pin RA0) through R8=42k. This node is also connected to VDD through R5=10k, to GND through R6=15k. This results in a voltage divider, which keeps the voltage on the analog input below 3.3V. The actual voltage on CP can be calculated from the ADC result.
+- PP resistor determining the max charge current is calculated by feeding the ADC input AN1 (pin RA1) with the output voltage of the divider R21-Rpp (Rpp is the resistor between PP and PE, which is set according to the current capacity of the cable). 
+
+
 ## Tables
 
 ### Connector Configuration
@@ -105,8 +110,8 @@ Notation: FUNC -> PIN means a net with function FUNC is connected to connector p
 |:-----:|:-----:|:----------:|:---------------:|
 |20     |VDD    |Power Supply|3.3V             |
 |1      |MCLR   |Master Clear|External Reset   |
-|2      |RA0    |            |                 |
-|3      |RA1    |            |                 |
+|2      |RA0    |ADC Input   |Input: CP signal |
+|3      |RA1    |ADC Input   |Input: PP signal |
 |4      |RA2    |Digital I/O |Temp sensor input|
 |5      |RA3    |Digital I/O |LCD_LED          |
 |6      |RA4    |Digital I/O |Lck Drv Inp A ->R|
@@ -119,7 +124,7 @@ Notation: FUNC -> PIN means a net with function FUNC is connected to connector p
 |16     |RC5    |Digital I/O |LCD_SDO_B3       |
 |15     |RC4    |Digital I/O |LCD_RST          | 
 |14     |RC3    |Digital I/O |LCD_CLK          |
-|13     |RC2    |            |                 |
+|13     |RC2    |PWM Output  |Output to CP line|
 |12     |RC1    |Digital I/O |Lock Pin -> B    | 
 |11     |RC0    |Digital I/O |LCD_A0_B2        |
 |28     |RB7    |RX2         |FTDI/ICD Receive |
