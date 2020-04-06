@@ -12,6 +12,12 @@ This is the TODO list for ba-atmevse
 - [ ] Resolve conflicts and devise a rough roadmap
 - [ ] Document all steps taken
 
+## Questions
+
+- ESP32 Firmware and Comms protocol? SPI, I2C, ...?
+- How many SSRs/Contactors? 1-phase & 3-phase or 3x 1-phase?
+- 
+
 ## Main System Components
 
 - ATmega4808 firmware

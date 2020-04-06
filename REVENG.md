@@ -106,32 +106,32 @@ Notation: FUNC -> PIN means a net with function FUNC is connected to connector p
 
 ### uC Pin Configuration
 
-|No.    |Pin    |Function    |Used For         |
-|:-----:|:-----:|:----------:|:---------------:|
-|20     |VDD    |Power Supply|3.3V             |
-|1      |MCLR   |Master Clear|External Reset   |
-|2      |RA0    |ADC Input   |Input: CP signal |
-|3      |RA1    |ADC Input   |Input: PP signal |
-|4      |RA2    |Digital I/O |Temp sensor input|
-|5      |RA3    |Digital I/O |LCD_LED          |
-|6      |RA4    |Digital I/O |Lck Drv Inp A ->R|
-|7      |RA5    |Digital I/O |Lck Drv Inp B ->W|
-|10     |RA6    |OSC2 CLKO   |Q1 Driver        | 
-|9      |RA7    |OSC1 CLKI   |Q1 Input         |
-|8; 19  |VSS    |GND         |GND              |
-|18     |RC7    |RX1         |RS485 Receive    |
-|17     |RC6    |TX1         |RS485 Transmit   |
-|16     |RC5    |Digital I/O |LCD_SDO_B3       |
-|15     |RC4    |Digital I/O |LCD_RST          | 
-|14     |RC3    |Digital I/O |LCD_CLK          |
-|13     |RC2    |PWM Output  |Output to CP line|
-|12     |RC1    |Digital I/O |Lock Pin -> B    | 
-|11     |RC0    |Digital I/O |LCD_A0_B2        |
-|28     |RB7    |RX2         |FTDI/ICD Receive |
-|27     |RB6    |TX2         |FTDI/ICD Transmit|
-|26     |RB5    |Digital I/O |RS485 Drv Enable |
-|25     |RB4    |Digital I/O |SSR Activation   |
-|24     |RB3    |Digital I/O |IO1 -> 12V LED   |
-|23     |RB2    |Digital I/O |IO2 -> Button(SW)|
-|22     |RB1    |Digital I/O |IO3 -> RCM       |
-|21     |RB0    |Digital I/O |LCD_B1           |
+|No.    |Pin    |Function    |Used For         |Direction|
+|:-----:|:-----:|:----------:|:---------------:|:-------:|
+|20     |VDD    |Power Supply|3.3V             |Input    |
+|1      |MCLR   |Master Clear|External Reset   |Input    |
+|2      |RA0    |ADC Input   |Input: CP signal |Input    |
+|3      |RA1    |ADC Input   |Input: PP signal |Input    |
+|4      |RA2    |Digital In  |Temp sensor input|Input    |
+|5      |RA3    |Digital I/O |LCD_LED          |x
+|6      |RA4    |Digital Out |Lck Drv Inp A ->R|Output   |
+|7      |RA5    |Digital Out |Lck Drv Inp B ->W|Output   |
+|10     |RA6    |OSC2 CLKO   |Q1 Driver        |Output   |
+|9      |RA7    |OSC1 CLKI   |Q1 Input         |Input    |
+|8; 19  |VSS    |GND         |GND              |Input    |
+|18     |RC7    |RX1         |RS485 Receive    |Input    |
+|17     |RC6    |TX1         |RS485 Transmit   |Output   |
+|16     |RC5    |Digital I/O |LCD_SDO_B3       |x        |
+|15     |RC4    |Digital I/O |LCD_RST          |x        |
+|14     |RC3    |Digital I/O |LCD_CLK          |x        |
+|13     |RC2    |PWM Output  |Output to CP line|Output   |
+|12     |RC1    |Digital In  |Cable Lock State |Input    | 
+|11     |RC0    |Digital I/O |LCD_A0_B2        |x        |
+|28     |RB7    |RX2         |FTDI/ICD Receive |Input    |
+|27     |RB6    |TX2         |FTDI/ICD Transmit|Output   |
+|26     |RB5    |Digital Out |RS485 Drv Enable |Output   |
+|25     |RB4    |Digital Out |SSR Activation   |Output   |
+|24     |RB3    |Digital Out |IO1 -> 12V LED   |Output   |
+|23     |RB2    |Digital In  |IO2 -> Button(SW)|Input    |
+|22     |RB1    |Digital In  |IO3 -> RCM State |Input    |
+|21     |RB0    |Digital I/O |LCD_B1           |x        |
