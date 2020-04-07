@@ -112,7 +112,7 @@ Notation: FUNC -> PIN means a net with function FUNC is connected to connector p
 |1      |MCLR   |Master Clear|External Reset   |Input    |
 |2      |RA0    |ADC Input   |Input: CP signal |Input    |
 |3      |RA1    |ADC Input   |Input: PP signal |Input    |
-|4      |RA2    |Digital In  |Temp sensor input|Input    |
+|4      |RA2    |ADC Input   |Temp sensor input|Input    |
 |5      |RA3    |Digital I/O |LCD_LED          |x
 |6      |RA4    |Digital Out |Lck Drv Inp A ->R|Output   |
 |7      |RA5    |Digital Out |Lck Drv Inp B ->W|Output   |
