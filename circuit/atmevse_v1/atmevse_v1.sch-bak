@@ -1,0 +1,105 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Wire Wire Line
+	1000 3100 2000 3100
+Wire Wire Line
+	1000 2750 1250 2750
+Wire Wire Line
+	1250 2750 1250 2800
+$Comp
+L power:GND #PWR?
+U 1 1 5E8F4E91
+P 1250 2800
+F 0 "#PWR?" H 1250 2550 50  0001 C CNN
+F 1 "GND" H 1255 2627 50  0000 C CNN
+F 2 "" H 1250 2800 50  0001 C CNN
+F 3 "" H 1250 2800 50  0001 C CNN
+	1    1250 2800
+	1    0    0    -1  
+$EndComp
+Text Label 1000 2750 0    50   ~ 0
+PE
+Text Label 1000 3100 0    50   ~ 0
+C_L1
+Wire Wire Line
+	1000 3400 1900 3400
+Wire Wire Line
+	1000 3700 1750 3700
+Wire Wire Line
+	1000 3250 1100 3250
+Wire Wire Line
+	1100 3250 1100 3550
+Wire Wire Line
+	1100 3550 1000 3550
+Wire Wire Line
+	1100 3550 1100 3850
+Wire Wire Line
+	1100 3850 1000 3850
+Connection ~ 1100 3550
+Wire Wire Line
+	1000 4000 1750 4000
+$Comp
+L Device:Varistor RV?
+U 1 1 5E8F5B4A
+P 2000 3250
+F 0 "RV?" H 2103 3296 50  0000 L CNN
+F 1 "Varistor" H 2103 3205 50  0000 L CNN
+F 2 "" V 1930 3250 50  0001 C CNN
+F 3 "~" H 2000 3250 50  0001 C CNN
+	1    2000 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Varistor RV?
+U 1 1 5E8F6EC1
+P 1900 3550
+F 0 "RV?" H 2003 3596 50  0000 L CNN
+F 1 "Varistor" H 2003 3505 50  0000 L CNN
+F 2 "" V 1830 3550 50  0001 C CNN
+F 3 "~" H 1900 3550 50  0001 C CNN
+	1    1900 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Varistor RV?
+U 1 1 5E8F7325
+P 1750 3850
+F 0 "RV?" H 1853 3896 50  0000 L CNN
+F 1 "Varistor" H 1853 3805 50  0000 L CNN
+F 2 "" V 1680 3850 50  0001 C CNN
+F 3 "~" H 1750 3850 50  0001 C CNN
+	1    1750 3850
+	1    0    0    -1  
+$EndComp
+Connection ~ 1750 4000
+Wire Wire Line
+	1750 4000 1900 4000
+Wire Wire Line
+	1900 3700 1900 4000
+Connection ~ 1900 4000
+Wire Wire Line
+	1900 4000 2000 4000
+Wire Wire Line
+	2000 3400 2000 4000
+Text Label 1000 3400 0    50   ~ 0
+C_L2
+Text Label 1000 3700 0    50   ~ 0
+C_L3
+Text Label 1100 3550 0    50   ~ 0
+C_N
+Text Label 1000 4000 0    50   ~ 0
+N
+$EndSCHEMATC
