@@ -1,3 +1,3 @@
 (sym_lib_table
-  (lib (name smartevse)(type Legacy)(uri W:/git/ba-atmevse/circuit/atmevse_v1/smartevse-import.lib)(options "")(descr ""))
+  (lib (name smartevse)(type Legacy)(uri W:/git/ba-atmevse/circuit/smartevse-import.lib)(options "")(descr ""))
 )
