@@ -3,13 +3,13 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 3 3
+Sheet 3 4
 Title ""
-Date ""
-Rev ""
+Date "2020-04-10"
+Rev "0.1"
 Comp ""
-Comment1 ""
-Comment2 ""
+Comment1 "TODO: ESP32 circuit"
+Comment2 "TODO: Serial comms and programming interface"
 Comment3 ""
 Comment4 ""
 $EndDescr
@@ -773,19 +773,19 @@ Wire Notes Line
 Text Notes 5550 1150 0    50   ~ 0
 Temperature Sensor\n
 Wire Wire Line
-	5150 3500 4900 3500
+	5150 3500 5000 3500
 Wire Wire Line
-	5150 3650 4900 3650
-Text HLabel 4900 3500 0    50   Input ~ 0
+	5150 3650 5000 3650
+Text HLabel 5000 3500 0    50   Input ~ 0
 PP
-Text HLabel 4900 3650 0    50   Input ~ 0
+Text HLabel 5000 3650 0    50   Input ~ 0
 CP
 Wire Wire Line
-	6350 3350 6600 3350
-Text HLabel 6600 3350 2    50   Output ~ 0
+	6350 3350 6900 3350
+Text HLabel 6900 3350 2    50   Output ~ 0
 PWM_Out
 Wire Wire Line
-	6350 3200 6600 3200
-Text HLabel 6600 3200 2    50   Output ~ 0
+	6350 3200 6900 3200
+Text HLabel 6900 3200 2    50   Output ~ 0
 Reed_Relay
 $EndSCHEMATC

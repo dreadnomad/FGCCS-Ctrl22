@@ -3,13 +3,13 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 3 3
+Sheet 3 4
 Title ""
-Date ""
-Rev ""
+Date "2020-04-10"
+Rev "0.1"
 Comp ""
-Comment1 ""
-Comment2 ""
+Comment1 "TODO: ESP32 circuit"
+Comment2 "TODO: Serial comms and programming interface"
 Comment3 ""
 Comment4 ""
 $EndDescr

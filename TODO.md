@@ -24,6 +24,7 @@ This is the TODO list for ba-atmevse
 
 - [x] ESP32 Firmware and Comms protocol? SPI, I2C, ...?
 - [x] How many SSRs/Contactors? 1-phase & 3-phase or 3x 1-phase?
+- [ ] How to set up the current transformer inputs? RMS value calculation in Software or rectified input to ADC?
 
 ## Main System Components
 
