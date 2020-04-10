@@ -6,11 +6,11 @@ encoding utf-8
 Sheet 3 4
 Title ""
 Date "2020-04-10"
-Rev "0.1"
+Rev "0.2"
 Comp ""
 Comment1 "TODO: ESP32 circuit"
-Comment2 "TODO: Serial comms and programming interface"
-Comment3 ""
+Comment2 "TODO: Serial comms interface"
+Comment3 "DONE: UDPI Interface"
 Comment4 ""
 $EndDescr
 $Comp
@@ -682,11 +682,11 @@ Wire Wire Line
 	5150 4550 5000 4550
 Wire Wire Line
 	5150 4700 5000 4700
-Text HLabel 5000 4400 0    50   Output ~ 0
+Text HLabel 5000 4400 0    50   Input ~ 0
 CT0
-Text HLabel 5000 4550 0    50   Output ~ 0
+Text HLabel 5000 4550 0    50   Input ~ 0
 CT1
-Text HLabel 5000 4700 0    50   Output ~ 0
+Text HLabel 5000 4700 0    50   Input ~ 0
 CT2
 Wire Wire Line
 	5150 4250 5000 4250
@@ -788,4 +788,78 @@ Wire Wire Line
 	6350 3200 6900 3200
 Text HLabel 6900 3200 2    50   Output ~ 0
 Reed_Relay
+$Comp
+L Connector_Generic:Conn_02x03_Odd_Even J3
+U 1 1 5E9E428D
+P 8450 1850
+F 0 "J3" H 8500 2167 50  0000 C CNN
+F 1 "Conn_02x03_Odd_Even" H 8500 2076 50  0000 C CNN
+F 2 "" H 8450 1850 50  0001 C CNN
+F 3 "~" H 8450 1850 50  0001 C CNN
+	1    8450 1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6350 4250 7900 4250
+Wire Wire Line
+	7900 4250 7900 1750
+Wire Wire Line
+	7900 1750 8250 1750
+Text Label 8150 1750 2    50   ~ 0
+UDPI
+Wire Wire Line
+	8750 1750 9000 1750
+Wire Wire Line
+	9000 1750 9000 1500
+$Comp
+L power:+3.3V #PWR030
+U 1 1 5E9F3B24
+P 9000 1500
+F 0 "#PWR030" H 9000 1350 50  0001 C CNN
+F 1 "+3.3V" H 9015 1673 50  0000 C CNN
+F 2 "" H 9000 1500 50  0001 C CNN
+F 3 "" H 9000 1500 50  0001 C CNN
+	1    9000 1500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8750 1950 9000 1950
+Wire Wire Line
+	9000 1950 9000 2150
+$Comp
+L power:GND #PWR031
+U 1 1 5E9F8F1C
+P 9000 2150
+F 0 "#PWR031" H 9000 1900 50  0001 C CNN
+F 1 "GND" H 9005 1977 50  0000 C CNN
+F 2 "" H 9000 2150 50  0001 C CNN
+F 3 "" H 9000 2150 50  0001 C CNN
+	1    9000 2150
+	1    0    0    -1  
+$EndComp
+NoConn ~ 8750 1850
+NoConn ~ 8250 1850
+NoConn ~ 8250 1950
+Wire Notes Line
+	7750 1050 7750 2450
+Wire Notes Line
+	7750 2450 9350 2450
+Wire Notes Line
+	9350 2450 9350 1050
+Wire Notes Line
+	9350 1050 7750 1050
+Text Notes 9100 1150 2    50   ~ 0
+UDPI Programming Interface\n
+Wire Wire Line
+	6350 3500 6900 3500
+Wire Wire Line
+	6350 3650 6900 3650
+Wire Wire Line
+	6350 4400 6900 4400
+Text Label 6900 4400 2    50   ~ 0
+RESET
+Text Label 6900 3500 2    50   ~ 0
+RX0_to_ESP
+Text Label 6900 3650 2    50   ~ 0
+TX0_to_ESP
 $EndSCHEMATC

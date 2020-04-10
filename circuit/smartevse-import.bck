@@ -12,6 +12,12 @@ K temperature sensor thermistor
 F http://ww1.microchip.com/downloads/en/DeviceDoc/21942e.pdf
 $ENDCMP
 #
+$CMP Reed_Relay_DPST_NC
+D Standex Meder DIP reed relay, DPST, Closing Contacts
+K Single Pole Reed Relay DPST
+F https://standexelectronics.com/wp-content/uploads/datasheet_reed_relay_DIP.pdf
+$ENDCMP
+#
 $CMP SN65HVD72
 D RS485 Transceiver
 F http://www.ti.com/lit/ds/sllse11h/sllse11h.pdf

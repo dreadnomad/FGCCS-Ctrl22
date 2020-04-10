@@ -5,8 +5,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 4
 Title "ATmega4808 EVSE"
-Date "2020-04-09"
-Rev "0.1"
+Date "2020-04-10"
+Rev "0.2"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -21,6 +21,9 @@ F1 "mains_and_power.sch" 50
 F2 "SSR_L1" I R 4100 3200 50 
 F3 "SSR_L2" I R 4100 3350 50 
 F4 "SSR_L3" I R 4100 3500 50 
+F5 "CT0" O R 4100 3650 50 
+F6 "CT1" O R 4100 3800 50 
+F7 "CT2" O R 4100 3950 50 
 $EndSheet
 Text Notes 2800 3550 0    50   ~ 10
 Mains Input Connector \nContactor Relays\n12V Power Supply\n3.3V DC Converter\n-12V Voltage Inverter
@@ -38,9 +41,9 @@ F7 "Lock_W" O R 6600 3400 50
 F8 "Lock_R" O R 6600 3250 50 
 F9 "Lock_B" I R 6600 3100 50 
 F10 "LED" O R 6600 3550 50 
-F11 "CT0" O L 4850 3650 50 
-F12 "CT1" O L 4850 3800 50 
-F13 "CT2" O L 4850 3950 50 
+F11 "CT0" I L 4850 3650 50 
+F12 "CT1" I L 4850 3800 50 
+F13 "CT2" I L 4850 3950 50 
 F14 "Button" I R 6600 3700 50 
 F15 "PP" I R 6600 3850 50 
 F16 "CP" I R 6600 4000 50 
@@ -96,4 +99,10 @@ Wire Wire Line
 	4850 3350 4100 3350
 Wire Wire Line
 	4850 3500 4100 3500
+Wire Wire Line
+	4100 3650 4850 3650
+Wire Wire Line
+	4100 3800 4850 3800
+Wire Wire Line
+	4100 3950 4850 3950
 $EndSCHEMATC
