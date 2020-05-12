@@ -5,12 +5,12 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 4
 Title ""
-Date "2020-04-10"
-Rev "0.2"
+Date "2020-05-12"
+Rev "0.4"
 Comp ""
 Comment1 "DONE: CT input circuit"
-Comment2 "TODO: verify CT input circuit in sim (maybe rectify signal?)"
-Comment3 ""
+Comment2 "DONE: Edit SSR connections"
+Comment3 "TODO: verify CT input circuit in sim (maybe rectify signal?)"
 Comment4 ""
 $EndDescr
 $Comp
@@ -148,16 +148,6 @@ Wire Wire Line
 Wire Wire Line
 	5700 2000 5900 2000
 Wire Wire Line
-	4550 4000 4550 3800
-Wire Wire Line
-	4550 3800 4700 3800
-Wire Wire Line
-	4450 3700 4450 2800
-Wire Wire Line
-	4450 2800 4700 2800
-Wire Wire Line
-	4250 3400 4250 1800
-Wire Wire Line
 	4250 1800 4700 1800
 NoConn ~ 4700 1600
 NoConn ~ 4700 2600
@@ -179,11 +169,6 @@ F 3 "" H 5200 5000 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	3300 5200 4600 5200
-Wire Wire Line
-	3750 4800 4600 4800
-Connection ~ 3750 3400
-Wire Wire Line
-	3750 3400 4250 3400
 Text Label 4700 2100 2    50   ~ 0
 C_L1
 Text Label 4700 3100 2    50   ~ 0
@@ -635,8 +620,6 @@ NoConn ~ 9400 4250
 NoConn ~ 9400 4450
 Text Notes 9000 5400 2    50   ~ 0
 12V Inverter\n
-Wire Wire Line
-	3750 3400 3750 4800
 $Comp
 L Connector:Screw_Terminal_01x10 J1
 U 1 1 5E9A97C9
@@ -757,30 +740,6 @@ Wire Wire Line
 Connection ~ 1700 3050
 Wire Wire Line
 	1700 3050 3100 3050
-Wire Wire Line
-	1100 3150 2050 3150
-Wire Wire Line
-	2050 3150 2050 3400
-Wire Wire Line
-	2050 3400 3750 3400
-Text Label 1750 3150 0    50   ~ 0
-L1
-Wire Wire Line
-	1100 3250 2000 3250
-Wire Wire Line
-	2000 3250 2000 3700
-Wire Wire Line
-	2000 3700 4450 3700
-Text Label 1750 3250 0    50   ~ 0
-L2
-Wire Wire Line
-	1100 3350 1950 3350
-Wire Wire Line
-	1950 3350 1950 4000
-Wire Wire Line
-	1950 4000 4550 4000
-Text Label 1750 3350 0    50   ~ 0
-L3
 $Comp
 L power:GND #PWR01
 U 1 1 5E9A964B
@@ -1065,4 +1024,27 @@ Wire Notes Line
 	3250 4850 550  4850
 Text Notes 2650 7600 2    50   ~ 0
 Current Transformer Input Section\n
+Wire Wire Line
+	4250 3800 4700 3800
+Wire Wire Line
+	4250 2800 4700 2800
+Connection ~ 4250 2800
+Wire Wire Line
+	4250 2800 4250 1800
+Wire Wire Line
+	4250 3800 4250 4800
+Connection ~ 4250 3800
+Wire Wire Line
+	4250 4800 4600 4800
+Wire Wire Line
+	4250 2800 4250 3350
+Wire Wire Line
+	1100 3350 4250 3350
+Connection ~ 4250 3350
+Wire Wire Line
+	4250 3350 4250 3800
+Text Label 1700 3350 0    50   ~ 0
+L
+NoConn ~ 1100 3150
+NoConn ~ 1100 3250
 $EndSCHEMATC

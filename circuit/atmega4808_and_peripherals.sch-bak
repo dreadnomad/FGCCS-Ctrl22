@@ -5,12 +5,12 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 3 4
 Title ""
-Date "2020-04-10"
-Rev "0.2"
+Date "2020-05-12"
+Rev "0.4"
 Comp ""
 Comment1 "TODO: ESP32 circuit"
-Comment2 "TODO: Serial comms interface"
-Comment3 "DONE: UDPI Interface"
+Comment2 "TODO: Serial Comms & Program Interface 8x2 custom connector"
+Comment3 "TODO: LED check"
 Comment4 ""
 $EndDescr
 $Comp
