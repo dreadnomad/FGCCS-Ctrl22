@@ -11,7 +11,7 @@ Comp ""
 Comment1 "DONE: CT input circuit"
 Comment2 "DONE: Edit SSR connections"
 Comment3 "TODO: verify CT input circuit in sim (maybe rectify signal?)"
-Comment4 ""
+Comment4 "DONE: add bias voltage (VDD/2)"
 $EndDescr
 $Comp
 L Device:Varistor RV3
@@ -1047,4 +1047,71 @@ Text Label 1700 3350 0    50   ~ 0
 L
 NoConn ~ 1100 3150
 NoConn ~ 1100 3250
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5ED48069
+P 4500 6200
+F 0 "#PWR?" H 4500 6050 50  0001 C CNN
+F 1 "+3.3V" H 4515 6373 50  0000 C CNN
+F 2 "" H 4500 6200 50  0001 C CNN
+F 3 "" H 4500 6200 50  0001 C CNN
+	1    4500 6200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5ED48B00
+P 4500 6900
+F 0 "#PWR?" H 4500 6650 50  0001 C CNN
+F 1 "GND" H 4505 6727 50  0000 C CNN
+F 2 "" H 4500 6900 50  0001 C CNN
+F 3 "" H 4500 6900 50  0001 C CNN
+	1    4500 6900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 5ED491A0
+P 4500 6700
+F 0 "R?" H 4559 6746 50  0000 L CNN
+F 1 "10k" H 4559 6655 50  0000 L CNN
+F 2 "" H 4500 6700 50  0001 C CNN
+F 3 "~" H 4500 6700 50  0001 C CNN
+	1    4500 6700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 5ED49F5A
+P 4500 6350
+F 0 "R?" H 4559 6396 50  0000 L CNN
+F 1 "10k" H 4559 6305 50  0000 L CNN
+F 2 "" H 4500 6350 50  0001 C CNN
+F 3 "~" H 4500 6350 50  0001 C CNN
+	1    4500 6350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4500 6200 4500 6250
+Wire Wire Line
+	4500 6800 4500 6900
+Wire Wire Line
+	4500 6450 4500 6500
+Wire Wire Line
+	4500 6500 4100 6500
+Connection ~ 4500 6500
+Wire Wire Line
+	4500 6500 4500 6600
+Text Label 4100 6500 0    50   ~ 0
+BIAS
+Wire Notes Line
+	3900 5900 5000 5900
+Wire Notes Line
+	5000 5900 5000 7300
+Wire Notes Line
+	5000 7300 3900 7300
+Wire Notes Line
+	3900 7300 3900 5900
+Text Notes 3850 7400 0    50   ~ 0
+VDD/2 Bias Voltage for CT input\n
 $EndSCHEMATC

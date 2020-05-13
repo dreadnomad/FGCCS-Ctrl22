@@ -5,8 +5,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 4
 Title "ATmega4808 EVSE"
-Date "2020-04-10"
-Rev "0.2"
+Date "2020-05-13"
+Rev "0.4"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -51,7 +51,7 @@ F17 "PWM_Out" O R 6600 4150 50
 F18 "Reed_Relay" O R 6600 4300 50 
 $EndSheet
 Text Notes 5450 3850 0    50   ~ 10
-ATmega4808\nRS485 Transceiver\nLock Actuator\nTemperature Sensor
+ATmega4808\nESP32\nRS485 Transceiver\nLock Actuator\nTemperature Sensor
 $Sheet
 S 7200 2700 1750 2200
 U 5E903BF9
