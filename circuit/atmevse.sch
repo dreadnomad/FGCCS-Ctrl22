@@ -5,12 +5,12 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 4
 Title "ATmega4808 EVSE"
-Date "2020-05-13"
-Rev "0.4"
+Date "2020-05-14"
+Rev "0.5"
 Comp ""
-Comment1 ""
-Comment2 ""
-Comment3 ""
+Comment1 "TODO: finish button/LED connections"
+Comment2 "TODO: remove TempSensor, free Pin"
+Comment3 "TODO: third ATmega UART"
 Comment4 ""
 $EndDescr
 $Sheet
