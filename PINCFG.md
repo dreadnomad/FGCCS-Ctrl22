@@ -5,9 +5,9 @@
 * Power Supply & GND                -> 4 Pins
 * External Reset                    -> 1 Pin
 * External Programming (UPDI)       -> 1 Pin
-* 3x ADC Input (CP, PP, Temp Sens)  -> 3 Pins
+* 2x ADC Input (CP, PP)             -> 2 Pins
 * 3x ADC Input (Load Balancing)     -> 3 Pins
-* 2x UART TX & RX                   -> 4 Pins
+* 3x UART TX & RX                   -> 6 Pins
 * PWM Output                        -> 1 Pin
 * Digital I/O
     - 3x SSR Toggle                 -> 3 Pins
@@ -15,9 +15,9 @@
     - 2x Lock Drive                 -> 2 Pins
     - LED, Button, Lock State       -> 3 Pins
     - RS485 Direction Toggle        -> 1 Pin
-* Total: 27 Pins
+* Total: 28 Pins
 
-## Pin Config v1
+## Pin Config
 
 |No.    |Pin    |Function   |Direction  |Used For       |
 |:-----:|:-----:|:---------:|:---------:|:-------------:|
@@ -28,7 +28,7 @@
 |5      |PC3    |XDIR1      |Output     |RS485 Direction|
 |6      |PD0    |ADC Input  |Input      |PP Signal Input|
 |7      |PD1    |ADC Input  |Input      |CP Signal Input|
-|8      |PD2    |ADC Input  |Input      |Temp Sens Input|
+|8      |PD2    |Digital I/O|Input      |Lock State     |
 |9      |PD3    |Digital I/O|Output     |LED Switch     |
 |10     |PD4    |Digital I/O|Input      |Pushbutton     |
 |11     |PD5    |ADC Input  |Input      |CT0            |
@@ -36,8 +36,8 @@
 |13     |PD7    |ADC Input  |Input      |CT2            |
 |14     |AVDD   |Supply     |Input      |VDD            |
 |15; 21 |GND    |Supply     |Input      |GND            |
-|16     |PF0    |           |           |*Unused*       |
-|17     |PF1    |Digital I/O|Input      |Lock State     |
+|16     |PF0    |TX2        |Output     |Serial Transmit|
+|17     |PF1    |RX2        |Input      |Serial Receive |
 |18     |PF6    |Ext Reset  |Input      |Reset          |
 |19     |UPDI   |Debug/Progr|I/O        |UPDI Interface |
 |20     |VDD    |Supply     |Input      |VDD            |
