@@ -5,13 +5,13 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 4 4
 Title ""
-Date "2020-05-14"
-Rev "0.5"
+Date "2020-05-18"
+Rev "0.6"
 Comp ""
 Comment1 "DONE: CT inputs on J2"
 Comment2 "TODO: Det. Q2, R14, R17, verify relay circuit"
-Comment3 ""
-Comment4 ""
+Comment3 "TODO: verify CT bias voltage divider & CT circuit"
+Comment4 "DONE: voltage divider & zener diode on button input"
 $EndDescr
 $Comp
 L Connector:Screw_Terminal_01x20 J2
@@ -83,8 +83,6 @@ F 3 "" H 5700 1050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Connection ~ 6200 1150
-Wire Wire Line
-	6200 1150 7800 1150
 $Comp
 L Device:Opamp_Dual_Generic U11
 U 1 1 5E9126F4
@@ -471,10 +469,6 @@ F 3 "" H 7100 2500 50  0001 C CNN
 	1    7100 2500
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7900 2800 7900 2700
-Wire Wire Line
-	7900 2700 8050 2700
 $Comp
 L Device:R_Small R24
 U 1 1 5E968C58
@@ -514,10 +508,7 @@ Text HLabel 8500 3100 0    50   Input ~ 0
 Lock_W
 Text HLabel 3850 3650 0    50   Output ~ 0
 PP
-Wire Wire Line
-	7900 2600 7900 2700
-Connection ~ 7900 2700
-Text HLabel 7900 2600 1    50   Output ~ 0
+Text HLabel 7500 2300 1    50   Output ~ 0
 Button
 Text HLabel 6000 5400 0    50   Input ~ 0
 Reed_Relay
@@ -578,11 +569,11 @@ CP_con
 Text Label 8600 5800 0    50   ~ 0
 PP_con
 Wire Wire Line
-	7850 5100 7050 5100
+	7850 5100 7550 5100
 Wire Wire Line
 	7050 5100 7050 5200
 Wire Wire Line
-	8450 5100 8700 5100
+	8450 5100 8500 5100
 Wire Wire Line
 	8700 5100 8700 4850
 $Comp
@@ -601,8 +592,8 @@ L Transistor_BJT:2N3904 Q2
 U 1 1 5E9D7037
 P 6950 5400
 F 0 "Q2" H 7141 5446 50  0000 L CNN
-F 1 "Drive Transistor" H 6850 5200 50  0000 L CNN
-F 2 "Package_TO_SOT_THT:TO-92_Inline" H 7150 5325 50  0001 L CIN
+F 1 "2N2222 or similar" H 6850 5200 50  0000 L CNN
+F 2 "" H 7150 5325 50  0001 L CIN
 F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf" H 6950 5400 50  0001 L CNN
 	1    6950 5400
 	1    0    0    -1  
@@ -666,8 +657,8 @@ L power:GND #PWR?
 U 1 1 5EC179B9
 P 1300 5450
 AR Path="/5E98FA8A/5EC179B9" Ref="#PWR?"  Part="1" 
-AR Path="/5E903BF9/5EC179B9" Ref="#PWR?"  Part="1" 
-F 0 "#PWR?" H 1300 5200 50  0001 C CNN
+AR Path="/5E903BF9/5EC179B9" Ref="#PWR039"  Part="1" 
+F 0 "#PWR039" H 1300 5200 50  0001 C CNN
 F 1 "GND" H 1305 5277 50  0000 C CNN
 F 2 "" H 1300 5450 50  0001 C CNN
 F 3 "" H 1300 5450 50  0001 C CNN
@@ -681,8 +672,8 @@ L Device:C_Small C?
 U 1 1 5EC179C0
 P 1300 5350
 AR Path="/5E98FA8A/5EC179C0" Ref="C?"  Part="1" 
-AR Path="/5E903BF9/5EC179C0" Ref="C?"  Part="1" 
-F 0 "C?" H 1392 5396 50  0000 L CNN
+AR Path="/5E903BF9/5EC179C0" Ref="C23"  Part="1" 
+F 0 "C23" H 1392 5396 50  0000 L CNN
 F 1 "100n" H 1392 5305 50  0000 L CNN
 F 2 "" H 1300 5350 50  0001 C CNN
 F 3 "~" H 1300 5350 50  0001 C CNN
@@ -710,8 +701,8 @@ L Device:R_Small R?
 U 1 1 5EC179D4
 P 1650 5200
 AR Path="/5E98FA8A/5EC179D4" Ref="R?"  Part="1" 
-AR Path="/5E903BF9/5EC179D4" Ref="R?"  Part="1" 
-F 0 "R?" V 1454 5200 50  0000 C CNN
+AR Path="/5E903BF9/5EC179D4" Ref="R28"  Part="1" 
+F 0 "R28" V 1454 5200 50  0000 C CNN
 F 1 "100" V 1545 5200 50  0000 C CNN
 F 2 "" H 1650 5200 50  0001 C CNN
 F 3 "~" H 1650 5200 50  0001 C CNN
@@ -723,8 +714,8 @@ L Device:R_Small R?
 U 1 1 5EC179DA
 P 1950 5450
 AR Path="/5E98FA8A/5EC179DA" Ref="R?"  Part="1" 
-AR Path="/5E903BF9/5EC179DA" Ref="R?"  Part="1" 
-F 0 "R?" H 2009 5496 50  0000 L CNN
+AR Path="/5E903BF9/5EC179DA" Ref="R31"  Part="1" 
+F 0 "R31" H 2009 5496 50  0000 L CNN
 F 1 "22" H 2009 5405 50  0000 L CNN
 F 2 "" H 1950 5450 50  0001 C CNN
 F 3 "~" H 1950 5450 50  0001 C CNN
@@ -741,8 +732,8 @@ L power:GND #PWR?
 U 1 1 5EC179E9
 P 1300 6350
 AR Path="/5E98FA8A/5EC179E9" Ref="#PWR?"  Part="1" 
-AR Path="/5E903BF9/5EC179E9" Ref="#PWR?"  Part="1" 
-F 0 "#PWR?" H 1300 6100 50  0001 C CNN
+AR Path="/5E903BF9/5EC179E9" Ref="#PWR040"  Part="1" 
+F 0 "#PWR040" H 1300 6100 50  0001 C CNN
 F 1 "GND" H 1305 6177 50  0000 C CNN
 F 2 "" H 1300 6350 50  0001 C CNN
 F 3 "" H 1300 6350 50  0001 C CNN
@@ -756,8 +747,8 @@ L Device:C_Small C?
 U 1 1 5EC179F0
 P 1300 6250
 AR Path="/5E98FA8A/5EC179F0" Ref="C?"  Part="1" 
-AR Path="/5E903BF9/5EC179F0" Ref="C?"  Part="1" 
-F 0 "C?" H 1392 6296 50  0000 L CNN
+AR Path="/5E903BF9/5EC179F0" Ref="C24"  Part="1" 
+F 0 "C24" H 1392 6296 50  0000 L CNN
 F 1 "100n" H 1392 6205 50  0000 L CNN
 F 2 "" H 1300 6250 50  0001 C CNN
 F 3 "~" H 1300 6250 50  0001 C CNN
@@ -785,8 +776,8 @@ L Device:R_Small R?
 U 1 1 5EC17A04
 P 1650 6100
 AR Path="/5E98FA8A/5EC17A04" Ref="R?"  Part="1" 
-AR Path="/5E903BF9/5EC17A04" Ref="R?"  Part="1" 
-F 0 "R?" V 1454 6100 50  0000 C CNN
+AR Path="/5E903BF9/5EC17A04" Ref="R29"  Part="1" 
+F 0 "R29" V 1454 6100 50  0000 C CNN
 F 1 "100" V 1545 6100 50  0000 C CNN
 F 2 "" H 1650 6100 50  0001 C CNN
 F 3 "~" H 1650 6100 50  0001 C CNN
@@ -798,8 +789,8 @@ L Device:R_Small R?
 U 1 1 5EC17A0A
 P 1950 6350
 AR Path="/5E98FA8A/5EC17A0A" Ref="R?"  Part="1" 
-AR Path="/5E903BF9/5EC17A0A" Ref="R?"  Part="1" 
-F 0 "R?" H 2009 6396 50  0000 L CNN
+AR Path="/5E903BF9/5EC17A0A" Ref="R32"  Part="1" 
+F 0 "R32" H 2009 6396 50  0000 L CNN
 F 1 "22" H 2009 6305 50  0000 L CNN
 F 2 "" H 1950 6350 50  0001 C CNN
 F 3 "~" H 1950 6350 50  0001 C CNN
@@ -816,8 +807,8 @@ L power:GND #PWR?
 U 1 1 5EC17A19
 P 1300 7250
 AR Path="/5E98FA8A/5EC17A19" Ref="#PWR?"  Part="1" 
-AR Path="/5E903BF9/5EC17A19" Ref="#PWR?"  Part="1" 
-F 0 "#PWR?" H 1300 7000 50  0001 C CNN
+AR Path="/5E903BF9/5EC17A19" Ref="#PWR041"  Part="1" 
+F 0 "#PWR041" H 1300 7000 50  0001 C CNN
 F 1 "GND" H 1305 7077 50  0000 C CNN
 F 2 "" H 1300 7250 50  0001 C CNN
 F 3 "" H 1300 7250 50  0001 C CNN
@@ -831,8 +822,8 @@ L Device:C_Small C?
 U 1 1 5EC17A20
 P 1300 7150
 AR Path="/5E98FA8A/5EC17A20" Ref="C?"  Part="1" 
-AR Path="/5E903BF9/5EC17A20" Ref="C?"  Part="1" 
-F 0 "C?" H 1392 7196 50  0000 L CNN
+AR Path="/5E903BF9/5EC17A20" Ref="C25"  Part="1" 
+F 0 "C25" H 1392 7196 50  0000 L CNN
 F 1 "100n" H 1392 7105 50  0000 L CNN
 F 2 "" H 1300 7150 50  0001 C CNN
 F 3 "~" H 1300 7150 50  0001 C CNN
@@ -860,8 +851,8 @@ L Device:R_Small R?
 U 1 1 5EC17A34
 P 1650 7000
 AR Path="/5E98FA8A/5EC17A34" Ref="R?"  Part="1" 
-AR Path="/5E903BF9/5EC17A34" Ref="R?"  Part="1" 
-F 0 "R?" V 1454 7000 50  0000 C CNN
+AR Path="/5E903BF9/5EC17A34" Ref="R30"  Part="1" 
+F 0 "R30" V 1454 7000 50  0000 C CNN
 F 1 "100" V 1545 7000 50  0000 C CNN
 F 2 "" H 1650 7000 50  0001 C CNN
 F 3 "~" H 1650 7000 50  0001 C CNN
@@ -873,8 +864,8 @@ L Device:R_Small R?
 U 1 1 5EC17A3A
 P 1950 7250
 AR Path="/5E98FA8A/5EC17A3A" Ref="R?"  Part="1" 
-AR Path="/5E903BF9/5EC17A3A" Ref="R?"  Part="1" 
-F 0 "R?" H 2009 7296 50  0000 L CNN
+AR Path="/5E903BF9/5EC17A3A" Ref="R33"  Part="1" 
+F 0 "R33" H 2009 7296 50  0000 L CNN
 F 1 "22" H 2009 7205 50  0000 L CNN
 F 2 "" H 1950 7250 50  0001 C CNN
 F 3 "~" H 1950 7250 50  0001 C CNN
@@ -940,10 +931,10 @@ CT2_L
 Text Label 2450 7400 0    50   ~ 0
 CT2_K
 $Comp
-L power:+3.3V #PWR?
+L power:+3.3V #PWR042
 U 1 1 5EC624C4
 P 1500 3550
-F 0 "#PWR?" H 1500 3400 50  0001 C CNN
+F 0 "#PWR042" H 1500 3400 50  0001 C CNN
 F 1 "+3.3V" H 1515 3723 50  0000 C CNN
 F 2 "" H 1500 3550 50  0001 C CNN
 F 3 "" H 1500 3550 50  0001 C CNN
@@ -951,10 +942,10 @@ F 3 "" H 1500 3550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR043
 U 1 1 5EC624CA
 P 1500 4250
-F 0 "#PWR?" H 1500 4000 50  0001 C CNN
+F 0 "#PWR043" H 1500 4000 50  0001 C CNN
 F 1 "GND" H 1505 4077 50  0000 C CNN
 F 2 "" H 1500 4250 50  0001 C CNN
 F 3 "" H 1500 4250 50  0001 C CNN
@@ -962,10 +953,10 @@ F 3 "" H 1500 4250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R?
+L Device:R_Small R27
 U 1 1 5EC624D0
 P 1500 4050
-F 0 "R?" H 1559 4096 50  0000 L CNN
+F 0 "R27" H 1559 4096 50  0000 L CNN
 F 1 "10k" H 1559 4005 50  0000 L CNN
 F 2 "" H 1500 4050 50  0001 C CNN
 F 3 "~" H 1500 4050 50  0001 C CNN
@@ -973,10 +964,10 @@ F 3 "~" H 1500 4050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R?
+L Device:R_Small R26
 U 1 1 5EC624D6
 P 1500 3700
-F 0 "R?" H 1559 3746 50  0000 L CNN
+F 0 "R26" H 1559 3746 50  0000 L CNN
 F 1 "10k" H 1559 3655 50  0000 L CNN
 F 2 "" H 1500 3700 50  0001 C CNN
 F 3 "~" H 1500 3700 50  0001 C CNN
@@ -1006,6 +997,77 @@ Wire Notes Line
 	900  4650 900  3250
 Text Notes 850  4750 0    50   ~ 0
 VDD/2 Bias Voltage for CT input\n
+NoConn ~ 8500 3400
+NoConn ~ 8500 3500
 Wire Wire Line
-	7300 2800 7900 2800
+	6200 1150 8400 1150
+$Comp
+L Device:R_Small R?
+U 1 1 5ECD3565
+P 7500 2800
+F 0 "R?" H 7550 2850 50  0000 L CNN
+F 1 "33" H 7559 2755 50  0000 L CNN
+F 2 "" H 7500 2800 50  0001 C CNN
+F 3 "~" H 7500 2800 50  0001 C CNN
+	1    7500 2800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7500 2700 7700 2700
+Wire Wire Line
+	7500 2700 7500 2300
+Connection ~ 7500 2700
+Wire Wire Line
+	7300 2800 7300 2700
+Wire Wire Line
+	7300 2700 7500 2700
+$Comp
+L Device:D_Zener_Small D?
+U 1 1 5ECE49DD
+P 7700 2800
+F 0 "D?" V 7654 2868 50  0000 L CNN
+F 1 "3.3V Zener" V 7745 2868 50  0000 L CNN
+F 2 "" V 7700 2800 50  0001 C CNN
+F 3 "~" V 7700 2800 50  0001 C CNN
+	1    7700 2800
+	0    1    1    0   
+$EndComp
+Connection ~ 7100 3100
+Wire Wire Line
+	7500 2900 7500 3100
+Wire Wire Line
+	7100 3100 7500 3100
+Connection ~ 7500 2900
+Connection ~ 7700 2700
+Wire Wire Line
+	7700 2900 7500 2900
+Wire Wire Line
+	7700 2700 8050 2700
+Text Label 8400 2400 2    50   ~ 0
+12V_Fused
+$Comp
+L Device:D_Small D?
+U 1 1 5ECFD670
+P 8100 4600
+F 0 "D?" H 8100 4395 50  0000 C CNN
+F 1 "Only needed if not included in relay" H 8100 4486 50  0000 C CNN
+F 2 "" V 8100 4600 50  0001 C CNN
+F 3 "~" V 8100 4600 50  0001 C CNN
+	1    8100 4600
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	8200 4600 8500 4600
+Wire Wire Line
+	8500 4600 8500 5100
+Connection ~ 8500 5100
+Wire Wire Line
+	8500 5100 8700 5100
+Wire Wire Line
+	8000 4600 7550 4600
+Wire Wire Line
+	7550 4600 7550 5100
+Connection ~ 7550 5100
+Wire Wire Line
+	7550 5100 7050 5100
 $EndSCHEMATC
