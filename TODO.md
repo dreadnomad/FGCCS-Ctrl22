@@ -25,8 +25,9 @@ This is the TODO list for ba-atmevse
 - [x] ESP32 Firmware and Comms protocol? SPI, I2C, ...?
 - [x] How many SSRs/Contactors? 1-phase & 3-phase or 3x 1-phase?
 - [ ] How to set up the current transformer inputs? RMS value calculation in Software or rectified input to ADC?
-- [ ] Button input with or w/o voltage divider? If no div, BAT54 schottky diode limits mcu input voltage to ~3.8V
+- [x] Button input with or w/o voltage divider? If no div, BAT54 schottky diode limits mcu input voltage to ~3.8V
       If with div, mcu input voltage is at ~3.27V -> Tests? Max input on ATmega ADC? -> see simulation files for details
+      -> voltage divider & zener diode for stabilisation in rev0.6 schematic
 
 
 ## Main System Components
