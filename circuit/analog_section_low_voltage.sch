@@ -536,7 +536,7 @@ U 1 1 5E9A6E64
 P 8150 5400
 F 0 "K1" V 7483 5400 50  0000 C CNN
 F 1 "Reed Relay DPST NC" V 7574 5400 50  0000 C CNN
-F 2 "Relay_THT:Relay_StandexMeder_DIP_LowProfile" H 8650 5350 50  0001 L CNN
+F 2 "" H 8650 5350 50  0001 L CNN
 F 3 "https://standexelectronics.com/wp-content/uploads/datasheet_reed_relay_DIP.pdf" H 8150 5400 50  0001 C CNN
 	1    8150 5400
 	0    1    1    0   
@@ -1002,10 +1002,10 @@ NoConn ~ 8500 3500
 Wire Wire Line
 	6200 1150 8400 1150
 $Comp
-L Device:R_Small R?
+L Device:R_Small R34
 U 1 1 5ECD3565
 P 7500 2800
-F 0 "R?" H 7550 2850 50  0000 L CNN
+F 0 "R34" H 7550 2850 50  0000 L CNN
 F 1 "33" H 7559 2755 50  0000 L CNN
 F 2 "" H 7500 2800 50  0001 C CNN
 F 3 "~" H 7500 2800 50  0001 C CNN
@@ -1022,10 +1022,10 @@ Wire Wire Line
 Wire Wire Line
 	7300 2700 7500 2700
 $Comp
-L Device:D_Zener_Small D?
+L Device:D_Zener_Small D8
 U 1 1 5ECE49DD
 P 7700 2800
-F 0 "D?" V 7654 2868 50  0000 L CNN
+F 0 "D8" V 7654 2868 50  0000 L CNN
 F 1 "3.3V Zener" V 7745 2868 50  0000 L CNN
 F 2 "" V 7700 2800 50  0001 C CNN
 F 3 "~" V 7700 2800 50  0001 C CNN
@@ -1046,10 +1046,10 @@ Wire Wire Line
 Text Label 8400 2400 2    50   ~ 0
 12V_Fused
 $Comp
-L Device:D_Small D?
+L Device:D_Small D9
 U 1 1 5ECFD670
 P 8100 4600
-F 0 "D?" H 8100 4395 50  0000 C CNN
+F 0 "D9" H 8100 4395 50  0000 C CNN
 F 1 "Only needed if not included in relay" H 8100 4486 50  0000 C CNN
 F 2 "" V 8100 4600 50  0001 C CNN
 F 3 "~" V 8100 4600 50  0001 C CNN

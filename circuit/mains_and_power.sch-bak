@@ -5,8 +5,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 4
 Title ""
-Date "2020-05-14"
-Rev "0.5"
+Date "2020-05-18"
+Rev "0.6"
 Comp ""
 Comment1 "MOVED: CT input circuit"
 Comment2 "DONE: Edit SSR connections"
