@@ -1,5 +1,5 @@
 /*
- * ATmega4808_test.c
+ * atm4808_blink_test.c
  *
  * Created: 18.05.2020 11:51:17
  * Author : ko07xiqa

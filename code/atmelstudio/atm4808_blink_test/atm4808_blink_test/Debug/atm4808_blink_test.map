@@ -396,11 +396,11 @@ END GROUP
  *(.debug_frame)
  .debug_frame   0x00000000       0x24 main.o
 
-.debug_str      0x00000000     0x11c5
+.debug_str      0x00000000     0x11cb
  *(.debug_str)
  .debug_str     0x00000000      0xed3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega4808/avrxmega3/crtatmega4808.o
- .debug_str     0x00000ed3      0x2f2 main.o
-                                0x326 (size before relaxing)
+ .debug_str     0x00000ed3      0x2f8 main.o
+                                0x32c (size before relaxing)
 
 .debug_loc
  *(.debug_loc)
@@ -429,5 +429,5 @@ END GROUP
 
 .debug_macro
  *(.debug_macro)
-OUTPUT(ATmega4808_test.elf elf32-avr)
+OUTPUT(atm4808_blink_test.elf elf32-avr)
 LOAD linker stubs
