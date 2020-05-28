@@ -5,9 +5,10 @@ This is the TODO list for ba-atmevse
 ## Current TODOs
 
 - [ ] Test subcircuits on breadboard: 12V Button/LED, CT inputs, Reed Relay
+- [ ] Get parts list and corresponding footprints, preferably one supplier for everything -> see PARTS.md for details 
 - [ ] Draft first layout 
 - [ ] Setup Linux AVR toolchain and IDE
-- [ ] Test Serial Comms to PC
+- [x] Test Serial Comms to PC -> Working!
 
 ## First Steps
 
@@ -23,6 +24,7 @@ This is the TODO list for ba-atmevse
     - [x] Get feedback on first draft
 - [x] Find possible conflicts due to changes
 - [x] Resolve conflicts and devise a rough roadmap
+- [ ] First layout draft
 - [ ] Document all steps taken
     - [x] REVENG.md documents the circuit analysis of SmartEVSEv2.2
     - [x] PINCFG.md documents the chosen pin layout for the ATmega4808 MCU
