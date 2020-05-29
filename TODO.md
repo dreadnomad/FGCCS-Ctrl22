@@ -5,6 +5,7 @@ This is the TODO list for ba-atmevse
 ## Current TODOs
 
 - [ ] Test subcircuits on breadboard: 12V Button/LED, CT inputs, Reed Relay
+- [x] Replace AOZ1280 with AP5100 for 3.3V regulation
 - [ ] Get parts list and corresponding footprints, preferably one supplier for everything -> see PARTS.md for details 
 - [ ] Draft first layout 
 - [ ] Setup Linux AVR toolchain and IDE
