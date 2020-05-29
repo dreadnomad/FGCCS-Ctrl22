@@ -5,13 +5,13 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 4
 Title "ATmega4808 EVSE"
-Date "2020-05-14"
-Rev "0.6"
+Date "2020-05-29"
+Rev "0.7"
 Comp ""
 Comment1 "TODO: finish button/LED connections"
-Comment2 "TODO: remove TempSensor, free Pin"
-Comment3 "TODO: third ATmega UART"
-Comment4 "DONE: Switch CT inputs to J2"
+Comment2 ""
+Comment3 ""
+Comment4 ""
 $EndDescr
 $Sheet
 S 2300 2700 1800 1350
@@ -45,7 +45,7 @@ F14 "Button" I R 6600 3700 50
 F15 "PP" I R 6600 3850 50 
 F16 "CP" I R 6600 4000 50 
 F17 "PWM_Out" O R 6600 4150 50 
-F18 "Reed_Relay" O R 6600 4300 50 
+F18 "Signal_Relay" O R 6600 4300 50 
 $EndSheet
 Text Notes 5450 3850 0    50   ~ 10
 ATmega4808\nESP32\nRS485 Transceiver\nLock Actuator\nTemperature Sensor
@@ -64,10 +64,10 @@ F8 "Lock_R" I L 7200 3250 50
 F9 "Lock_W" I L 7200 3400 50 
 F10 "PP" O L 7200 3850 50 
 F11 "Button" O L 7200 3700 50 
-F12 "Reed_Relay" I L 7200 4300 50 
-F13 "CT0" O L 7200 4450 50 
-F14 "CT1" O L 7200 4600 50 
-F15 "CT2" O L 7200 4750 50 
+F12 "CT0" O L 7200 4450 50 
+F13 "CT1" O L 7200 4600 50 
+F14 "CT2" O L 7200 4750 50 
+F15 "Signal_Relay" I L 7200 4300 50 
 $EndSheet
 Wire Wire Line
 	6600 2800 7200 2800
@@ -92,7 +92,7 @@ Wire Wire Line
 Wire Wire Line
 	6600 3700 7200 3700
 Text Notes 8700 3900 2    50   ~ 10
-Analog Section\n-Opamp Buffer\n- Comparator\nLow Voltage I/O Connector\nReed Relays
+Analog Section\n-Opamp Buffer\n- Comparator\nLow Voltage I/O Connector\nSignal Relays
 Wire Wire Line
 	4850 3200 4100 3200
 Wire Wire Line

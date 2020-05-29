@@ -5,10 +5,10 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 4
 Title ""
-Date "2020-05-18"
-Rev "0.6"
+Date "2020-05-29"
+Rev "0.7"
 Comp ""
-Comment1 "MOVED: CT input circuit"
+Comment1 "DONE: Replaced buck regulator AOZ1280 -> AP5100"
 Comment2 "DONE: Edit SSR connections"
 Comment3 "TODO: verify CT input circuit in sim (maybe rectify signal?)"
 Comment4 "DONE: add bias voltage (VDD/2)"
@@ -19,11 +19,11 @@ U 1 1 5E9A9653
 P 3300 2050
 F 0 "RV3" H 3403 2096 50  0000 L CNN
 F 1 "Varistor" H 3403 2005 50  0000 L CNN
-F 2 "Varistor:RV_Disc_D16.5mm_W6.7mm_P7.5mm" V 3230 2050 50  0001 C CNN
-F 3 "~" H 3300 2050 50  0001 C CNN
-F 4 "TDK S14K275 Scheiben-Varistor 430V" H 3300 2050 50  0001 C CNN "Part"
-F 5 "500675" H 3300 2050 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 3300 2050 50  0001 C CNN "Supplier"
+F 2 "Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm" V 3230 2050 50  0001 C CNN
+F 3 "https://www.tdk-electronics.tdk.com/inf/70/db/var/SIOV_Leaded_StandarD.pdf" H 3300 2050 50  0001 C CNN
+F 4 "" H 3300 2050 50  0001 C CNN "Part"
+F 5 "871-B72214S0271K551" H 3300 2050 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 3300 2050 50  0001 C CNN "Supplier"
 	1    3300 2050
 	1    0    0    -1  
 $EndComp
@@ -33,11 +33,11 @@ U 1 1 5E9A9659
 P 3200 2350
 F 0 "RV2" H 3303 2396 50  0000 L CNN
 F 1 "Varistor" H 3303 2305 50  0000 L CNN
-F 2 "Varistor:RV_Disc_D16.5mm_W6.7mm_P7.5mm" V 3130 2350 50  0001 C CNN
-F 3 "~" H 3200 2350 50  0001 C CNN
-F 4 "TDK S14K275 Scheiben-Varistor 430V" H 3200 2350 50  0001 C CNN "Part"
-F 5 "500675" H 3200 2350 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 3200 2350 50  0001 C CNN "Supplier"
+F 2 "Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm" V 3130 2350 50  0001 C CNN
+F 3 "https://www.tdk-electronics.tdk.com/inf/70/db/var/SIOV_Leaded_StandarD.pdf" H 3200 2350 50  0001 C CNN
+F 4 "" H 3200 2350 50  0001 C CNN "Part"
+F 5 "871-B72214S0271K551" H 3200 2350 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 3200 2350 50  0001 C CNN "Supplier"
 	1    3200 2350
 	1    0    0    -1  
 $EndComp
@@ -47,11 +47,11 @@ U 1 1 5E9A965F
 P 3100 2650
 F 0 "RV1" H 3203 2696 50  0000 L CNN
 F 1 "Varistor" H 3203 2605 50  0000 L CNN
-F 2 "Varistor:RV_Disc_D16.5mm_W6.7mm_P7.5mm" V 3030 2650 50  0001 C CNN
-F 3 "~" H 3100 2650 50  0001 C CNN
-F 4 "TDK S14K275 Scheiben-Varistor 430V" H 3100 2650 50  0001 C CNN "Part"
-F 5 "500675" H 3100 2650 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 3100 2650 50  0001 C CNN "Supplier"
+F 2 "Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm" V 3030 2650 50  0001 C CNN
+F 3 "https://www.tdk-electronics.tdk.com/inf/70/db/var/SIOV_Leaded_StandarD.pdf" H 3100 2650 50  0001 C CNN
+F 4 "" H 3100 2650 50  0001 C CNN "Part"
+F 5 "871-B72214S0271K551" H 3100 2650 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 3100 2650 50  0001 C CNN "Supplier"
 	1    3100 2650
 	1    0    0    -1  
 $EndComp
@@ -61,11 +61,11 @@ U 1 1 5E9A9676
 P 5200 3800
 F 0 "U3" H 5200 3290 70  0000 C CNN
 F 1 "AQH3223" H 5200 3411 70  0000 C CNN
-F 2 "" H 5200 3800 50  0001 C CNN
+F 2 "smartevse-footprints:DIL07SMD" H 5200 3800 50  0001 C CNN
 F 3 "" H 5200 3800 50  0001 C CNN
-F 4 "Panasonic Halbleiterrelais AQH3223 Sofortschaltend" H 5200 3800 50  0001 C CNN "Part"
-F 5 "504887 " H 5200 3800 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 5200 3800 50  0001 C CNN "Supplier"
+F 4 "" H 5200 3800 50  0001 C CNN "Part"
+F 5 "" H 5200 3800 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 5200 3800 50  0001 C CNN "Supplier"
 	1    5200 3800
 	-1   0    0    1   
 $EndComp
@@ -75,11 +75,11 @@ U 1 1 5E9A967C
 P 5200 2800
 F 0 "U2" H 5200 2290 70  0000 C CNN
 F 1 "AQH3223" H 5200 2411 70  0000 C CNN
-F 2 "" H 5200 2800 50  0001 C CNN
+F 2 "smartevse-footprints:DIL07SMD" H 5200 2800 50  0001 C CNN
 F 3 "" H 5200 2800 50  0001 C CNN
-F 4 "Panasonic Halbleiterrelais AQH3223 Sofortschaltend" H 5200 2800 50  0001 C CNN "Part"
-F 5 "504887 " H 5200 2800 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 5200 2800 50  0001 C CNN "Supplier"
+F 4 "" H 5200 2800 50  0001 C CNN "Part"
+F 5 "" H 5200 2800 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 5200 2800 50  0001 C CNN "Supplier"
 	1    5200 2800
 	-1   0    0    1   
 $EndComp
@@ -89,11 +89,11 @@ U 1 1 5E9A9682
 P 5200 1800
 F 0 "U1" H 5200 1290 70  0000 C CNN
 F 1 "AQH3223" H 5200 1411 70  0000 C CNN
-F 2 "" H 5200 1800 50  0001 C CNN
+F 2 "smartevse-footprints:DIL07SMD" H 5200 1800 50  0001 C CNN
 F 3 "" H 5200 1800 50  0001 C CNN
-F 4 "Panasonic Halbleiterrelais AQH3223 Sofortschaltend" H 5200 1800 50  0001 C CNN "Part"
-F 5 "504887 " H 5200 1800 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 5200 1800 50  0001 C CNN "Supplier"
+F 4 "" H 5200 1800 50  0001 C CNN "Part"
+F 5 "" H 5200 1800 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 5200 1800 50  0001 C CNN "Supplier"
 	1    5200 1800
 	-1   0    0    1   
 $EndComp
@@ -180,11 +180,11 @@ U 1 1 5E9A96BD
 P 5200 5000
 F 0 "U4" H 5200 5447 42  0000 C CNN
 F 1 "MPM-05-12" H 5200 5368 42  0000 C CNN
-F 2 "" H 5200 5000 50  0001 C CNN
-F 3 "" H 5200 5000 50  0001 C CNN
-F 4 "Mean Well MPM-05-12 AC/DC-Printnetzteil 12 V/DC 0.42 A 5 W " H 5200 5000 50  0001 C CNN "Part"
-F 5 "1838042" H 5200 5000 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 5200 5000 50  0001 C CNN "Supplier"
+F 2 "Converter_ACDC:Converter_ACDC_MeanWell_IRM-05-xx_THT" H 5200 5000 50  0001 C CNN
+F 3 "https://www.meanwell.com/webapp/product/search.aspx?prod=MPM-05" H 5200 5000 50  0001 C CNN
+F 4 "" H 5200 5000 50  0001 C CNN "Part"
+F 5 "" H 5200 5000 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 5200 5000 50  0001 C CNN "Supplier"
 	1    5200 5000
 	1    0    0    -1  
 $EndComp
@@ -232,9 +232,9 @@ F 0 "C1" H 6815 1896 50  0000 L CNN
 F 1 "10u16V" V 6850 1550 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6738 1700 50  0001 C CNN
 F 3 "~" H 6700 1850 50  0001 C CNN
-F 4 "Würth Elektronik WCAP-CSGP 885012107014 Keramik-Kondensator 0805 10 µF 16 V" H 6700 1850 50  0001 C CNN "Part"
-F 5 "1278809 " H 6700 1850 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 6700 1850 50  0001 C CNN "Supplier"
+F 4 "" H 6700 1850 50  0001 C CNN "Part"
+F 5 "" H 6700 1850 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 6700 1850 50  0001 C CNN "Supplier"
 	1    6700 1850
 	1    0    0    -1  
 $EndComp
@@ -246,9 +246,9 @@ F 0 "C3" H 7165 1896 50  0000 L CNN
 F 1 "10u16V" V 7200 1550 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 7088 1700 50  0001 C CNN
 F 3 "~" H 7050 1850 50  0001 C CNN
-F 4 "Würth Elektronik WCAP-CSGP 885012107014 Keramik-Kondensator 0805 10 µF 16 V" H 7050 1850 50  0001 C CNN "Part"
-F 5 "1278809 " H 7050 1850 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 7050 1850 50  0001 C CNN "Supplier"
+F 4 "" H 7050 1850 50  0001 C CNN "Part"
+F 5 "" H 7050 1850 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 7050 1850 50  0001 C CNN "Supplier"
 	1    7050 1850
 	1    0    0    -1  
 $EndComp
@@ -260,9 +260,9 @@ F 0 "C5" H 7515 1896 50  0000 L CNN
 F 1 "10u16V" V 7550 1550 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 7438 1700 50  0001 C CNN
 F 3 "~" H 7400 1850 50  0001 C CNN
-F 4 "Würth Elektronik WCAP-CSGP 885012107014 Keramik-Kondensator 0805 10 µF 16 V" H 7400 1850 50  0001 C CNN "Part"
-F 5 "1278809 " H 7400 1850 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 7400 1850 50  0001 C CNN "Supplier"
+F 4 "" H 7400 1850 50  0001 C CNN "Part"
+F 5 "" H 7400 1850 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 7400 1850 50  0001 C CNN "Supplier"
 	1    7400 1850
 	1    0    0    -1  
 $EndComp
@@ -274,9 +274,9 @@ F 0 "C6" H 7865 1896 50  0000 L CNN
 F 1 "10u16V" V 7900 1550 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 7788 1700 50  0001 C CNN
 F 3 "~" H 7750 1850 50  0001 C CNN
-F 4 "Würth Elektronik WCAP-CSGP 885012107014 Keramik-Kondensator 0805 10 µF 16 V" H 7750 1850 50  0001 C CNN "Part"
-F 5 "1278809 " H 7750 1850 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 7750 1850 50  0001 C CNN "Supplier"
+F 4 "" H 7750 1850 50  0001 C CNN "Part"
+F 5 "" H 7750 1850 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 7750 1850 50  0001 C CNN "Supplier"
 	1    7750 1850
 	1    0    0    -1  
 $EndComp
@@ -288,9 +288,9 @@ F 0 "C7" H 8215 1896 50  0000 L CNN
 F 1 "100n" V 8250 1650 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 8138 1700 50  0001 C CNN
 F 3 "~" H 8100 1850 50  0001 C CNN
-F 4 "Kemet C0603C104K3RAC7867+ Keramik-Kondensator SMD 0603 100 nF 25 V 10 %" H 8100 1850 50  0001 C CNN "Part"
-F 5 "1420339" H 8100 1850 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 8100 1850 50  0001 C CNN "Supplier"
+F 4 "" H 8100 1850 50  0001 C CNN "Part"
+F 5 "" H 8100 1850 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 8100 1850 50  0001 C CNN "Supplier"
 	1    8100 1850
 	1    0    0    -1  
 $EndComp
@@ -316,27 +316,7 @@ Connection ~ 7400 2250
 Wire Wire Line
 	7750 2250 8100 2250
 Connection ~ 7750 2250
-$Comp
-L Regulator_Switching:AOZ1280CI U6
-U 1 1 5E9A9709
-P 8900 1650
-F 0 "U6" H 8900 2017 50  0000 C CNN
-F 1 "AOZ1280CI" H 8900 1926 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-23-6" H 9600 1400 50  0001 C CNN
-F 3 "http://aosmd.com/res/data_sheets/AOZ1280CI.pdf" H 8650 1400 50  0001 C CNN
-	1    8900 1650
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8500 1550 8400 1550
 Connection ~ 8100 1550
-Wire Wire Line
-	8500 1750 8400 1750
-Wire Wire Line
-	8400 1750 8400 1550
-Connection ~ 8400 1550
-Wire Wire Line
-	8400 1550 8100 1550
 Wire Wire Line
 	8900 1950 8900 2250
 Wire Wire Line
@@ -350,9 +330,9 @@ F 0 "C9" V 9271 1550 50  0000 C CNN
 F 1 "100n" V 9362 1550 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 9500 1550 50  0001 C CNN
 F 3 "~" H 9500 1550 50  0001 C CNN
-F 4 "Kemet C0603C104K3RAC7867+ Keramik-Kondensator SMD 0603 100 nF 25 V 10 %" H 9500 1550 50  0001 C CNN "Part"
-F 5 "1420339" H 9500 1550 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 9500 1550 50  0001 C CNN "Supplier"
+F 4 "" H 9500 1550 50  0001 C CNN "Part"
+F 5 "" H 9500 1550 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 9500 1550 50  0001 C CNN "Supplier"
 	1    9500 1550
 	0    1    1    0   
 $EndComp
@@ -375,9 +355,9 @@ F 0 "D1" V 9604 2129 50  0000 L CNN
 F 1 "PMEG4010BEA" H 9300 1950 50  0000 L CNN
 F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 9650 1875 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/PMEG4050EP.pdf" H 9650 2050 50  0001 C CNN
-F 4 "Nexperia Schottky-Diode - Gleichrichter PMEG4010BEA,135 SOD-323 40 V" H 9650 2050 50  0001 C CNN "Part"
-F 5 "1111813 " H 9650 2050 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 9650 2050 50  0001 C CNN "Supplier"
+F 4 "" H 9650 2050 50  0001 C CNN "Part"
+F 5 "771-PMEG4010BEA,135" H 9650 2050 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 9650 2050 50  0001 C CNN "Supplier"
 	1    9650 2050
 	0    1    1    0   
 $EndComp
@@ -393,31 +373,29 @@ L Device:R_Small R2
 U 1 1 5E9A972E
 P 10150 2050
 F 0 "R2" H 10209 2096 50  0000 L CNN
-F 1 "10k" H 10209 2005 50  0000 L CNN
+F 1 "10k" V 10050 2000 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 10150 2050 50  0001 C CNN
 F 3 "~" H 10150 2050 50  0001 C CNN
-F 4 "TRU COMPONENTS TC-0603SAF1002T5E203 Dickschicht-Widerstand 10 kΩ SMD 0603 0.1 W 1 %" H 10150 2050 50  0001 C CNN "Part"
-F 5 "1585269 " H 10150 2050 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 10150 2050 50  0001 C CNN "Supplier"
+F 4 "" H 10150 2050 50  0001 C CNN "Part"
+F 5 "594-MCT06030C1002FP5 " H 10150 2050 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 10150 2050 50  0001 C CNN "Supplier"
 	1    10150 2050
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R1
 U 1 1 5E9A9734
-P 10150 1650
-F 0 "R1" H 10209 1696 50  0000 L CNN
-F 1 "31.6k" H 10209 1605 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 10150 1650 50  0001 C CNN
-F 3 "~" H 10150 1650 50  0001 C CNN
-F 4 "TRU COMPONENTS TC-0603SAJ0303T5E203 Dickschicht-Widerstand 30 kΩ SMD 0603 0.1 W 5 % " H 10150 1650 50  0001 C CNN "Part"
-F 5 "1584281 " H 10150 1650 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 10150 1650 50  0001 C CNN "Supplier"
-	1    10150 1650
+P 10150 1700
+F 0 "R1" H 10209 1746 50  0000 L CNN
+F 1 "31.6k" V 10050 1600 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 10150 1700 50  0001 C CNN
+F 3 "~" H 10150 1700 50  0001 C CNN
+F 4 "" H 10150 1700 50  0001 C CNN "Part"
+F 5 "594-MCT06030C3162FP5" H 10150 1700 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 10150 1700 50  0001 C CNN "Supplier"
+	1    10150 1700
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	10150 1750 10150 1850
 Wire Wire Line
 	9650 2250 10150 2250
 Connection ~ 9650 2250
@@ -426,12 +404,12 @@ L Device:L L1
 U 1 1 5E9A973D
 P 9900 1550
 F 0 "L1" V 10090 1550 50  0000 C CNN
-F 1 "2.2uH" V 9999 1550 50  0000 C CNN
+F 1 "3.3u" V 9999 1550 50  0000 C CNN
 F 2 "Inductor_SMD:L_1210_3225Metric_Pad1.42x2.65mm_HandSolder" H 9900 1550 50  0001 C CNN
-F 3 "~" H 9900 1550 50  0001 C CNN
-F 4 "Würth Elektronik WE-GFH 744764902 HF-Drossel SMD 3225 2.2 µH 260 mΩ 1100 mA" H 9900 1550 50  0001 C CNN "Part"
-F 5 "1385329 " H 9900 1550 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 9900 1550 50  0001 C CNN "Supplier"
+F 3 "https://product.tdk.com/info/en/catalog/datasheets/inductor_commercial_standard_mlf1608_en.pdf" H 9900 1550 50  0001 C CNN
+F 4 "" H 9900 1550 50  0001 C CNN "Part"
+F 5 "810-MLF1608A3R3J " H 9900 1550 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 9900 1550 50  0001 C CNN "Supplier"
 	1    9900 1550
 	0    -1   -1   0   
 $EndComp
@@ -447,58 +425,52 @@ Wire Wire Line
 	10150 1850 10150 1950
 Wire Wire Line
 	10050 1550 10150 1550
-Wire Wire Line
-	10150 2250 10550 2250
-Connection ~ 10150 2250
-Wire Wire Line
-	10150 1550 10550 1550
-Connection ~ 10150 1550
 $Comp
 L Device:C_Small C10
 U 1 1 5E9A974E
-P 10550 1850
-F 0 "C10" H 10665 1896 50  0000 L CNN
-F 1 "10u16V" V 10700 1550 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 10588 1700 50  0001 C CNN
-F 3 "~" H 10550 1850 50  0001 C CNN
-F 4 "Würth Elektronik WCAP-CSGP 885012107014 Keramik-Kondensator 0805 10 µF 16 V" H 10550 1850 50  0001 C CNN "Part"
-F 5 "1278809 " H 10550 1850 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 10550 1850 50  0001 C CNN "Supplier"
-	1    10550 1850
+P 10700 1850
+F 0 "C10" H 10550 1950 50  0000 L CNN
+F 1 "10u16V" V 10600 1550 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 10738 1700 50  0001 C CNN
+F 3 "~" H 10700 1850 50  0001 C CNN
+F 4 "" H 10700 1850 50  0001 C CNN "Part"
+F 5 "" H 10700 1850 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 10700 1850 50  0001 C CNN "Supplier"
+	1    10700 1850
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C_Small C11
 U 1 1 5E9A9754
-P 10850 1850
-F 0 "C11" H 10965 1896 50  0000 L CNN
-F 1 "10u16V" V 11000 1550 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 10888 1700 50  0001 C CNN
-F 3 "~" H 10850 1850 50  0001 C CNN
-F 4 "Würth Elektronik WCAP-CSGP 885012107014 Keramik-Kondensator 0805 10 µF 16 V" H 10850 1850 50  0001 C CNN "Part"
-F 5 "1278809 " H 10850 1850 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 10850 1850 50  0001 C CNN "Supplier"
-	1    10850 1850
+P 11000 1850
+F 0 "C11" H 10850 1950 50  0000 L CNN
+F 1 "10u16V" V 10900 1550 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 11038 1700 50  0001 C CNN
+F 3 "~" H 11000 1850 50  0001 C CNN
+F 4 "" H 11000 1850 50  0001 C CNN "Part"
+F 5 "" H 11000 1850 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 11000 1850 50  0001 C CNN "Supplier"
+	1    11000 1850
 	1    0    0    -1  
 $EndComp
-Connection ~ 10550 2250
+Connection ~ 10700 2250
 Wire Wire Line
-	10550 2250 10850 2250
-Connection ~ 10550 1550
+	10700 2250 11000 2250
+Connection ~ 10700 1550
 Wire Wire Line
-	10550 1550 10850 1550
+	10700 1550 11000 1550
 Wire Wire Line
-	10850 1550 10850 1450
-Connection ~ 10850 1550
+	11000 1550 11000 1450
+Connection ~ 11000 1550
 $Comp
 L power:+3.3V #PWR012
 U 1 1 5E9A9760
-P 10850 1450
-F 0 "#PWR012" H 10850 1300 50  0001 C CNN
-F 1 "+3.3V" H 10865 1623 50  0000 C CNN
-F 2 "" H 10850 1450 50  0001 C CNN
-F 3 "" H 10850 1450 50  0001 C CNN
-	1    10850 1450
+P 11000 1450
+F 0 "#PWR012" H 11000 1300 50  0001 C CNN
+F 1 "+3.3V" H 11015 1623 50  0000 C CNN
+F 2 "" H 11000 1450 50  0001 C CNN
+F 3 "" H 11000 1450 50  0001 C CNN
+	1    11000 1450
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -521,12 +493,12 @@ L smartevse:ICL7660 U5
 U 1 1 5E9A976E
 P 8900 4350
 F 0 "U5" H 8900 4936 59  0000 C CNN
-F 1 "ICL7660" H 8900 4831 59  0000 C CNN
-F 2 "" H 8900 4350 50  0001 C CNN
-F 3 "" H 8900 4350 50  0001 C CNN
-F 4 "Maxim Integrated ICL7662CBA+ PMIC " H 8900 4350 50  0001 C CNN "Part"
-F 5 "1123919" H 8900 4350 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 8900 4350 50  0001 C CNN "Supplier"
+F 1 "TC7660SEOA" H 8900 4831 59  0000 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 8900 4350 50  0001 C CNN
+F 3 "https://www.mouser.de/datasheet/2/268/21467B-1180369.pdf" H 8900 4350 50  0001 C CNN
+F 4 "" H 8900 4350 50  0001 C CNN "Part"
+F 5 "" H 8900 4350 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 8900 4350 50  0001 C CNN "Supplier"
 	1    8900 4350
 	1    0    0    -1  
 $EndComp
@@ -562,9 +534,9 @@ F 0 "C4" H 7965 3996 50  0000 L CNN
 F 1 "100n" V 8000 3750 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7888 3800 50  0001 C CNN
 F 3 "~" H 7850 3950 50  0001 C CNN
-F 4 "Kemet C0603C104K3RAC7867+ Keramik-Kondensator SMD 0603 100 nF 25 V 10 %" H 7850 3950 50  0001 C CNN "Part"
-F 5 "1420339" H 7850 3950 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 7850 3950 50  0001 C CNN "Supplier"
+F 4 "" H 7850 3950 50  0001 C CNN "Part"
+F 5 "" H 7850 3950 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 7850 3950 50  0001 C CNN "Supplier"
 	1    7850 3950
 	1    0    0    -1  
 $EndComp
@@ -576,9 +548,9 @@ F 0 "C2" H 7615 4446 50  0000 L CNN
 F 1 "10u16V" V 7650 4100 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 7538 4250 50  0001 C CNN
 F 3 "~" H 7500 4400 50  0001 C CNN
-F 4 "Würth Elektronik WCAP-CSGP 885012107014 Keramik-Kondensator 0805 10 µF 16 V" H 7500 4400 50  0001 C CNN "Part"
-F 5 "1278809 " H 7500 4400 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 7500 4400 50  0001 C CNN "Supplier"
+F 4 "" H 7500 4400 50  0001 C CNN "Part"
+F 5 "" H 7500 4400 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 7500 4400 50  0001 C CNN "Supplier"
 	1    7500 4400
 	1    0    0    -1  
 $EndComp
@@ -594,9 +566,9 @@ F 0 "C8" H 9815 4796 50  0000 L CNN
 F 1 "10u16V" V 9850 4450 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9738 4600 50  0001 C CNN
 F 3 "~" H 9700 4750 50  0001 C CNN
-F 4 "Würth Elektronik WCAP-CSGP 885012107014 Keramik-Kondensator 0805 10 µF 16 V" H 9700 4750 50  0001 C CNN "Part"
-F 5 "1278809 " H 9700 4750 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 9700 4750 50  0001 C CNN "Supplier"
+F 4 "" H 9700 4750 50  0001 C CNN "Part"
+F 5 "" H 9700 4750 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 9700 4750 50  0001 C CNN "Supplier"
 	1    9700 4750
 	1    0    0    -1  
 $EndComp
@@ -628,13 +600,13 @@ Wire Wire Line
 Wire Wire Line
 	8100 1550 8100 1750
 Wire Wire Line
-	10550 1550 10550 1750
+	10700 1550 10700 1750
 Wire Wire Line
-	10850 1550 10850 1750
+	11000 1550 11000 1750
 Wire Wire Line
-	10850 1950 10850 2250
+	11000 1950 11000 2250
 Wire Wire Line
-	10550 1950 10550 2250
+	10700 1950 10700 2250
 Wire Wire Line
 	7850 4050 7850 4450
 Wire Wire Line
@@ -696,10 +668,10 @@ P 900 2850
 F 0 "J1" H 818 3467 50  0000 C CNN
 F 1 "Screw_Terminal_01x10" H 818 3376 50  0000 C CNN
 F 2 "" H 900 2850 50  0001 C CNN
-F 3 "~" H 900 2850 50  0001 C CNN
+F 3 "https://www.phoenixcontact.com/online/portal/us?uri=pxc-oc-itemdetail:pid=1707111&library=usen&pdfmode=direct&pdflanguage=en" H 900 2850 50  0001 C CNN
 F 4 "" H 900 2850 50  0001 C CNN "Part"
-F 5 "" H 900 2850 50  0001 C CNN "Supplier"
-F 6 "" H 900 2850 50  0001 C CNN "PartNo"
+F 5 "Mouser" H 900 2850 50  0001 C CNN "Supplier"
+F 6 "651-1707111 " H 900 2850 50  0001 C CNN "PartNo"
 	1    900  2850
 	-1   0    0    -1  
 $EndComp
@@ -849,16 +821,16 @@ L
 NoConn ~ 1100 3150
 NoConn ~ 1100 3250
 $Comp
-L smartevse:FuseT1.25 F?
+L smartevse:FuseT1.25 F2
 U 1 1 5ECD985B
 P 2050 3350
-F 0 "F?" V 1853 3350 50  0000 C CNN
+F 0 "F2" V 1853 3350 50  0000 C CNN
 F 1 "T1.25A" V 1944 3350 50  0000 C CNN
 F 2 "smartevse-footprints:TE5" V 1980 3350 50  0001 C CNN
-F 3 "~" H 2050 3350 50  0001 C CNN
-F 4 "ESKA 883018 Kleinstsicherung radial bedrahtet eckig 1.25 A 250 V" H 2050 3350 50  0001 C CNN "Part"
-F 5 "524348 " H 2050 3350 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 2050 3350 50  0001 C CNN "Supplier"
+F 3 "https://www.mouser.de/datasheet/2/240/Littelfuse_Fuse_392_Datasheet.pdf-795005.pdf" H 2050 3350 50  0001 C CNN
+F 4 "" H 2050 3350 50  0001 C CNN "Part"
+F 5 "576-3921125000" H 2050 3350 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 2050 3350 50  0001 C CNN "Supplier"
 	1    2050 3350
 	0    1    1    0   
 $EndComp
@@ -868,4 +840,69 @@ Wire Wire Line
 	7850 3850 7850 3700
 Wire Wire Line
 	7850 3700 8100 3700
+$Comp
+L smartevse:AP5100 U6
+U 1 1 5ED2A5D9
+P 8900 1650
+F 0 "U6" H 8900 2017 50  0000 C CNN
+F 1 "AP5100" H 8900 1926 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-6" H 9600 1400 50  0001 C CNN
+F 3 "https://www.mouser.de/datasheet/2/115/AP5100-82364.pdf" H 8650 1400 50  0001 C CNN
+F 4 "Mouser" H 8900 1650 50  0001 C CNN "Supplier"
+	1    8900 1650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10150 1800 10150 1850
+Wire Wire Line
+	10150 1600 10150 1550
+Wire Wire Line
+	8100 1550 8200 1550
+$Comp
+L Device:R_Small R14
+U 1 1 5ED2FD41
+P 8400 1750
+F 0 "R14" V 8204 1750 50  0000 C CNN
+F 1 "100k" V 8295 1750 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 8400 1750 50  0001 C CNN
+F 3 "~" H 8400 1750 50  0001 C CNN
+F 4 "Mouser" H 8400 1750 50  0001 C CNN "Supplier"
+F 5 "594-MCT06030C1003FP5 " H 8400 1750 50  0001 C CNN "PartNo"
+	1    8400 1750
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8300 1750 8200 1750
+Wire Wire Line
+	8200 1750 8200 1550
+Connection ~ 8200 1550
+Wire Wire Line
+	8200 1550 8500 1550
+Wire Wire Line
+	10150 1550 10350 1550
+Connection ~ 10150 1550
+Wire Wire Line
+	10150 2250 10700 2250
+Connection ~ 10150 2250
+$Comp
+L Device:C_Small C26
+U 1 1 5ED43B27
+P 10350 1700
+F 0 "C26" H 10442 1746 50  0000 L CNN
+F 1 "100p" V 10450 1500 50  0000 L CNN
+F 2 "" H 10350 1700 50  0001 C CNN
+F 3 "~" H 10350 1700 50  0001 C CNN
+F 4 "Mouser" H 10350 1700 50  0001 C CNN "Supplier"
+	1    10350 1700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10350 1600 10350 1550
+Connection ~ 10350 1550
+Wire Wire Line
+	10350 1550 10700 1550
+Wire Wire Line
+	10350 1800 10350 1850
+Wire Wire Line
+	10350 1850 10150 1850
 $EndSCHEMATC

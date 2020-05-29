@@ -1,5 +1,11 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP AP5100
+D 1.2A STEP-DOWN CONVERTER with 1.4MHz SWITCHING FREQUENCY
+K switching buck converter
+F https://www.mouser.de/datasheet/2/115/AP5100-82364.pdf
+$ENDCMP
+#
 $CMP AQH3223
 D Solid State Relay
 $ENDCMP
@@ -16,10 +22,25 @@ K audio jack receptacle stereo headphones phones TRS connector
 F ~
 $ENDCMP
 #
+$CMP CPC1114N
+D Form B, NC, Solid State Relay (Photo MOSFET) 60V, 0.4A, 2Ohm, SO-4
+K MOSFET Output Photorelay 1-Form-B
+F https://www.mouser.de/datasheet/2/240/CPC1114N-1548344.pdf
+$ENDCMP
+#
+$CMP FAN3214TMX
+D Gate-Treiber Dual 4A High-Speed LowSide Gate-Treiber
+F https://www.mouser.de/datasheet/2/308/FAN3214T_F085-D-1805909.pdf
+$ENDCMP
+#
 $CMP FuseT1.25
 D Fuse T1.25
 K fuse
 F ~
+$ENDCMP
+#
+$CMP ICL7660
+D DC/DC Ladepumpe Inverter
 $ENDCMP
 #
 $CMP MCP9700A

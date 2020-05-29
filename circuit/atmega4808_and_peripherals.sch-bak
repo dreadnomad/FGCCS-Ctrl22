@@ -5,8 +5,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 3 4
 Title ""
-Date "2020-05-18"
-Rev "0.6"
+Date "2020-05-29"
+Rev "0.7"
 Comp ""
 Comment1 "DONE: ESP32 circuit"
 Comment2 "DONE: ATmega UART2 connector (J3)"
@@ -21,6 +21,7 @@ F 0 "U10" H 5750 5075 50  0000 C CNN
 F 1 "ATmega4808-X" H 5750 4984 50  0000 C CNN
 F 2 "Package_SO:SSOP-28_5.3x10.2mm_P0.65mm" H 5750 3800 50  0001 C CIN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/40002018A.pdf" H 5750 3800 50  0001 C CNN
+F 4 "Mouser" H 5750 3800 50  0001 C CNN "Supplier"
 	1    5750 3800
 	1    0    0    -1  
 $EndComp
@@ -43,9 +44,9 @@ F 0 "C17" H 7392 4046 50  0000 L CNN
 F 1 "100n" H 7392 3955 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7300 4000 50  0001 C CNN
 F 3 "~" H 7300 4000 50  0001 C CNN
-F 4 "Kemet C0603C104K3RAC7867+ Keramik-Kondensator SMD 0603 100 nF 25 V 10 %" H 7300 4000 50  0001 C CNN "Part"
-F 5 "1420339" H 7300 4000 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 7300 4000 50  0001 C CNN "Supplier"
+F 4 "" H 7300 4000 50  0001 C CNN "Part"
+F 5 "" H 7300 4000 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 7300 4000 50  0001 C CNN "Supplier"
 	1    7300 4000
 	1    0    0    -1  
 $EndComp
@@ -94,9 +95,9 @@ F 0 "C15" V 5521 5000 50  0000 C CNN
 F 1 "100n" V 5612 5000 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5750 5000 50  0001 C CNN
 F 3 "~" H 5750 5000 50  0001 C CNN
-F 4 "Kemet C0603C104K3RAC7867+ Keramik-Kondensator SMD 0603 100 nF 25 V 10 %" H 5750 5000 50  0001 C CNN "Part"
-F 5 "1420339" H 5750 5000 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 5750 5000 50  0001 C CNN "Supplier"
+F 4 "" H 5750 5000 50  0001 C CNN "Part"
+F 5 "" H 5750 5000 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 5750 5000 50  0001 C CNN "Supplier"
 	1    5750 5000
 	0    1    1    0   
 $EndComp
@@ -156,9 +157,9 @@ F 0 "R8" V 6750 2600 50  0000 C CNN
 F 1 "100" V 6750 2900 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 6700 2750 50  0001 C CNN
 F 3 "~" H 6700 2750 50  0001 C CNN
-F 4 "TRU COMPONENTS TC-0603SAJ0101T5E203 Dickschicht-Widerstand 100 Ω SMD 0603 0.1 W" H 6700 2750 50  0001 C CNN "Part"
-F 5 "1583838 " H 6700 2750 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 6700 2750 50  0001 C CNN "Supplier"
+F 4 "" H 6700 2750 50  0001 C CNN "Part"
+F 5 "594-MCT06030C1000FP5 " H 6700 2750 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 6700 2750 50  0001 C CNN "Supplier"
 	1    6700 2750
 	0    -1   -1   0   
 $EndComp
@@ -170,9 +171,9 @@ F 0 "R9" V 6750 2750 50  0000 C CNN
 F 1 "100" V 6750 3050 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 6700 2900 50  0001 C CNN
 F 3 "~" H 6700 2900 50  0001 C CNN
-F 4 "TRU COMPONENTS TC-0603SAJ0101T5E203 Dickschicht-Widerstand 100 Ω SMD 0603 0.1 W" H 6700 2900 50  0001 C CNN "Part"
-F 5 "1583838 " H 6700 2900 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 6700 2900 50  0001 C CNN "Supplier"
+F 4 "" H 6700 2900 50  0001 C CNN "Part"
+F 5 "594-MCT06030C1000FP5 " H 6700 2900 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 6700 2900 50  0001 C CNN "Supplier"
 	1    6700 2900
 	0    -1   -1   0   
 $EndComp
@@ -188,22 +189,23 @@ F 0 "R10" V 6750 2900 50  0000 C CNN
 F 1 "100" V 6750 3200 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 6700 3050 50  0001 C CNN
 F 3 "~" H 6700 3050 50  0001 C CNN
-F 4 "TRU COMPONENTS TC-0603SAJ0101T5E203 Dickschicht-Widerstand 100 Ω SMD 0603 0.1 W" H 6700 3050 50  0001 C CNN "Part"
-F 5 "1583838 " H 6700 3050 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 6700 3050 50  0001 C CNN "Supplier"
+F 4 "" H 6700 3050 50  0001 C CNN "Part"
+F 5 "594-MCT06030C1000FP5 " H 6700 3050 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 6700 3050 50  0001 C CNN "Supplier"
 	1    6700 3050
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
 	6800 3050 6900 3050
 $Comp
-L smartevse:SN65HVD72 U7
+L smartevse:SN65HVD72C U7
 U 1 1 5E9C58C2
 P 2500 3900
 F 0 "U7" H 2500 4508 69  0000 C CNN
-F 1 "SN65HVD72" H 2500 4388 69  0000 C CNN
-F 2 "" H 2500 3900 50  0001 C CNN
-F 3 "" H 2500 3900 50  0001 C CNN
+F 1 "SN65HVD72C" H 2500 4388 69  0000 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 2500 3900 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/sn65hvd72.pdf?HQS=TI-null-null-mousermode-df-pf-null-wwe&ts=1590747515592" H 2500 3900 50  0001 C CNN
+F 4 "Mouser" H 2500 3900 50  0001 C CNN "Supplier"
 	1    2500 3900
 	-1   0    0    -1  
 $EndComp
@@ -230,9 +232,9 @@ F 0 "C14" V 3629 3700 50  0000 C CNN
 F 1 "100n" V 3538 3700 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3400 3700 50  0001 C CNN
 F 3 "~" H 3400 3700 50  0001 C CNN
-F 4 "Kemet C0603C104K3RAC7867+ Keramik-Kondensator SMD 0603 100 nF 25 V 10 %" H 3400 3700 50  0001 C CNN "Part"
-F 5 "1420339" H 3400 3700 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 3400 3700 50  0001 C CNN "Supplier"
+F 4 "" H 3400 3700 50  0001 C CNN "Part"
+F 5 "" H 3400 3700 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 3400 3700 50  0001 C CNN "Supplier"
 	1    3400 3700
 	0    -1   -1   0   
 $EndComp
@@ -299,13 +301,14 @@ RS485_RX
 Text Label 5100 2900 2    50   ~ 0
 RS485_TX
 $Comp
-L smartevse:TC4424AVOA U8
+L smartevse:FAN3214TMX U8
 U 1 1 5E9D4E3E
 P 2800 6050
 F 0 "U8" H 2800 6758 69  0000 C CNN
-F 1 "TC4424AVOA" H 2800 6638 69  0000 C CNN
-F 2 "" H 2800 6050 50  0001 C CNN
-F 3 "" H 2800 6050 50  0001 C CNN
+F 1 "FAN3214TMX" H 2800 6638 69  0000 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 2800 6050 50  0001 C CNN
+F 3 "https://www.mouser.de/datasheet/2/308/FAN3214T_F085-D-1805909.pdf" H 2800 6050 50  0001 C CNN
+F 4 "Mouser" H 2800 6050 50  0001 C CNN "Supplier"
 	1    2800 6050
 	1    0    0    -1  
 $EndComp
@@ -319,9 +322,9 @@ F 0 "R3" V 750 5400 50  0000 C CNN
 F 1 "100" V 745 5550 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 850 5550 50  0001 C CNN
 F 3 "~" H 850 5550 50  0001 C CNN
-F 4 "TRU COMPONENTS TC-0603SAJ0101T5E203 Dickschicht-Widerstand 100 Ω SMD 0603 0.1 W" H 850 5550 50  0001 C CNN "Part"
-F 5 "1583838 " H 850 5550 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 850 5550 50  0001 C CNN "Supplier"
+F 4 "" H 850 5550 50  0001 C CNN "Part"
+F 5 "594-MCT06030C1000FP5 " H 850 5550 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 850 5550 50  0001 C CNN "Supplier"
 	1    850  5550
 	0    1    1    0   
 $EndComp
@@ -333,9 +336,9 @@ F 0 "R4" V 750 5600 50  0000 C CNN
 F 1 "100" V 745 5750 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 850 5750 50  0001 C CNN
 F 3 "~" H 850 5750 50  0001 C CNN
-F 4 "TRU COMPONENTS TC-0603SAJ0101T5E203 Dickschicht-Widerstand 100 Ω SMD 0603 0.1 W" H 850 5750 50  0001 C CNN "Part"
-F 5 "1583838 " H 850 5750 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 850 5750 50  0001 C CNN "Supplier"
+F 4 "" H 850 5750 50  0001 C CNN "Part"
+F 5 "594-MCT06030C1000FP5 " H 850 5750 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 850 5750 50  0001 C CNN "Supplier"
 	1    850  5750
 	0    1    1    0   
 $EndComp
@@ -347,9 +350,9 @@ F 0 "R6" V 1100 5600 50  0000 C CNN
 F 1 "100" V 1095 5750 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 1200 5750 50  0001 C CNN
 F 3 "~" H 1200 5750 50  0001 C CNN
-F 4 "TRU COMPONENTS TC-0603SAJ0101T5E203 Dickschicht-Widerstand 100 Ω SMD 0603 0.1 W" H 1200 5750 50  0001 C CNN "Part"
-F 5 "1583838 " H 1200 5750 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 1200 5750 50  0001 C CNN "Supplier"
+F 4 "" H 1200 5750 50  0001 C CNN "Part"
+F 5 "594-MCT06030C1000FP5 " H 1200 5750 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 1200 5750 50  0001 C CNN "Supplier"
 	1    1200 5750
 	0    1    1    0   
 $EndComp
@@ -361,9 +364,9 @@ F 0 "R5" V 1100 5400 50  0000 C CNN
 F 1 "100" V 1095 5550 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 1200 5550 50  0001 C CNN
 F 3 "~" H 1200 5550 50  0001 C CNN
-F 4 "TRU COMPONENTS TC-0603SAJ0101T5E203 Dickschicht-Widerstand 100 Ω SMD 0603 0.1 W" H 1200 5550 50  0001 C CNN "Part"
-F 5 "1583838 " H 1200 5550 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 1200 5550 50  0001 C CNN "Supplier"
+F 4 "" H 1200 5550 50  0001 C CNN "Part"
+F 5 "594-MCT06030C1000FP5 " H 1200 5550 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 1200 5550 50  0001 C CNN "Supplier"
 	1    1200 5550
 	0    1    1    0   
 $EndComp
@@ -415,9 +418,9 @@ F 0 "C12" H 1388 6146 50  0000 L CNN
 F 1 "10000u16V" V 1150 5850 50  0000 L CNN
 F 2 "Capacitor_THT:CP_Radial_D22.0mm_P10.00mm_SnapIn" H 1300 6100 50  0001 C CNN
 F 3 "~" H 1300 6100 50  0001 C CNN
-F 4 "Yageo LG016M10K0BPF-2230 Elektrolyt-Kondensator SnapIn 10 mm 10000 µF 16 V 20 %" H 1300 6100 50  0001 C CNN "Part"
-F 5 "445516 " H 1300 6100 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 1300 6100 50  0001 C CNN "Supplier"
+F 4 "" H 1300 6100 50  0001 C CNN "Part"
+F 5 "" H 1300 6100 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 1300 6100 50  0001 C CNN "Supplier"
 	1    1300 6100
 	1    0    0    -1  
 $EndComp
@@ -447,9 +450,9 @@ F 0 "C13" H 1942 5696 50  0000 L CNN
 F 1 "100n" V 1950 5450 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 1850 5650 50  0001 C CNN
 F 3 "~" H 1850 5650 50  0001 C CNN
-F 4 "Kemet C0603C104K3RAC7867+ Keramik-Kondensator SMD 0603 100 nF 25 V 10 %" H 1850 5650 50  0001 C CNN "Part"
-F 5 "1420339" H 1850 5650 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 1850 5650 50  0001 C CNN "Supplier"
+F 4 "" H 1850 5650 50  0001 C CNN "Part"
+F 5 "" H 1850 5650 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 1850 5650 50  0001 C CNN "Supplier"
 	1    1850 5650
 	1    0    0    -1  
 $EndComp
@@ -498,12 +501,12 @@ L Diode:BAT54S D2
 U 1 1 5E9F9C87
 P 3800 6300
 F 0 "D2" V 3846 6388 50  0000 L CNN
-F 1 "BAT64-04" V 3755 6388 50  0000 L CNN
+F 1 "BAT54S" V 3755 6388 50  0000 L CNN
 F 2 "Package_TO_SOT_SMD:SOT-23_Handsoldering" H 3875 6425 50  0001 L CNN
 F 3 "https://www.diodes.com/assets/Datasheets/ds11005.pdf" H 3680 6300 50  0001 C CNN
-F 4 "Gleichrichter BAT64-04 (Dual) SOT-23-3 40 V Array - 1 Paar in Reihe" H 3800 6300 50  0001 C CNN "Part"
-F 5 "152998 " H 3800 6300 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 3800 6300 50  0001 C CNN "Supplier"
+F 4 "" H 3800 6300 50  0001 C CNN "Part"
+F 5 "583-BAT54S " H 3800 6300 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 3800 6300 50  0001 C CNN "Supplier"
 	1    3800 6300
 	0    1    -1   0   
 $EndComp
@@ -512,12 +515,12 @@ L Diode:BAT54S D3
 U 1 1 5E9FC0D6
 P 4300 6300
 F 0 "D3" V 4346 6388 50  0000 L CNN
-F 1 "BAT64-04" V 4255 6388 50  0000 L CNN
+F 1 "BAT54S" V 4255 6388 50  0000 L CNN
 F 2 "Package_TO_SOT_SMD:SOT-23_Handsoldering" H 4375 6425 50  0001 L CNN
 F 3 "https://www.diodes.com/assets/Datasheets/ds11005.pdf" H 4180 6300 50  0001 C CNN
-F 4 "Gleichrichter BAT64-04 (Dual) SOT-23-3 40 V Array - 1 Paar in Reihe" H 4300 6300 50  0001 C CNN "Part"
-F 5 "152998 " H 4300 6300 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 4300 6300 50  0001 C CNN "Supplier"
+F 4 "" H 4300 6300 50  0001 C CNN "Part"
+F 5 "583-BAT54S " H 4300 6300 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 4300 6300 50  0001 C CNN "Supplier"
 	1    4300 6300
 	0    1    -1   0   
 $EndComp
@@ -589,12 +592,12 @@ L Diode:BAT54S D4
 U 1 1 5EA24B11
 P 7800 5750
 F 0 "D4" V 7846 5838 50  0000 L CNN
-F 1 "BAT64-04" V 7755 5838 50  0000 L CNN
+F 1 "BAT54S" V 7755 5838 50  0000 L CNN
 F 2 "Package_TO_SOT_SMD:SOT-23_Handsoldering" H 7875 5875 50  0001 L CNN
 F 3 "https://www.diodes.com/assets/Datasheets/ds11005.pdf" H 7680 5750 50  0001 C CNN
-F 4 "Gleichrichter BAT64-04 (Dual) SOT-23-3 40 V Array - 1 Paar in Reihe" H 7800 5750 50  0001 C CNN "Part"
-F 5 "152998 " H 7800 5750 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 7800 5750 50  0001 C CNN "Supplier"
+F 4 "" H 7800 5750 50  0001 C CNN "Part"
+F 5 "583-BAT54S " H 7800 5750 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 7800 5750 50  0001 C CNN "Supplier"
 	1    7800 5750
 	0    1    -1   0   
 $EndComp
@@ -621,9 +624,9 @@ F 0 "R11" H 7559 5996 50  0000 L CNN
 F 1 "10k" H 7559 5905 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7500 5950 50  0001 C CNN
 F 3 "~" H 7500 5950 50  0001 C CNN
-F 4 "TRU COMPONENTS TC-0603SAF1002T5E203 Dickschicht-Widerstand 10 kΩ SMD 0603 0.1 W 1 %" H 7500 5950 50  0001 C CNN "Part"
-F 5 "1585269 " H 7500 5950 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 7500 5950 50  0001 C CNN "Supplier"
+F 4 "" H 7500 5950 50  0001 C CNN "Part"
+F 5 "594-MCT06030C1002FP5 " H 7500 5950 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 7500 5950 50  0001 C CNN "Supplier"
 	1    7500 5950
 	1    0    0    -1  
 $EndComp
@@ -659,9 +662,9 @@ F 0 "R12" V 7904 5200 50  0000 C CNN
 F 1 "31.6k" V 7995 5200 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 8100 5200 50  0001 C CNN
 F 3 "~" H 8100 5200 50  0001 C CNN
-F 4 "TRU COMPONENTS TC-0603SAJ0303T5E203 Dickschicht-Widerstand 30 kΩ SMD 0603 0.1 W 5 % " H 8100 5200 50  0001 C CNN "Part"
-F 5 "1584281 " H 8100 5200 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 8100 5200 50  0001 C CNN "Supplier"
+F 4 "" H 8100 5200 50  0001 C CNN "Part"
+F 5 "594-MCT06030C3162FP5" H 8100 5200 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 8100 5200 50  0001 C CNN "Supplier"
 	1    8100 5200
 	0    1    1    0   
 $EndComp
@@ -679,9 +682,9 @@ F 0 "Q1" H 5554 5496 50  0000 L CNN
 F 1 "BSS138" H 5554 5405 50  0000 L CNN
 F 2 "Package_TO_SOT_SMD:SOT-23_Handsoldering" H 5550 5375 50  0001 L CIN
 F 3 "https://www.fairchildsemi.com/datasheets/BS/BSS138.pdf" H 5350 5450 50  0001 L CNN
-F 4 "Infineon Technologies BSS138 MOSFET 1 N-Kanal 360 mW SOT-23 " H 5350 5450 50  0001 C CNN "Part"
-F 5 "152928 " H 5350 5450 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 5350 5450 50  0001 C CNN "Supplier"
+F 4 "" H 5350 5450 50  0001 C CNN "Part"
+F 5 "512-BSS138 " H 5350 5450 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 5350 5450 50  0001 C CNN "Supplier"
 	1    5350 5450
 	1    0    0    -1  
 $EndComp
@@ -697,9 +700,9 @@ F 0 "R7" H 5109 5746 50  0000 L CNN
 F 1 "10k" H 5109 5655 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5050 5700 50  0001 C CNN
 F 3 "~" H 5050 5700 50  0001 C CNN
-F 4 "TRU COMPONENTS TC-0603SAF1002T5E203 Dickschicht-Widerstand 10 kΩ SMD 0603 0.1 W 1 %" H 5050 5700 50  0001 C CNN "Part"
-F 5 "1585269 " H 5050 5700 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 5050 5700 50  0001 C CNN "Supplier"
+F 4 "" H 5050 5700 50  0001 C CNN "Part"
+F 5 "594-MCT06030C1002FP5 " H 5050 5700 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 5050 5700 50  0001 C CNN "Supplier"
 	1    5050 5700
 	1    0    0    -1  
 $EndComp
@@ -763,7 +766,7 @@ PWM_Out
 Wire Wire Line
 	6350 3200 6900 3200
 Text HLabel 6900 3200 2    50   Output ~ 0
-Reed_Relay
+Signal_Relay
 Wire Wire Line
 	6350 4250 7900 4250
 Wire Wire Line
@@ -786,6 +789,7 @@ F 0 "U9" H 9550 6100 50  0000 C CNN
 F 1 "ESP32-WROOM-32" H 9500 6000 50  0000 C CNN
 F 2 "RF_Module:ESP32-WROOM-32" H 9550 2900 50  0001 C CNN
 F 3 "https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf" H 9250 4450 50  0001 C CNN
+F 4 "Mouser" H 9550 4400 50  0001 C CNN "Supplier"
 	1    9550 4400
 	-1   0    0    -1  
 $EndComp
@@ -797,8 +801,9 @@ F 0 "J4" H 9250 1467 50  0000 C CNN
 F 1 "Conn_02x04_Top_Bottom" H 9250 1376 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical" H 9200 1150 50  0001 C CNN
 F 3 "~" H 9200 1150 50  0001 C CNN
-F 4 "econ connect SL8G2 Stiftleisten" H 9200 1150 50  0001 C CNN "Part"
-F 5 "801093043 " H 9200 1150 50  0001 C CNN "PartNo"
+F 4 "" H 9200 1150 50  0001 C CNN "Part"
+F 5 "710-61300821121 " H 9200 1150 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 9200 1150 50  0001 C CNN "Supplier"
 	1    9200 1150
 	1    0    0    -1  
 $EndComp
@@ -810,8 +815,9 @@ F 0 "J5" H 9250 2117 50  0000 C CNN
 F 1 "Conn_02x04_Top_Bottom" H 9250 2026 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical" H 9200 1800 50  0001 C CNN
 F 3 "~" H 9200 1800 50  0001 C CNN
-F 4 "econ connect SL8G2 Stiftleisten" H 9200 1800 50  0001 C CNN "Part"
-F 5 "801093043 " H 9200 1800 50  0001 C CNN "PartNo"
+F 4 "" H 9200 1800 50  0001 C CNN "Part"
+F 5 "710-61300821121 " H 9200 1800 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 9200 1800 50  0001 C CNN "Supplier"
 	1    9200 1800
 	1    0    0    -1  
 $EndComp
@@ -991,9 +997,9 @@ F 0 "R25" H 10870 2996 50  0000 L CNN
 F 1 "12k" H 10870 2905 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 10730 2950 50  0001 C CNN
 F 3 "~" H 10800 2950 50  0001 C CNN
-F 4 "TRU COMPONENTS TC-0603SAJ0123T5E203 Dickschicht-Widerstand 12 kΩ SMD 0603 0.1 W" H 10800 2950 50  0001 C CNN "Part"
-F 5 "1585796 " H 10800 2950 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 10800 2950 50  0001 C CNN "Supplier"
+F 4 "" H 10800 2950 50  0001 C CNN "Part"
+F 5 "594-MCT06030C1202FP5 " H 10800 2950 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 10800 2950 50  0001 C CNN "Supplier"
 	1    10800 2950
 	1    0    0    -1  
 $EndComp
@@ -1005,9 +1011,9 @@ F 0 "C21" H 10915 3496 50  0000 L CNN
 F 1 "1n / 50V" H 10915 3405 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 10838 3300 50  0001 C CNN
 F 3 "~" H 10800 3450 50  0001 C CNN
-F 4 "Thomsen Keramik-Kondensator SMD 0603 1 nF 50 V 10 %" H 10800 3450 50  0001 C CNN "Part"
-F 5 "454419 " H 10800 3450 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 10800 3450 50  0001 C CNN "Supplier"
+F 4 "" H 10800 3450 50  0001 C CNN "Part"
+F 5 "" H 10800 3450 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 10800 3450 50  0001 C CNN "Supplier"
 	1    10800 3450
 	1    0    0    -1  
 $EndComp
@@ -1049,9 +1055,9 @@ F 0 "C16" V 10550 4700 50  0000 L CNN
 F 1 "100u / 6.3V" V 10750 4350 50  0000 L CNN
 F 2 "Capacitor_Tantalum_SMD:CP_EIA-7343-15_Kemet-W_Pad2.25x2.55mm_HandSolder" H 10650 4600 50  0001 C CNN
 F 3 "~" H 10650 4600 50  0001 C CNN
-F 4 "Kemet T491D107K010AT Tantal-Kondensator SMD 100 µF 10 V 10 %" H 10650 4600 50  0001 C CNN "Part"
-F 5 "458352 " H 10650 4600 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 10650 4600 50  0001 C CNN "Supplier"
+F 4 "" H 10650 4600 50  0001 C CNN "Part"
+F 5 "" H 10650 4600 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 10650 4600 50  0001 C CNN "Supplier"
 	1    10650 4600
 	1    0    0    -1  
 $EndComp
@@ -1063,9 +1069,9 @@ F 0 "C22" V 10850 4700 50  0000 L CNN
 F 1 "1u / 10V" V 11050 4450 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 10950 4600 50  0001 C CNN
 F 3 "~" H 10950 4600 50  0001 C CNN
-F 4 "Kemet C0603C105K4PAC7867+ Keramik-Kondensator SMD 0603 1 µF 16 V 10 %" H 10950 4600 50  0001 C CNN "Part"
-F 5 "457925 " H 10950 4600 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 10950 4600 50  0001 C CNN "Supplier"
+F 4 "" H 10950 4600 50  0001 C CNN "Part"
+F 5 "" H 10950 4600 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 10950 4600 50  0001 C CNN "Supplier"
 	1    10950 4600
 	1    0    0    -1  
 $EndComp
@@ -1171,9 +1177,9 @@ F 0 "J3" H 5830 1192 50  0000 L CNN
 F 1 "Conn_01x04" H 5830 1101 50  0000 L CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 5750 1200 50  0001 C CNN
 F 3 "~" H 5750 1200 50  0001 C CNN
-F 4 "BKL Electronic Stiftleiste (Standard) Anzahl Reihen: 1 Polzahl je Reihe: 40" H 5750 1200 50  0001 C CNN "Part"
-F 5 "741146 " H 5750 1200 50  0001 C CNN "PartNo"
-F 6 "Conrad" H 5750 1200 50  0001 C CNN "Supplier"
+F 4 "" H 5750 1200 50  0001 C CNN "Part"
+F 5 "710-61304011121 " H 5750 1200 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 5750 1200 50  0001 C CNN "Supplier"
 	1    5750 1200
 	1    0    0    -1  
 $EndComp
