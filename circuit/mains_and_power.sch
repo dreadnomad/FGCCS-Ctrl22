@@ -5,8 +5,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 4
 Title ""
-Date "2020-05-29"
-Rev "0.7"
+Date "2020-06-01"
+Rev "1.0"
 Comp ""
 Comment1 "DONE: Replaced buck regulator AOZ1280 -> AP5100"
 Comment2 "DONE: Edit SSR connections"
@@ -64,7 +64,7 @@ F 1 "AQH3223" H 5200 3411 70  0000 C CNN
 F 2 "smartevse-footprints:DIL07SMD" H 5200 3800 50  0001 C CNN
 F 3 "" H 5200 3800 50  0001 C CNN
 F 4 "" H 5200 3800 50  0001 C CNN "Part"
-F 5 "" H 5200 3800 50  0001 C CNN "PartNo"
+F 5 "769-AQH1213AX" H 5200 3800 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 5200 3800 50  0001 C CNN "Supplier"
 	1    5200 3800
 	-1   0    0    1   
@@ -78,7 +78,7 @@ F 1 "AQH3223" H 5200 2411 70  0000 C CNN
 F 2 "smartevse-footprints:DIL07SMD" H 5200 2800 50  0001 C CNN
 F 3 "" H 5200 2800 50  0001 C CNN
 F 4 "" H 5200 2800 50  0001 C CNN "Part"
-F 5 "" H 5200 2800 50  0001 C CNN "PartNo"
+F 5 "769-AQH1213AX" H 5200 2800 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 5200 2800 50  0001 C CNN "Supplier"
 	1    5200 2800
 	-1   0    0    1   
@@ -92,7 +92,7 @@ F 1 "AQH3223" H 5200 1411 70  0000 C CNN
 F 2 "smartevse-footprints:DIL07SMD" H 5200 1800 50  0001 C CNN
 F 3 "" H 5200 1800 50  0001 C CNN
 F 4 "" H 5200 1800 50  0001 C CNN "Part"
-F 5 "" H 5200 1800 50  0001 C CNN "PartNo"
+F 5 "769-AQH1213AX" H 5200 1800 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 5200 1800 50  0001 C CNN "Supplier"
 	1    5200 1800
 	-1   0    0    1   
@@ -180,10 +180,10 @@ U 1 1 5E9A96BD
 P 5200 5000
 F 0 "U4" H 5200 5447 42  0000 C CNN
 F 1 "MPM-05-12" H 5200 5368 42  0000 C CNN
-F 2 "Converter_ACDC:Converter_ACDC_MeanWell_IRM-05-xx_THT" H 5200 5000 50  0001 C CNN
+F 2 "Converter_ACDC:Converter_ACDC_MeanWell_IRM-10-xx_THT" H 5200 5000 50  0001 C CNN
 F 3 "https://www.meanwell.com/webapp/product/search.aspx?prod=MPM-05" H 5200 5000 50  0001 C CNN
 F 4 "" H 5200 5000 50  0001 C CNN "Part"
-F 5 "" H 5200 5000 50  0001 C CNN "PartNo"
+F 5 "709-IRM10-12" H 5200 5000 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 5200 5000 50  0001 C CNN "Supplier"
 	1    5200 5000
 	1    0    0    -1  
@@ -233,7 +233,7 @@ F 1 "10u16V" V 6850 1550 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6738 1700 50  0001 C CNN
 F 3 "~" H 6700 1850 50  0001 C CNN
 F 4 "" H 6700 1850 50  0001 C CNN "Part"
-F 5 "" H 6700 1850 50  0001 C CNN "PartNo"
+F 5 "963-EMK212ABJ106MG-T" H 6700 1850 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 6700 1850 50  0001 C CNN "Supplier"
 	1    6700 1850
 	1    0    0    -1  
@@ -247,7 +247,7 @@ F 1 "10u16V" V 7200 1550 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 7088 1700 50  0001 C CNN
 F 3 "~" H 7050 1850 50  0001 C CNN
 F 4 "" H 7050 1850 50  0001 C CNN "Part"
-F 5 "" H 7050 1850 50  0001 C CNN "PartNo"
+F 5 "963-EMK212ABJ106MG-T" H 7050 1850 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 7050 1850 50  0001 C CNN "Supplier"
 	1    7050 1850
 	1    0    0    -1  
@@ -261,7 +261,7 @@ F 1 "10u16V" V 7550 1550 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 7438 1700 50  0001 C CNN
 F 3 "~" H 7400 1850 50  0001 C CNN
 F 4 "" H 7400 1850 50  0001 C CNN "Part"
-F 5 "" H 7400 1850 50  0001 C CNN "PartNo"
+F 5 "963-EMK212ABJ106MG-T" H 7400 1850 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 7400 1850 50  0001 C CNN "Supplier"
 	1    7400 1850
 	1    0    0    -1  
@@ -275,7 +275,7 @@ F 1 "10u16V" V 7900 1550 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 7788 1700 50  0001 C CNN
 F 3 "~" H 7750 1850 50  0001 C CNN
 F 4 "" H 7750 1850 50  0001 C CNN "Part"
-F 5 "" H 7750 1850 50  0001 C CNN "PartNo"
+F 5 "963-EMK212ABJ106MG-T" H 7750 1850 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 7750 1850 50  0001 C CNN "Supplier"
 	1    7750 1850
 	1    0    0    -1  
@@ -286,10 +286,10 @@ U 1 1 5E9A96F5
 P 8100 1850
 F 0 "C7" H 8215 1896 50  0000 L CNN
 F 1 "100n" V 8250 1650 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 8138 1700 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 8138 1700 50  0001 C CNN
 F 3 "~" H 8100 1850 50  0001 C CNN
 F 4 "" H 8100 1850 50  0001 C CNN "Part"
-F 5 "" H 8100 1850 50  0001 C CNN "PartNo"
+F 5 "963-EMF212B7104KGHT " H 8100 1850 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 8100 1850 50  0001 C CNN "Supplier"
 	1    8100 1850
 	1    0    0    -1  
@@ -328,10 +328,10 @@ U 1 1 5E9A9718
 P 9500 1550
 F 0 "C9" V 9271 1550 50  0000 C CNN
 F 1 "100n" V 9362 1550 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 9500 1550 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9500 1550 50  0001 C CNN
 F 3 "~" H 9500 1550 50  0001 C CNN
 F 4 "" H 9500 1550 50  0001 C CNN "Part"
-F 5 "" H 9500 1550 50  0001 C CNN "PartNo"
+F 5 "963-EMF212B7104KGHT " H 9500 1550 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 9500 1550 50  0001 C CNN "Supplier"
 	1    9500 1550
 	0    1    1    0   
@@ -434,7 +434,7 @@ F 1 "10u16V" V 10600 1550 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 10738 1700 50  0001 C CNN
 F 3 "~" H 10700 1850 50  0001 C CNN
 F 4 "" H 10700 1850 50  0001 C CNN "Part"
-F 5 "" H 10700 1850 50  0001 C CNN "PartNo"
+F 5 "963-EMK212ABJ106MG-T" H 10700 1850 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 10700 1850 50  0001 C CNN "Supplier"
 	1    10700 1850
 	1    0    0    -1  
@@ -448,7 +448,7 @@ F 1 "10u16V" V 10900 1550 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 11038 1700 50  0001 C CNN
 F 3 "~" H 11000 1850 50  0001 C CNN
 F 4 "" H 11000 1850 50  0001 C CNN "Part"
-F 5 "" H 11000 1850 50  0001 C CNN "PartNo"
+F 5 "963-EMK212ABJ106MG-T" H 11000 1850 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 11000 1850 50  0001 C CNN "Supplier"
 	1    11000 1850
 	1    0    0    -1  
@@ -497,7 +497,7 @@ F 1 "TC7660SEOA" H 8900 4831 59  0000 C CNN
 F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 8900 4350 50  0001 C CNN
 F 3 "https://www.mouser.de/datasheet/2/268/21467B-1180369.pdf" H 8900 4350 50  0001 C CNN
 F 4 "" H 8900 4350 50  0001 C CNN "Part"
-F 5 "" H 8900 4350 50  0001 C CNN "PartNo"
+F 5 "579-TC7660SEOA" H 8900 4350 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 8900 4350 50  0001 C CNN "Supplier"
 	1    8900 4350
 	1    0    0    -1  
@@ -532,10 +532,10 @@ U 1 1 5E9A9781
 P 7850 3950
 F 0 "C4" H 7965 3996 50  0000 L CNN
 F 1 "100n" V 8000 3750 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7888 3800 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 7888 3800 50  0001 C CNN
 F 3 "~" H 7850 3950 50  0001 C CNN
 F 4 "" H 7850 3950 50  0001 C CNN "Part"
-F 5 "" H 7850 3950 50  0001 C CNN "PartNo"
+F 5 "963-EMF212B7104KGHT " H 7850 3950 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 7850 3950 50  0001 C CNN "Supplier"
 	1    7850 3950
 	1    0    0    -1  
@@ -549,7 +549,7 @@ F 1 "10u16V" V 7650 4100 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 7538 4250 50  0001 C CNN
 F 3 "~" H 7500 4400 50  0001 C CNN
 F 4 "" H 7500 4400 50  0001 C CNN "Part"
-F 5 "" H 7500 4400 50  0001 C CNN "PartNo"
+F 5 "963-EMK212ABJ106MG-T" H 7500 4400 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 7500 4400 50  0001 C CNN "Supplier"
 	1    7500 4400
 	1    0    0    -1  
@@ -567,7 +567,7 @@ F 1 "10u16V" V 9850 4450 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9738 4600 50  0001 C CNN
 F 3 "~" H 9700 4750 50  0001 C CNN
 F 4 "" H 9700 4750 50  0001 C CNN "Part"
-F 5 "" H 9700 4750 50  0001 C CNN "PartNo"
+F 5 "963-EMK212ABJ106MG-T" H 9700 4750 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 9700 4750 50  0001 C CNN "Supplier"
 	1    9700 4750
 	1    0    0    -1  
@@ -667,11 +667,11 @@ U 1 1 5E9A97C9
 P 900 2850
 F 0 "J1" H 818 3467 50  0000 C CNN
 F 1 "Screw_Terminal_01x10" H 818 3376 50  0000 C CNN
-F 2 "" H 900 2850 50  0001 C CNN
+F 2 "atmevse-footprints:CUI_TB005-762-10GR" H 900 2850 50  0001 C CNN
 F 3 "https://www.phoenixcontact.com/online/portal/us?uri=pxc-oc-itemdetail:pid=1707111&library=usen&pdfmode=direct&pdflanguage=en" H 900 2850 50  0001 C CNN
 F 4 "" H 900 2850 50  0001 C CNN "Part"
 F 5 "Mouser" H 900 2850 50  0001 C CNN "Supplier"
-F 6 "651-1707111 " H 900 2850 50  0001 C CNN "PartNo"
+F 6 "490-TB005-762-10BE" H 900 2850 50  0001 C CNN "PartNo"
 	1    900  2850
 	-1   0    0    -1  
 $EndComp
@@ -758,14 +758,10 @@ Wire Wire Line
 	1650 2500 3100 2500
 Text Label 1650 2500 0    50   ~ 0
 C_L3
-Wire Wire Line
-	1100 2950 1700 2950
 Text Label 1750 3050 0    50   ~ 0
 N
 Wire Wire Line
 	3300 2200 3300 3050
-Wire Wire Line
-	1100 3050 1700 3050
 Connection ~ 3300 3050
 Wire Wire Line
 	3300 3050 3300 5200
@@ -779,11 +775,6 @@ Wire Wire Line
 Connection ~ 3100 3050
 Wire Wire Line
 	3100 3050 3200 3050
-Wire Wire Line
-	1700 2950 1700 3050
-Connection ~ 1700 3050
-Wire Wire Line
-	1700 3050 3100 3050
 $Comp
 L power:GND #PWR01
 U 1 1 5E9A964B
@@ -818,7 +809,6 @@ Wire Wire Line
 	4250 3350 4250 3800
 Text Label 1700 3350 0    50   ~ 0
 L
-NoConn ~ 1100 3150
 NoConn ~ 1100 3250
 $Comp
 L smartevse:FuseT1.25 F2
@@ -849,6 +839,7 @@ F 1 "AP5100" H 8900 1926 50  0000 C CNN
 F 2 "Package_TO_SOT_SMD:SOT-23-6" H 9600 1400 50  0001 C CNN
 F 3 "https://www.mouser.de/datasheet/2/115/AP5100-82364.pdf" H 8650 1400 50  0001 C CNN
 F 4 "Mouser" H 8900 1650 50  0001 C CNN "Supplier"
+F 5 "621-AP5100WG-7" H 8900 1650 50  0001 C CNN "PartNo"
 	1    8900 1650
 	1    0    0    -1  
 $EndComp
@@ -890,9 +881,10 @@ U 1 1 5ED43B27
 P 10350 1700
 F 0 "C26" H 10442 1746 50  0000 L CNN
 F 1 "100p" V 10450 1500 50  0000 L CNN
-F 2 "" H 10350 1700 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 10350 1700 50  0001 C CNN
 F 3 "~" H 10350 1700 50  0001 C CNN
 F 4 "Mouser" H 10350 1700 50  0001 C CNN "Supplier"
+F 5 "77-VJ0805Y101KXACBC " H 10350 1700 50  0001 C CNN "PartNo"
 	1    10350 1700
 	1    0    0    -1  
 $EndComp
@@ -905,4 +897,14 @@ Wire Wire Line
 	10350 1800 10350 1850
 Wire Wire Line
 	10350 1850 10150 1850
+Wire Wire Line
+	1100 3050 1650 3050
+Wire Wire Line
+	1100 3150 1650 3150
+Wire Wire Line
+	1650 3150 1650 3050
+Connection ~ 1650 3050
+Wire Wire Line
+	1650 3050 3100 3050
+NoConn ~ 1100 2950
 $EndSCHEMATC

@@ -14,16 +14,16 @@ Comment3 "TODO: verify CT bias voltage divider & CT circuit"
 Comment4 "DONE: voltage divider & zener diode on button input"
 $EndDescr
 $Comp
-L Connector:Screw_Terminal_01x20 J2
+L Connector:Screw_Terminal_01x18 J2
 U 1 1 5E903CA7
-P 8700 3100
-F 0 "J2" H 8780 3092 50  0000 L CNN
-F 1 "Screw_Terminal_01x20" H 8780 3001 50  0000 L CNN
-F 2 "" H 8700 3100 50  0001 C CNN
-F 3 "https://www.mouser.de/datasheet/2/324/2/828206-1447938.pdf" H 8700 3100 50  0001 C CNN
-F 4 "Mouser" H 8700 3100 50  0001 C CNN "Supplier"
-F 5 "651-1828206 " H 8700 3100 50  0001 C CNN "PartNo"
-	1    8700 3100
+P 8700 3000
+F 0 "J2" H 8780 2992 50  0000 L CNN
+F 1 "Screw_Terminal_01x18" H 8780 2901 50  0000 L CNN
+F 2 "atmevse-footprints:CUI_TB004-508-18BE" H 8700 3000 50  0001 C CNN
+F 3 "https://www.mouser.de/datasheet/2/324/2/828206-1447938.pdf" H 8700 3000 50  0001 C CNN
+F 4 "Mouser" H 8700 3000 50  0001 C CNN "Supplier"
+F 5 "490-TB004-508-18BE" H 8700 3000 50  0001 C CNN "PartNo"
+	1    8700 3000
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -56,10 +56,10 @@ U 1 1 5E906C0D
 P 6200 1300
 F 0 "C20" H 6292 1346 50  0000 L CNN
 F 1 "100n" H 6292 1255 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 6200 1300 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6200 1300 50  0001 C CNN
 F 3 "~" H 6200 1300 50  0001 C CNN
 F 4 "" H 6200 1300 50  0001 C CNN "Part"
-F 5 "" H 6200 1300 50  0001 C CNN "PartNo"
+F 5 "963-EMF212B7104KGHT " H 6200 1300 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 6200 1300 50  0001 C CNN "Supplier"
 	1    6200 1300
 	1    0    0    -1  
@@ -100,6 +100,7 @@ F 1 "LM7332" H 5400 3126 50  0000 C CNN
 F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 5400 2850 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm7332.pdf?HQS=TI-null-null-mousermode-df-pf-null-wwe&ts=1590747908099" H 5400 2850 50  0001 C CNN
 F 4 "Mouser" H 5400 2850 50  0001 C CNN "Supplier"
+F 5 "926-LM7332MA/NOPB" H 5400 2850 50  0001 C CNN "PartNo"
 	2    5400 2850
 	1    0    0    -1  
 $EndComp
@@ -112,6 +113,7 @@ F 1 "LM7332" H 5758 1755 50  0000 L CNN
 F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 5800 1800 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm7332.pdf?HQS=TI-null-null-mousermode-df-pf-null-wwe&ts=1590747908099" H 5800 1800 50  0001 C CNN
 F 4 "Mouser" H 5800 1800 50  0001 C CNN "Supplier"
+F 5 "926-LM7332MA/NOPB" H 5800 1800 50  0001 C CNN "PartNo"
 	3    5800 1800
 	1    0    0    -1  
 $EndComp
@@ -150,10 +152,10 @@ U 1 1 5E918D93
 P 6000 2250
 F 0 "C18" H 6092 2296 50  0000 L CNN
 F 1 "100n" H 6092 2205 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 6000 2250 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6000 2250 50  0001 C CNN
 F 3 "~" H 6000 2250 50  0001 C CNN
 F 4 "" H 6000 2250 50  0001 C CNN "Part"
-F 5 "" H 6000 2250 50  0001 C CNN "PartNo"
+F 5 "963-EMF212B7104KGHT " H 6000 2250 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 6000 2250 50  0001 C CNN "Supplier"
 	1    6000 2250
 	1    0    0    -1  
@@ -402,10 +404,10 @@ U 1 1 5E949D36
 P 6150 3250
 F 0 "C19" H 6242 3296 50  0000 L CNN
 F 1 "270p" H 6242 3205 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 6150 3250 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6150 3250 50  0001 C CNN
 F 3 "~" H 6150 3250 50  0001 C CNN
 F 4 "" H 6150 3250 50  0001 C CNN "Part"
-F 5 "" H 6150 3250 50  0001 C CNN "PartNo"
+F 5 "77-VJ0805A271KXJPBC " H 6150 3250 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 6150 3250 50  0001 C CNN "Supplier"
 	1    6150 3250
 	1    0    0    -1  
@@ -612,10 +614,10 @@ AR Path="/5E98FA8A/5EC179C0" Ref="C?"  Part="1"
 AR Path="/5E903BF9/5EC179C0" Ref="C23"  Part="1" 
 F 0 "C23" H 1392 5396 50  0000 L CNN
 F 1 "100n" H 1392 5305 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 1300 5350 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1300 5350 50  0001 C CNN
 F 3 "~" H 1300 5350 50  0001 C CNN
 F 4 "" H 1300 5350 50  0001 C CNN "Part"
-F 5 "" H 1300 5350 50  0001 C CNN "PartNo"
+F 5 "963-EMF212B7104KGHT " H 1300 5350 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 1300 5350 50  0001 C CNN "Supplier"
 	1    1300 5350
 	-1   0    0    -1  
@@ -696,10 +698,10 @@ AR Path="/5E98FA8A/5EC179F0" Ref="C?"  Part="1"
 AR Path="/5E903BF9/5EC179F0" Ref="C24"  Part="1" 
 F 0 "C24" H 1392 6296 50  0000 L CNN
 F 1 "100n" H 1392 6205 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 1300 6250 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1300 6250 50  0001 C CNN
 F 3 "~" H 1300 6250 50  0001 C CNN
 F 4 "" H 1300 6250 50  0001 C CNN "Part"
-F 5 "" H 1300 6250 50  0001 C CNN "PartNo"
+F 5 "963-EMF212B7104KGHT " H 1300 6250 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 1300 6250 50  0001 C CNN "Supplier"
 	1    1300 6250
 	-1   0    0    -1  
@@ -780,10 +782,10 @@ AR Path="/5E98FA8A/5EC17A20" Ref="C?"  Part="1"
 AR Path="/5E903BF9/5EC17A20" Ref="C25"  Part="1" 
 F 0 "C25" H 1392 7196 50  0000 L CNN
 F 1 "100n" H 1392 7105 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 1300 7150 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1300 7150 50  0001 C CNN
 F 3 "~" H 1300 7150 50  0001 C CNN
 F 4 "" H 1300 7150 50  0001 C CNN "Part"
-F 5 "" H 1300 7150 50  0001 C CNN "PartNo"
+F 5 "963-EMF212B7104KGHT " H 1300 7150 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 1300 7150 50  0001 C CNN "Supplier"
 	1    1300 7150
 	-1   0    0    -1  
@@ -851,6 +853,10 @@ Wire Wire Line
 Wire Wire Line
 	8100 3300 8500 3300
 Wire Wire Line
+	8500 3400 8300 3400
+Wire Wire Line
+	8500 3500 8300 3500
+Wire Wire Line
 	8500 3600 8300 3600
 Wire Wire Line
 	8500 3700 8300 3700
@@ -858,21 +864,17 @@ Wire Wire Line
 	8500 3800 8300 3800
 Wire Wire Line
 	8500 3900 8300 3900
-Wire Wire Line
-	8500 4000 8300 4000
-Wire Wire Line
-	8500 4100 8300 4100
-Text Label 8300 3600 0    50   ~ 0
+Text Label 8300 3400 0    50   ~ 0
 CT0_L
-Text Label 8300 3700 0    50   ~ 0
+Text Label 8300 3500 0    50   ~ 0
 CT0_K
-Text Label 8300 3800 0    50   ~ 0
+Text Label 8300 3600 0    50   ~ 0
 CT1_L
-Text Label 8300 3900 0    50   ~ 0
+Text Label 8300 3700 0    50   ~ 0
 CT1_K
-Text Label 8300 4000 0    50   ~ 0
+Text Label 8300 3800 0    50   ~ 0
 CT2_L
-Text Label 8300 4100 0    50   ~ 0
+Text Label 8300 3900 0    50   ~ 0
 CT2_K
 Wire Wire Line
 	1950 6100 2450 6100
@@ -965,8 +967,6 @@ Wire Notes Line
 	900  4650 900  3250
 Text Notes 850  4750 0    50   ~ 0
 VDD/2 Bias Voltage for CT input\n
-NoConn ~ 8500 3400
-NoConn ~ 8500 3500
 Wire Wire Line
 	6200 1150 8400 1150
 $Comp
@@ -1028,6 +1028,7 @@ F 1 "CPC1114N" H 7150 5334 50  0000 C CNN
 F 2 "Package_SO:SOP-4_3.8x4.1mm_P2.54mm" H 6950 4900 50  0001 L CIN
 F 3 "https://www.mouser.de/datasheet/2/240/CPC1114N-1548344.pdf" H 7100 5100 50  0001 L CNN
 F 4 "Mouser" H 7150 5100 50  0001 C CNN "Supplier"
+F 5 "849-CPC1114N" H 7150 5100 50  0001 C CNN "PartNo"
 	1    7150 5100
 	1    0    0    -1  
 $EndComp
@@ -1040,6 +1041,7 @@ F 1 "CPC1114N" H 7150 5934 50  0000 C CNN
 F 2 "Package_SO:SOP-4_3.8x4.1mm_P2.54mm" H 6950 5500 50  0001 L CIN
 F 3 "https://www.mouser.de/datasheet/2/240/CPC1114N-1548344.pdf" H 7100 5700 50  0001 L CNN
 F 4 "Mouser" H 7150 5700 50  0001 C CNN "Supplier"
+F 5 "849-CPC1114N" H 7150 5700 50  0001 C CNN "PartNo"
 	1    7150 5700
 	1    0    0    -1  
 $EndComp
@@ -1130,6 +1132,7 @@ F 1 "LM7332" H 5600 1524 50  0000 C CNN
 F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 5600 1800 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm7332.pdf?HQS=TI-null-null-mousermode-df-pf-null-wwe&ts=1590747908099" H 5600 1800 50  0001 C CNN
 F 4 "Mouser" H 5600 1800 50  0001 C CNN "Supplier"
+F 5 "926-LM7332MA/NOPB" H 5600 1800 50  0001 C CNN "PartNo"
 	1    5600 1800
 	-1   0    0    1   
 $EndComp
