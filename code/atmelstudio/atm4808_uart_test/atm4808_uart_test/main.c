@@ -17,14 +17,22 @@
 
 #define LED_MSK 0x40                                                                            // LED_MSK is alias for PIN6 bitmask
 #define USART0_BAUD_RATE(BAUD_RATE) ((float)(F_CPU * 64 / (16 * (float)BAUD_RATE)) + 0.5)		// define Baud Rate according to datasheet formula
+#define RXMAXLEN 40
 
 void init(void);
 void USART0_sendChar(uint8_t c);
-void USART0_sendString(uint8_t *str);
+void USART0_sendString(char *str);
+uint8_t USART0_getChar();
+void USART0_getString(uint8_t* buffer, uint8_t maxLen);
+void parseCmd(uint8_t* str, uint8_t maxLen);
+void resetBuffer(uint8_t* buffer, uint8_t bufLen);
 void led_on();
 void led_off();
 void led_toggle();
 
+const char RESP_ON[] = "led_on\n";
+const char RESP_OFF[] = "led_off\n";
+const char RESP_TGL[] = "led_toggle\n";
 
 void init(void){
     CPU_CCP = CCP_IOREG_gc;     // Unlock config change protection
@@ -45,9 +53,9 @@ void USART0_sendChar(uint8_t c){
     USART0.TXDATAL = c;
 }
 
-void USART0_sendString(uint8_t *str){
+void USART0_sendString(char *str){
     for(size_t i = 0; i < strlen(str); i++){
-        USART0_sendChar(str[i]);
+        USART0_sendChar((uint8_t)str[i]);
     }
 }
 
@@ -58,7 +66,7 @@ uint8_t USART0_getChar(){
     return USART0.RXDATAL;
 }
 
-void USART0_getString(char* buffer, uint8_t maxLen){
+void USART0_getString(uint8_t* buffer, uint8_t maxLen){
     uint8_t nextChar;
     uint8_t stringLen = 0;
     
@@ -73,23 +81,31 @@ void USART0_getString(char* buffer, uint8_t maxLen){
     *buffer = '\0';
 }
 
-uint8_t cmdParse(uint8_t *cmd){
-    if (strcmp("led_on", cmd) == 0){
-       return 1; 
+void parseCmd(uint8_t* str, uint8_t maxLen){
+    if (strcmp((const char *)str, (const char *)RESP_ON) == 0){
+        USART0_sendString("LED on\n");
+        led_on();
     }
-    if (strcmp("led_off", cmd) == 0){
-        return 2;
+    else if (strcmp((const char *)str, (const char *)RESP_OFF) == 0){
+        USART0_sendString("LED off\n");
+        led_off();
+    }
+    else if (strcmp((const char *)str, (const char *)RESP_TGL) == 0){
+        USART0_sendString("LED toggled\n");
+        led_toggle();
     }
     else {
-        return 0;
+        USART0_sendString("Invalid command!\n");
+        USART0_sendString("Valid commands:\n");
+        USART0_sendString((char *)RESP_ON);
+        USART0_sendString((char *)RESP_OFF);
+        USART0_sendString((char *)RESP_TGL);
     }
+    resetBuffer(str, maxLen);
 }
 
-void resetBuffer(char* buffer, uint8_t bufLen){
-    *buffer = NULL;
-    for (uint8_t i = 1; i < bufLen; i++) {
-        *buffer++ = NULL;    
-    }
+void resetBuffer(uint8_t* buffer, uint8_t bufLen){
+    memset(buffer, 0, bufLen); 
 }
 void led_on(){
     PORTA.OUTSET |= LED_MSK;
@@ -106,26 +122,13 @@ void led_toggle(){
 int main(void)
 {
 	init();
-    uint8_t cmd;
-    uint8_t rxcmd[40];
-    
+    // uint8_t rxcmd[RXMAXLEN];
+    uint8_t rxchar;
+    USART0_sendString("Hello\n");
     while(1){
-        USART0_getString(rxcmd, sizeof(rxcmd));
-        cmd = cmdParse(rxcmd);
-        resetBuffer(rxcmd, sizeof(rxcmd));
-        switch (cmd)
-        {
-        case 1:
-            led_on();
-            USART0_sendString("LED switched on!\r\n");
-        	break;
-        case 2:
-            led_off();
-            USART0_sendString("LED switched off!\r\n");
-            break;
-        default:
-            USART0_sendString("Enter a valid command!\r\n");
-        }        
+        rxchar = USART0_getChar();
+        USART0_sendChar(rxchar);
+        led_toggle();
     }
 }
 

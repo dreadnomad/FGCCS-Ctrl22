@@ -775,8 +775,6 @@ Wire Wire Line
 	6350 3500 6900 3500
 Wire Wire Line
 	6350 3650 6900 3650
-Wire Wire Line
-	6350 4400 7000 4400
 Text Label 7000 4400 2    50   ~ 0
 ATmega_RESET
 Text Label 6900 3500 2    50   ~ 0
@@ -1229,4 +1227,28 @@ Wire Notes Line
 	5000 1700 5000 750 
 Text Notes 5200 700  0    50   ~ 0
 ATmega UART2 Connector\n
+Wire Wire Line
+	6350 4400 7200 4400
+$Comp
+L Device:R_Small R36
+U 1 1 5EE08814
+P 7200 4500
+F 0 "R36" H 7259 4546 50  0000 L CNN
+F 1 "Reset Pulldown" H 7259 4455 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7200 4500 50  0001 C CNN
+F 3 "~" H 7200 4500 50  0001 C CNN
+	1    7200 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR029
+U 1 1 5EE08CC5
+P 7200 4600
+F 0 "#PWR029" H 7200 4350 50  0001 C CNN
+F 1 "GND" H 7205 4427 50  0000 C CNN
+F 2 "" H 7200 4600 50  0001 C CNN
+F 3 "" H 7200 4600 50  0001 C CNN
+	1    7200 4600
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

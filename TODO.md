@@ -4,10 +4,13 @@ This is the TODO list for ba-atmevse
 
 ## Current TODOs
 
+- [ ] Setup OptibootX on ATmega
+- [ ] Implement rough firmware draft
+- [ ] PCB soldering when arrived
 - [ ] Test subcircuits on breadboard: 12V Button/LED, CT inputs, Reed Relay
 - [x] Replace AOZ1280 with AP5100 for 3.3V regulation
-- [ ] Get parts list and corresponding footprints, preferably one supplier for everything -> see PARTS.md for details 
-- [ ] Draft first layout 
+- [x] Get parts list and corresponding footprints, preferably one supplier for everything -> see PARTS.md for details 
+- [x] Draft first layout 
 - [ ] Setup Linux AVR toolchain and IDE
 - [x] Test Serial Comms to PC -> Working!
 
@@ -25,10 +28,12 @@ This is the TODO list for ba-atmevse
     - [x] Get feedback on first draft
 - [x] Find possible conflicts due to changes
 - [x] Resolve conflicts and devise a rough roadmap
-- [ ] First layout draft
+- [x] First layout draft
+- [x] First layout sent for fabrication
 - [ ] Document all steps taken
     - [x] REVENG.md documents the circuit analysis of SmartEVSEv2.2
     - [x] PINCFG.md documents the chosen pin layout for the ATmega4808 MCU
+	- [x] PARTS.md documents part/supply decisions
     - [ ] Set up TeXStudio project for the actual writing    
 
 ## Questions
