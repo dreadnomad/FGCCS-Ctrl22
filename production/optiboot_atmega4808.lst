@@ -1,0 +1,315 @@
+
+optiboot_atmega4808.elf:     file format elf32-avr
+
+
+Disassembly of section .text:
+
+00000000 <pre_main>:
+/* everything that needs to run VERY early */
+void pre_main (void) {
+    // Allow convenient way of calling do_spm function - jump table,
+    //   so entry to this function will always be here, indepedent
+    //    of compilation, features, etc
+    __asm__ __volatile__ (
+   0:	01 c0       	rjmp	.+2      	; 0x4 <main>
+   2:	d0 c0       	rjmp	.+416    	; 0x1a4 <do_nvmctrl>
+
+00000004 <main>:
+   4:	11 24       	eor	r1, r1
+   6:	80 91 40 00 	lds	r24, 0x0040	; 0x800040 <__TEXT_REGION_LENGTH__+0x700040>
+   a:	80 93 40 00 	sts	0x0040, r24	; 0x800040 <__TEXT_REGION_LENGTH__+0x700040>
+   e:	83 ff       	sbrs	r24, 3
+  10:	04 c0       	rjmp	.+8      	; 0x1a <main+0x16>
+  12:	28 2e       	mov	r2, r24
+  14:	80 e0       	ldi	r24, 0x00	; 0
+  16:	ae d0       	rcall	.+348    	; 0x174 <watchdogConfig>
+  18:	f3 c0       	rjmp	.+486    	; 0x200 <app>
+  1a:	a8 95       	wdr
+  1c:	00 9a       	sbi	0x00, 0	; 0
+  1e:	08 9a       	sbi	0x01, 0	; 1
+  20:	10 92 e2 05 	sts	0x05E2, r1	; 0x8005e2 <__TEXT_REGION_LENGTH__+0x7005e2>
+  24:	80 91 82 12 	lds	r24, 0x1282	; 0x801282 <__TEXT_REGION_LENGTH__+0x701282>
+  28:	83 70       	andi	r24, 0x03	; 3
+  2a:	81 30       	cpi	r24, 0x01	; 1
+  2c:	19 f4       	brne	.+6      	; 0x34 <__CCP__>
+  2e:	8c e5       	ldi	r24, 0x5C	; 92
+  30:	90 e0       	ldi	r25, 0x00	; 0
+  32:	02 c0       	rjmp	.+4      	; 0x38 <__CCP__+0x4>
+  34:	83 e7       	ldi	r24, 0x73	; 115
+  36:	90 e0       	ldi	r25, 0x00	; 0
+  38:	80 93 08 08 	sts	0x0808, r24	; 0x800808 <__TEXT_REGION_LENGTH__+0x700808>
+  3c:	90 93 09 08 	sts	0x0809, r25	; 0x800809 <__TEXT_REGION_LENGTH__+0x700809>
+  40:	81 e0       	ldi	r24, 0x01	; 1
+  42:	80 93 0b 08 	sts	0x080B, r24	; 0x80080b <__TEXT_REGION_LENGTH__+0x70080b>
+  46:	83 e0       	ldi	r24, 0x03	; 3
+  48:	80 93 07 08 	sts	0x0807, r24	; 0x800807 <__TEXT_REGION_LENGTH__+0x700807>
+  4c:	10 92 05 08 	sts	0x0805, r1	; 0x800805 <__TEXT_REGION_LENGTH__+0x700805>
+  50:	80 ec       	ldi	r24, 0xC0	; 192
+  52:	80 93 06 08 	sts	0x0806, r24	; 0x800806 <__TEXT_REGION_LENGTH__+0x700806>
+  56:	88 e0       	ldi	r24, 0x08	; 8
+  58:	8d d0       	rcall	.+282    	; 0x174 <watchdogConfig>
+  5a:	06 9a       	sbi	0x00, 6	; 0
+  5c:	87 e0       	ldi	r24, 0x07	; 7
+  5e:	81 50       	subi	r24, 0x01	; 1
+  60:	61 f0       	breq	.+24     	; 0x7a <__SREG__+0x3b>
+  62:	16 9a       	sbi	0x02, 6	; 2
+  64:	2e ec       	ldi	r18, 0xCE	; 206
+  66:	36 e5       	ldi	r19, 0x56	; 86
+  68:	a8 95       	wdr
+  6a:	90 91 04 08 	lds	r25, 0x0804	; 0x800804 <__TEXT_REGION_LENGTH__+0x700804>
+  6e:	97 fd       	sbrc	r25, 7
+  70:	05 c0       	rjmp	.+10     	; 0x7c <__SREG__+0x3d>
+  72:	21 50       	subi	r18, 0x01	; 1
+  74:	31 09       	sbc	r19, r1
+  76:	c1 f7       	brne	.-16     	; 0x68 <__SREG__+0x29>
+  78:	f2 cf       	rjmp	.-28     	; 0x5e <__SREG__+0x1f>
+  7a:	a8 95       	wdr
+  7c:	0d e9       	ldi	r16, 0x9D	; 157
+  7e:	83 e0       	ldi	r24, 0x03	; 3
+  80:	d8 2e       	mov	r13, r24
+  82:	6c d0       	rcall	.+216    	; 0x15c <getch>
+  84:	81 34       	cpi	r24, 0x41	; 65
+  86:	61 f4       	brne	.+24     	; 0xa0 <__SREG__+0x61>
+  88:	69 d0       	rcall	.+210    	; 0x15c <getch>
+  8a:	18 2f       	mov	r17, r24
+  8c:	7c d0       	rcall	.+248    	; 0x186 <verifySpace>
+  8e:	12 38       	cpi	r17, 0x82	; 130
+  90:	d9 f0       	breq	.+54     	; 0xc8 <__SREG__+0x89>
+  92:	11 38       	cpi	r17, 0x81	; 129
+  94:	11 f4       	brne	.+4      	; 0x9a <__SREG__+0x5b>
+  96:	89 e0       	ldi	r24, 0x09	; 9
+  98:	01 c0       	rjmp	.+2      	; 0x9c <__SREG__+0x5d>
+  9a:	83 e0       	ldi	r24, 0x03	; 3
+  9c:	58 d0       	rcall	.+176    	; 0x14e <putch>
+  9e:	54 c0       	rjmp	.+168    	; 0x148 <__SREG__+0x109>
+  a0:	82 34       	cpi	r24, 0x42	; 66
+  a2:	11 f4       	brne	.+4      	; 0xa8 <__SREG__+0x69>
+  a4:	84 e1       	ldi	r24, 0x14	; 20
+  a6:	03 c0       	rjmp	.+6      	; 0xae <__SREG__+0x6f>
+  a8:	85 34       	cpi	r24, 0x45	; 69
+  aa:	19 f4       	brne	.+6      	; 0xb2 <__SREG__+0x73>
+  ac:	85 e0       	ldi	r24, 0x05	; 5
+  ae:	73 d0       	rcall	.+230    	; 0x196 <getNch>
+  b0:	4b c0       	rjmp	.+150    	; 0x148 <__SREG__+0x109>
+  b2:	85 35       	cpi	r24, 0x55	; 85
+  b4:	29 f4       	brne	.+10     	; 0xc0 <__SREG__+0x81>
+  b6:	52 d0       	rcall	.+164    	; 0x15c <getch>
+  b8:	c8 2f       	mov	r28, r24
+  ba:	50 d0       	rcall	.+160    	; 0x15c <getch>
+  bc:	d8 2f       	mov	r29, r24
+  be:	43 c0       	rjmp	.+134    	; 0x146 <__SREG__+0x107>
+  c0:	86 35       	cpi	r24, 0x56	; 86
+  c2:	21 f4       	brne	.+8      	; 0xcc <__SREG__+0x8d>
+  c4:	84 e0       	ldi	r24, 0x04	; 4
+  c6:	67 d0       	rcall	.+206    	; 0x196 <getNch>
+  c8:	80 e0       	ldi	r24, 0x00	; 0
+  ca:	e8 cf       	rjmp	.-48     	; 0x9c <__SREG__+0x5d>
+  cc:	84 36       	cpi	r24, 0x64	; 100
+  ce:	b9 f4       	brne	.+46     	; 0xfe <__SREG__+0xbf>
+  d0:	45 d0       	rcall	.+138    	; 0x15c <getch>
+  d2:	44 d0       	rcall	.+136    	; 0x15c <getch>
+  d4:	18 2f       	mov	r17, r24
+  d6:	42 d0       	rcall	.+132    	; 0x15c <getch>
+  d8:	86 34       	cpi	r24, 0x46	; 70
+  da:	11 f4       	brne	.+4      	; 0xe0 <__SREG__+0xa1>
+  dc:	d0 5c       	subi	r29, 0xC0	; 192
+  de:	01 c0       	rjmp	.+2      	; 0xe2 <__SREG__+0xa3>
+  e0:	dc 5e       	subi	r29, 0xEC	; 236
+  e2:	3c d0       	rcall	.+120    	; 0x15c <getch>
+  e4:	88 83       	st	Y, r24
+  e6:	21 96       	adiw	r28, 0x01	; 1
+  e8:	11 50       	subi	r17, 0x01	; 1
+  ea:	d9 f7       	brne	.-10     	; 0xe2 <__SREG__+0xa3>
+  ec:	4c d0       	rcall	.+152    	; 0x186 <verifySpace>
+  ee:	04 bf       	out	0x34, r16	; 52
+  f0:	d0 92 00 10 	sts	0x1000, r13	; 0x801000 <__TEXT_REGION_LENGTH__+0x701000>
+  f4:	80 91 02 10 	lds	r24, 0x1002	; 0x801002 <__TEXT_REGION_LENGTH__+0x701002>
+  f8:	83 70       	andi	r24, 0x03	; 3
+  fa:	e1 f7       	brne	.-8      	; 0xf4 <__SREG__+0xb5>
+  fc:	25 c0       	rjmp	.+74     	; 0x148 <__SREG__+0x109>
+  fe:	84 37       	cpi	r24, 0x74	; 116
+ 100:	91 f4       	brne	.+36     	; 0x126 <__SREG__+0xe7>
+ 102:	2c d0       	rcall	.+88     	; 0x15c <getch>
+ 104:	2b d0       	rcall	.+86     	; 0x15c <getch>
+ 106:	18 2f       	mov	r17, r24
+ 108:	29 d0       	rcall	.+82     	; 0x15c <getch>
+ 10a:	f8 2e       	mov	r15, r24
+ 10c:	3c d0       	rcall	.+120    	; 0x186 <verifySpace>
+ 10e:	86 e4       	ldi	r24, 0x46	; 70
+ 110:	f8 12       	cpse	r15, r24
+ 112:	02 c0       	rjmp	.+4      	; 0x118 <__SREG__+0xd9>
+ 114:	d0 5c       	subi	r29, 0xC0	; 192
+ 116:	01 c0       	rjmp	.+2      	; 0x11a <__SREG__+0xdb>
+ 118:	dc 5e       	subi	r29, 0xEC	; 236
+ 11a:	88 81       	ld	r24, Y
+ 11c:	21 96       	adiw	r28, 0x01	; 1
+ 11e:	17 d0       	rcall	.+46     	; 0x14e <putch>
+ 120:	11 50       	subi	r17, 0x01	; 1
+ 122:	d9 f7       	brne	.-10     	; 0x11a <__SREG__+0xdb>
+ 124:	11 c0       	rjmp	.+34     	; 0x148 <__SREG__+0x109>
+ 126:	85 37       	cpi	r24, 0x75	; 117
+ 128:	51 f4       	brne	.+20     	; 0x13e <__SREG__+0xff>
+ 12a:	2d d0       	rcall	.+90     	; 0x186 <verifySpace>
+ 12c:	80 91 00 11 	lds	r24, 0x1100	; 0x801100 <__TEXT_REGION_LENGTH__+0x701100>
+ 130:	0e d0       	rcall	.+28     	; 0x14e <putch>
+ 132:	80 91 01 11 	lds	r24, 0x1101	; 0x801101 <__TEXT_REGION_LENGTH__+0x701101>
+ 136:	0b d0       	rcall	.+22     	; 0x14e <putch>
+ 138:	80 91 02 11 	lds	r24, 0x1102	; 0x801102 <__TEXT_REGION_LENGTH__+0x701102>
+ 13c:	af cf       	rjmp	.-162    	; 0x9c <__SREG__+0x5d>
+ 13e:	81 35       	cpi	r24, 0x51	; 81
+ 140:	11 f4       	brne	.+4      	; 0x146 <__SREG__+0x107>
+ 142:	81 e0       	ldi	r24, 0x01	; 1
+ 144:	17 d0       	rcall	.+46     	; 0x174 <watchdogConfig>
+ 146:	1f d0       	rcall	.+62     	; 0x186 <verifySpace>
+ 148:	80 e1       	ldi	r24, 0x10	; 16
+ 14a:	01 d0       	rcall	.+2      	; 0x14e <putch>
+ 14c:	9a cf       	rjmp	.-204    	; 0x82 <__SREG__+0x43>
+
+0000014e <putch>:
+	putch(STK_OK);
+    }
+}
+
+void putch (char ch) {
+    while (0 == (MYUART.STATUS & USART_DREIF_bm))
+ 14e:	90 91 04 08 	lds	r25, 0x0804	; 0x800804 <__TEXT_REGION_LENGTH__+0x700804>
+ 152:	95 ff       	sbrs	r25, 5
+ 154:	fc cf       	rjmp	.-8      	; 0x14e <putch>
+	;
+    MYUART.TXDATAL = ch;
+ 156:	80 93 02 08 	sts	0x0802, r24	; 0x800802 <__TEXT_REGION_LENGTH__+0x700802>
+ 15a:	08 95       	ret
+
+0000015c <getch>:
+}
+
+uint8_t getch (void) {
+    uint8_t ch, flags;
+    while (!(MYUART.STATUS & USART_RXCIF_bm))
+ 15c:	80 91 04 08 	lds	r24, 0x0804	; 0x800804 <__TEXT_REGION_LENGTH__+0x700804>
+ 160:	87 ff       	sbrs	r24, 7
+ 162:	fc cf       	rjmp	.-8      	; 0x15c <getch>
+	;
+    flags = MYUART.RXDATAH;
+ 164:	90 91 01 08 	lds	r25, 0x0801	; 0x800801 <__TEXT_REGION_LENGTH__+0x700801>
+    ch = MYUART.RXDATAL;
+ 168:	80 91 00 08 	lds	r24, 0x0800	; 0x800800 <__TEXT_REGION_LENGTH__+0x700800>
+    if ((flags & USART_FERR_bm) == 0)
+ 16c:	92 fd       	sbrc	r25, 2
+ 16e:	01 c0       	rjmp	.+2      	; 0x172 <getch+0x16>
+	watchdogReset();
+ 170:	a8 95       	wdr
+#ifdef LED_DATA_FLASH
+    LED_PORT.IN |= LED;
+#endif
+
+    return ch;
+}
+ 172:	08 95       	ret
+
+00000174 <watchdogConfig>:
+/*
+ * Change the watchdog configuration.
+ *  Could be a new timeout, could be off...
+ */
+void watchdogConfig (uint8_t x) {
+    while(WDT.STATUS & WDT_SYNCBUSY_bm)
+ 174:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__TEXT_REGION_LENGTH__+0x700101>
+ 178:	90 fd       	sbrc	r25, 0
+ 17a:	fc cf       	rjmp	.-8      	; 0x174 <watchdogConfig>
+	;  // Busy wait for sycnhronization is required!
+    _PROTECTED_WRITE(WDT.CTRLA, x);
+ 17c:	98 ed       	ldi	r25, 0xD8	; 216
+ 17e:	94 bf       	out	0x34, r25	; 52
+ 180:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__TEXT_REGION_LENGTH__+0x700100>
+ 184:	08 95       	ret
+
+00000186 <verifySpace>:
+    do getch(); while (--count);
+    verifySpace();
+}
+
+void verifySpace () {
+    if (getch() != CRC_EOP) {
+ 186:	ea df       	rcall	.-44     	; 0x15c <getch>
+ 188:	80 32       	cpi	r24, 0x20	; 32
+ 18a:	19 f0       	breq	.+6      	; 0x192 <verifySpace+0xc>
+	watchdogConfig(WDT_PERIOD_8CLK_gc);    // shorten WD timeout
+ 18c:	81 e0       	ldi	r24, 0x01	; 1
+ 18e:	f2 df       	rcall	.-28     	; 0x174 <watchdogConfig>
+ 190:	ff cf       	rjmp	.-2      	; 0x190 <verifySpace+0xa>
+	while (1)			      // and busy-loop so that WD causes
+	    ;				      //  a reset and app start.
+    }
+    putch(STK_INSYNC);
+ 192:	84 e1       	ldi	r24, 0x14	; 20
+ 194:	dc cf       	rjmp	.-72     	; 0x14e <putch>
+
+00000196 <getNch>:
+#endif
+
+    return ch;
+}
+
+void getNch (uint8_t count) {
+ 196:	cf 93       	push	r28
+ 198:	c8 2f       	mov	r28, r24
+    do getch(); while (--count);
+ 19a:	e0 df       	rcall	.-64     	; 0x15c <getch>
+ 19c:	c1 50       	subi	r28, 0x01	; 1
+ 19e:	e9 f7       	brne	.-6      	; 0x19a <getNch+0x4>
+    verifySpace();
+}
+ 1a0:	cf 91       	pop	r28
+    return ch;
+}
+
+void getNch (uint8_t count) {
+    do getch(); while (--count);
+    verifySpace();
+ 1a2:	f1 cf       	rjmp	.-30     	; 0x186 <verifySpace>
+
+000001a4 <do_nvmctrl>:
+ *   you could do fill-erase-write sequence with data!=0 in ERASE and
+ *   data=0 in WRITE
+ */
+static void do_nvmctrl(uint16_t address, uint8_t command, uint16_t data)  __attribute__ ((used));
+static void do_nvmctrl (uint16_t address, uint8_t command, uint16_t data) {
+    _PROTECTED_WRITE(WDT.CTRLA, command);
+ 1a4:	88 ed       	ldi	r24, 0xD8	; 216
+ 1a6:	84 bf       	out	0x34, r24	; 52
+ 1a8:	60 93 00 01 	sts	0x0100, r22	; 0x800100 <__TEXT_REGION_LENGTH__+0x700100>
+    while (NVMCTRL.STATUS & (NVMCTRL_FBUSY_bm|NVMCTRL_EEBUSY_bm))
+ 1ac:	80 91 02 10 	lds	r24, 0x1002	; 0x801002 <__TEXT_REGION_LENGTH__+0x701002>
+ 1b0:	83 70       	andi	r24, 0x03	; 3
+ 1b2:	e1 f7       	brne	.-8      	; 0x1ac <do_nvmctrl+0x8>
+	; // wait for flash and EEPROM not busy, just in case.
+}
+ 1b4:	08 95       	ret
+
+Disassembly of section .application:
+
+00000200 <app>:
+      __attribute__((naked)) app();
+void app() 
+{
+    uint8_t ch;
+    
+    ch = RSTCTRL.RSTFR;
+ 200:	e0 e4       	ldi	r30, 0x40	; 64
+ 202:	f0 e0       	ldi	r31, 0x00	; 0
+ 204:	80 81       	ld	r24, Z
+    RSTCTRL.RSTFR = ch; // reset causes
+ 206:	80 83       	st	Z, r24
+    *(volatile uint16_t *)(&optiboot_version);   // reference the version
+ 208:	80 91 fe 01 	lds	r24, 0x01FE	; 0x8001fe <__TEXT_REGION_LENGTH__+0x7001fe>
+ 20c:	90 91 ff 01 	lds	r25, 0x01FF	; 0x8001ff <__TEXT_REGION_LENGTH__+0x7001ff>
+    do_nvmctrl(0, NVMCTRL_CMD_PAGEBUFCLR_gc, 0); // reference this function!
+ 210:	40 e0       	ldi	r20, 0x00	; 0
+ 212:	50 e0       	ldi	r21, 0x00	; 0
+ 214:	64 e0       	ldi	r22, 0x04	; 4
+ 216:	80 e0       	ldi	r24, 0x00	; 0
+ 218:	90 e0       	ldi	r25, 0x00	; 0
+ 21a:	c4 df       	rcall	.-120    	; 0x1a4 <do_nvmctrl>
+    __asm__ __volatile__ ("jmp 0");    // similar to running off end of memory
+ 21c:	0c 94 00 00 	jmp	0	; 0x0 <__tmp_reg__>
