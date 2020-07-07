@@ -1,0 +1,1 @@
+avrdude -CC:\Users\ko07xiqa\AppData\Local\Arduino15\packages\MegaCoreX\hardware\megaavr\1.0.4/avrdude.conf -v -patmega4808 -carduino -PCOM3 -b115200 -D -Uflash:w:C:\Users\ko07xiqa\AppData\Local\Temp\arduino_build_653747/protocol_test_status.ino.hex:i 
