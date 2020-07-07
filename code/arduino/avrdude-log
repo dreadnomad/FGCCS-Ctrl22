@@ -1,0 +1,141 @@
+
+avrdude: Version 6.3-20171130
+         Copyright (c) 2000-2005 Brian Dean, http://www.bdmicro.com/
+         Copyright (c) 2007-2014 Joerg Wunsch
+
+         System wide configuration file is "/opt/local/avr-toolchain/etc/avrdude.conf"
+         User configuration file is "/home/pt/.avrduderc"
+         User configuration file does not exist or is not a regular file, skipping
+
+         Using Port                    : /dev/ttyUSB0
+         Using Programmer              : arduino
+         Overriding Baud Rate          : 115200
+         AVR Part                      : ATmega4808
+         Chip Erase delay              : 0 us
+         PAGEL                         : P00
+         BS2                           : P00
+         RESET disposition             : dedicated
+         RETRY pulse                   : SCK
+         serial program mode           : yes
+         parallel program mode         : yes
+         Timeout                       : 0
+         StabDelay                     : 0
+         CmdexeDelay                   : 0
+         SyncLoops                     : 0
+         ByteDelay                     : 0
+         PollIndex                     : 0
+         PollValue                     : 0x00
+         Memory Detail                 :
+
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           signature      0     0     0    0 no          3    0      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           prodsig        0     0     0    0 no         61   61      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           fuses          0     0     0    0 no          9    0      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           fuse0          0     0     0    0 no          1    0      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           fuse1          0     0     0    0 no          1    0      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           fuse2          0     0     0    0 no          1    0      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           fuse4          0     0     0    0 no          1    0      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           fuse5          0     0     0    0 no          1    0      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           fuse6          0     0     0    0 no          1    0      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           fuse7          0     0     0    0 no          1    0      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           fuse8          0     0     0    0 no          1    0      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           lock           0     0     0    0 no          1    0      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           data           0     0     0    0 no          0    0      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           usersig        0     0     0    0 no         64   64      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           flash          0     0     0    0 no      49152  128      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           eeprom         0     0     0    0 no        256   64      0     0     0 0x00 0x00
+
+         Programmer Type : Arduino
+         Description     : Arduino
+         Hardware Version: 3
+         Firmware Version: 9.0
+         Vtarget         : 0.3 V
+         Varef           : 0.3 V
+         Oscillator      : 28.800 kHz
+         SCK period      : 3.3 us
+
+avrdude: PAGEL and BS2 signals not defined in the configuration file for part ATmega4808, using dummy values
+avrdude: AVR device initialized and ready to accept instructions
+
+Reading | ################################################## | 100% 0.01s
+
+avrdude: Device signature = 0x1e9650 (probably m4808)
+avrdude: reading input file "/home/pt/ba/ba-atmevse/code/arduino/protocol_test_status/test.hex"
+avrdude: input file /home/pt/ba/ba-atmevse/code/arduino/protocol_test_status/test.hex auto detected as Intel Hex
+avrdude: writing flash (7312 bytes):
+
+Writing | avrdude: avr_write(): skipping page 0: no interesting data
+avrdude: avr_write(): skipping page 1: no interesting data
+#avrdude: avr_write(): skipping page 2: no interesting data
+#avrdude: avr_write(): skipping page 3: no interesting data
+################################################ | 100% 1.61s
+
+avrdude: 7312 bytes of flash written
+avrdude: verifying flash memory against /home/pt/ba/ba-atmevse/code/arduino/protocol_test_status/test.hex:
+avrdude: load data flash data from input file /home/pt/ba/ba-atmevse/code/arduino/protocol_test_status/test.hex:
+avrdude: input file /home/pt/ba/ba-atmevse/code/arduino/protocol_test_status/test.hex auto detected as Intel Hex
+avrdude: input file /home/pt/ba/ba-atmevse/code/arduino/protocol_test_status/test.hex contains 7312 bytes
+avrdude: reading on-chip flash data:
+
+Reading | avrdude: avr_read(): skipping page 0: no interesting data
+avrdude: avr_read(): skipping page 1: no interesting data
+#avrdude: avr_read(): skipping page 2: no interesting data
+#avrdude: avr_read(): skipping page 3: no interesting data
+#avrdude: ser_recv(): programmer is not responding
+avrdude: stk500_recv(): programmer is not responding
+#avr_read(): error reading address 0x0200
+    read operation not supported for memory "flash"
+avrdude: failed to read all of flash memory, rc=-2
+
+avrdude: safemode: Fuses OK (E:FF, H:FF, L:FF)
+avrdude: stk500_disable(): protocol error, expect=0x14, resp=0x0d
+
+avrdude done.  Thank you.
+
