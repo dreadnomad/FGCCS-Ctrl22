@@ -1,6 +1,6 @@
 #!/bin/sh
 
 echo "Flashing HEX File..."
-avrdude -C/opt/local/avr-toolchain/etc/avrdude.conf -v -v -v -patmega4808 -carduino -P/dev/ttyUSB0 -b115200 -D \
+avrdude -v -v -C/opt/local/avr-toolchain/etc/avrdude.conf -pm4808 -carduino -P/dev/ttyUSB0 -b115200 -vvv -D \
 -Uflash:w:/home/pt/ba/ba-atmevse/code/arduino/protocol_test_status/test.hex > avrdude-log 2>&1
 echo "Done. Check the log for details"
