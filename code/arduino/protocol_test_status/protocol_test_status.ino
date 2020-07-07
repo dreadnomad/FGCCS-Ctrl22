@@ -1,10 +1,8 @@
 // blink led: fixed 2sec period
-const int led_red_pin = 20;
-const int led_yellow_pin = 21;
-const int led_pin = 6;
+const int led_sec_pin = 21;
+const int led_blink_pin = 20;
 int led_state = 0;
-int led_red_status = 0;  // red LED on (parameter led_red)
-int led_yellow_status = 0; // yellow LED on (parameter led_yellow
+int led_sec_state = 0;  // red LED on (parameter led_red)
 long led_blink = 1;     // number of timed to flash at 1 Hz  (parameter “blink”)
 
 
@@ -13,9 +11,8 @@ unsigned long toff = 0; // affected by paramter “time"
 
 
 void setup() {
-  pinMode(led_pin, OUTPUT);
-  pinMode(led_red_pin, OUTPUT);
-  pinMode(led_yellow_pin, OUTPUT);
+  pinMode(led_blink_pin, OUTPUT);
+  pinMode(led_sec_pin, OUTPUT);
   Serial.pins(0, 1);
   Serial.begin(115200);
 }
@@ -35,24 +32,18 @@ void loop() {
   int led_cycle = led_time / 100 + 1; // devide in 20 slots to blink: led_cycle counts from 1 to 20
   if ((led_cycle <= led_blink) && (led_time % 100 < 50)) {
     if (led_state == 0)
-      digitalWrite(led_pin, 1);
+      digitalWrite(led_blink_pin, 1);
     led_state = 1;
   } else {
     if (led_state == 1)
-      digitalWrite(led_pin, 0);
+      digitalWrite(led_blink_pin, 0);
     led_state = 0;
   }
-  if (led_red_status == 0) {
-    digitalWrite(led_red_pin, 0);
+  if (led_sec_state == 0) {
+    digitalWrite(led_sec_pin, 0);
   }
-  if (led_red_status == 1) {
-    digitalWrite(led_red_pin, 1);
-  }
-  if (led_yellow_status == 0) {
-    digitalWrite(led_yellow_pin, 0);
-  }
-  if (led_yellow_status == 1) {
-    digitalWrite(led_yellow_pin, 1);
+  if (led_sec_state == 1) {
+    digitalWrite(led_sec_pin, 1);
   }
 
 
@@ -63,7 +54,7 @@ void loop() {
     // is it a status req?
     int lpos = mesg.indexOf("??");
     if (lpos >= 0) {
-      reply = "Status report: \r\n time=" + String(systime) + "\r\n" + "blink=" + String(led_blink) + "\r\n" + "led_red=" + String(led_red_status) + "\r\n" + "led_yellow=" + String(led_yellow_status) + "\r\n";
+      reply = "Status report: \r\n time=" + String(systime) + "\r\n" + "blink=" + String(led_blink) + "\r\n" + "led_sec=" + String(led_sec_state) + "\r\n";
     }
     // is it a get?
     int qpos = mesg.indexOf("?");
@@ -77,13 +68,9 @@ void loop() {
         // “time?*\n"
         reply = "time=" + String(systime);
       }
-      if (mesg.substring(0, qpos) == "led_red") {
+      if (mesg.substring(0, qpos) == "led_sec") {
         // “time?*\n"
-        reply = "led_red=" + String(led_red_status);
-      }
-      if (mesg.substring(0, qpos) == "led_yellow") {
-        // “time?*\n"
-        reply = "led_yellow=" + String(led_yellow_status);
+        reply = "led_sec=" + String(led_sec_state);
       }
     }
     // is it a set?
@@ -102,15 +89,10 @@ void loop() {
         reply = "time=" + String(val);
         toff = val - millis();
       }
-      if (mesg.substring(0, epos) == "led_red") {
+      if (mesg.substring(0, epos) == "led_sec") {
         //blink=<VAL>*\n
-        reply = "led_red=" + String(val);
-        led_red_status = val;
-      }
-      if (mesg.substring(0, epos) == "led_yellow") {
-        //blink=<VAL>*\n
-        reply = "led_yellow=" + String(val);
-        led_yellow_status = val;
+        reply = "led_sec=" + String(val);
+        led_sec_state = val;
       }
     }
     
