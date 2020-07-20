@@ -8,10 +8,6 @@
  * Command interpreter module
  */ 
 
-// TODO:
-// - parse cmd for func or param get/set
-// - implement param table
-
 /* Notes on commands in cmd_table
  * - all commands must adhere to the following return value conventions:
  *      -> return -1: must not exist!!
@@ -92,14 +88,14 @@ static int8_t cmd_exec(uint8_t index) {
 }
 
 int8_t cmd_parse(char *string) {
-    int8_t retval = -1;                                 // set inital return value to -1 -> no valid command
+    int8_t retval = -1;                                 // set initial return value to -1 -> no valid command
     char *command = string;
-    char *set_ptr = strchr(string, 0x3d);
-    char *get_ptr = strchr(string, 0x3f);
+    char *set_ptr = strchr(string, CMD_SET);
+    char *get_ptr = strchr(string, CMD_GET);
     uint8_t is_param_op = 0;
     
     if (get_ptr != NULL) {
-        if (strcmp(string, "??") == 0) {                // "??" is alias for "status"
+        if (strcmp(string, CMD_STATUS) == 0) {                // "??" is alias for "status"
             command = "status";
         }
         else {                                          
@@ -252,20 +248,26 @@ static int8_t sys_echo(char *string) {
 
 int8_t sys_status() {
     printf("Available commands:\r\n");                      // print all defined commands in cmd table
+    uint8_t cmd_cnt = 0;
     for (uint8_t i = 0; i < MAX_CMD_NO; i++) {
         const char* cmd = (const char*)cmd_table[i].cmd;
         if (strcmp(cmd, "\0") != 0) {
             printf("%s\r\n", cmd);
+            cmd_cnt++;
         }
     }
+    printf("No. of registered commands: %d/%d\r\n", cmd_cnt, MAX_CMD_NO);
     printf("Defined parameters:\r\n");                      // print all defined parameters in param table
+    uint8_t param_cnt = 0;
     for (uint8_t i = 0; i < MAX_PARAM_NO; i++) {
         static uint32_t param_val = 0;
         const char* param = (const char*)param_table[i].param;
         if (strcmp(param, "\0") != 0) {
             param_get((char *)param, &param_val);
             printf("%s = %+"PRIu32"\r\n", param, param_val);
+            param_cnt++;
         }
     }
+    printf("No. of registered parameters: %d/%d\r\n", param_cnt, MAX_PARAM_NO);
     return 0;
 }

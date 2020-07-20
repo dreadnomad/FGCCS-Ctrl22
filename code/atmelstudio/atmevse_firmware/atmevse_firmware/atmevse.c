@@ -8,6 +8,11 @@
  * Core module
  */ 
 
+/* TODO:
+ * - Port PIC code to ATmega
+ * - Build application for hardware testing
+ */
+
 /*
     Includes
     *************************************************/

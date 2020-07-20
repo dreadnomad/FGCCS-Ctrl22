@@ -8,6 +8,10 @@
  * UART module
  */ 
 
+/* TODO:
+ * - Switch to interrupt-based USART implementation
+ */
+
 /*
     Includes
     *************************************************/
