@@ -13,6 +13,7 @@
     Includes
     *************************************************/
 #include <stdint-gcc.h>
+#include <avr/interrupt.h>
 
 #ifndef ATMEVSE
 #define ATMEVSE

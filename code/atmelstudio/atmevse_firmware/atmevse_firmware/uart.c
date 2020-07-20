@@ -14,6 +14,7 @@
 #include "atmevse.h"
 #include "uart.h"
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include <stdint-gcc.h>
 #include <string.h>
 #include <stdio.h>
@@ -21,18 +22,36 @@
 /*
     Variable definitions
     *************************************************/
-static FILE uart_stream = FDEV_SETUP_STREAM(uart0_printChar, NULL, _FDEV_SETUP_WRITE);      // setup user defined stream for printf()
+static FILE uart0_stream = FDEV_SETUP_STREAM(uart0_printChar, NULL, _FDEV_SETUP_WRITE);      // setup user defined stream for printf()
 static char buffer[MAX_LINE_LEN];
+static ringbuffer_t rxbuffer;
+
+/*
+    ISR definitions
+    *************************************************/
+ISR(USART0_RXC_vect) {
+    return;
+}
+
+ISR(USART0_TXC_vect) {
+    return;
+}
+
+ISR(USART0_DRE_vect) {
+    return;
+}
 
 /*
     Function definitions
     *************************************************/
 void uart_init() {
-    USART0.BAUD = (uint16_t)USART0_BAUD_RATE(115200);   // set uart0 baud rate
-    USART0.CTRLB |= (USART_TXEN_bm | USART_RXEN_bm);    // enable uart0 TX & RX
-    PORTA.DIRSET |= PIN0_bm;                            // set uart0 TX (PA0) to output
-    PORTA.DIRSET &= ~PIN1_bm;                           // set uart0 RX (PA1) to input
-    stdout = &uart_stream;
+    /* USART0 Config */
+    USART0.BAUD = (uint16_t)USART0_BAUD_RATE(115200);                       // set uart0 baud rate
+    USART0.CTRLA |= (USART_RXCIE_bm | USART_TXCIE_bm | USART_DREIE_bm);     // enable RXC, TXC, DRE interrupts
+    USART0.CTRLB |= (USART_TXEN_bm | USART_RXEN_bm);                        // enable uart0 TX & RX
+    PORTA.DIRSET |= PIN0_bm;                                                // set uart0 TX (PA0) to output
+    PORTA.DIRSET &= ~PIN1_bm;                                               // set uart0 RX (PA1) to input
+    stdout = &uart0_stream;
 }
 
 static void uart0_sendChar(char c) {
