@@ -29,6 +29,6 @@
     *************************************************/
 void uart_init();
 int uart0_printChar(char c, FILE *stream);
-const char * uart0_readLine();
+char * uart0_readLine();
 
 #endif

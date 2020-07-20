@@ -4,5 +4,7 @@
 
 atmevse.c
 
+cmd.c
+
 uart.c
 

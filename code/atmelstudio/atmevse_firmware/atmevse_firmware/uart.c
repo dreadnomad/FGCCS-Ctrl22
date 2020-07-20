@@ -55,7 +55,7 @@ static uint8_t uart0_readChar() {
     return USART0.RXDATAL;
 }
 
-const char * uart0_readLine() {                             // Read a single line from uart0 rx
+char * uart0_readLine() {                             // Read a single line from uart0 rx
     uint8_t index = 0;
     char c;
       

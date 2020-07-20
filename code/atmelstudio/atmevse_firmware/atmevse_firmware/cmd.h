@@ -34,7 +34,7 @@
     *************************************************/
 typedef struct {
     char *cmd;
-    void (*cmd_func_ptr)();
+    int8_t (*cmd_func_ptr)();
     } cmd_table_t;
 
 /*
@@ -45,7 +45,7 @@ typedef struct {
     Function prototypes
     *************************************************/
 void cmd_init();
-int8_t cmd_add(char *cmd_string, void (*cmd_func_ptr)());
-int8_t cmd_exec(char *string);
+int8_t cmd_add(char *cmd_string, int8_t (*cmd_func_ptr)());
+int8_t cmd_parse(char *string);
 
 #endif

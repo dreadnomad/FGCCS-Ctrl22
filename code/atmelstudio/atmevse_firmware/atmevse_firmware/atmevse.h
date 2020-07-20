@@ -9,6 +9,11 @@
  * Header file
  */ 
 
+/*
+    Includes
+    *************************************************/
+#include <stdint-gcc.h>
+
 #ifndef ATMEVSE
 #define ATMEVSE
 
@@ -18,10 +23,14 @@
 #define F_CPU 3333333UL
 
 /*
+    Typedefs
+    *************************************************/
+
+/*
     Function prototypes
     *************************************************/
-void led_toggle();
-void led_on();
-void led_off();
+int8_t led_toggle();
+int8_t led_on();
+int8_t led_off();
 
 #endif

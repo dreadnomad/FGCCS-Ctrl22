@@ -13,6 +13,7 @@
     *************************************************/
 #include "atmevse.h"
 #include "uart.h"
+#include "cmd.h"
 #include <avr/io.h>
 #include <util/delay.h>
 #include <stdint-gcc.h>
@@ -36,16 +37,19 @@ static void init() {
     #endif
 }
 
-void led_toggle() {
+int8_t led_toggle() {
     PORTA.OUTTGL |= PIN6_bm;
+    return 0;
 }
 
-void led_on() {
+int8_t led_on() {
     PORTA.OUT &= ~PIN6_bm;
+    return 0;
 }
 
-void led_off() {
+int8_t led_off() {
     PORTA.OUT |= PIN6_bm;
+    return 0;
 }
 
 /*
@@ -53,13 +57,13 @@ void led_off() {
     *************************************************/
 int main(void) {
     init();
+    cmd_add("led_on", *led_on);
+    cmd_add("led_off", *led_off);
+    cmd_add("led_toggle", *led_toggle);
     led_off();
     while (1) {
-        led_on();
-        const char* input = uart0_readLine();
-        led_off();
-        printf("%s\r\n", input);
-        _delay_ms(500);
+        char* input = uart0_readLine();
+        cmd_parse(input);
     }
 }
 
