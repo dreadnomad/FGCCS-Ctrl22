@@ -28,6 +28,7 @@
 #include "cmd.h"
 #include <stdint-gcc.h>
 #include <string.h>
+#include <stdlib.h>
 
 /*
     Variables
@@ -42,7 +43,7 @@ static volatile param_table_t param_table[MAX_PARAM_NO];
 static int8_t param_get(char *param_string, uint32_t *param_value);
 static int8_t param_set(char *param_string, void *param_new_val_ptr, uint8_t param_size);
 static int8_t sys_echo(char *string);
-static int8_t cmd_exec(char *string, uint8_t index);
+static int8_t cmd_exec(uint8_t index);
 
 /*
     Function definitions
@@ -82,7 +83,7 @@ int8_t cmd_add(char *cmd_string, int8_t (*cmd_func_ptr)()) {
     return retval;    
 }
 
-static int8_t cmd_exec(char *string, uint8_t index) {
+static int8_t cmd_exec(uint8_t index) {
     int8_t retval = -2;                                 // set inital return value to -2 -> general failure
     if (cmd_table[index].cmd_func_ptr != NULL) {
         retval = cmd_table[index].cmd_func_ptr();
@@ -92,24 +93,84 @@ static int8_t cmd_exec(char *string, uint8_t index) {
 
 int8_t cmd_parse(char *string) {
     int8_t retval = -1;                                 // set inital return value to -1 -> no valid command
-    for (uint8_t i = 0; i < MAX_CMD_NO; i++) {
-        if (strcmp(string, cmd_table[i].cmd) == 0) {
-            retval = cmd_exec(string, i);
-            i = MAX_CMD_NO;                             // exit loop
+    char *command = string;
+    char *set_ptr = strchr(string, 0x3d);
+    char *get_ptr = strchr(string, 0x3f);
+    uint8_t is_param_op = 0;
+    
+    if (get_ptr != NULL) {
+        if (strcmp(string, "??") == 0) {                // "??" is alias for "status"
+            command = "status";
         }
+        else {                                          
+            command = "param_get";                      
+            char *param = strtok(string, "?");          // get param name
+            is_param_op = 1;                            // skip standard cmd parse
+            uint32_t param_val = 0;
+            for (uint8_t i = 0; i < MAX_PARAM_NO; i++) {
+                if (strcmp(param, param_table[i].param) == 0) {
+                    param_get((char *)param, &param_val);               // get param value
+                    printf("%s = %+"PRIu32"\r\n", param, param_val);    // return value to serial
+                    i = MAX_PARAM_NO;                                   // exit loop
+                    retval = 0;
+                }
+	        }
+        }        
     } 
+    else if (set_ptr != NULL) {
+        command = "param_set";
+        is_param_op = 1;
+        char *param = strtok(string, "=");
+        char *str_value = strtok(NULL, "=");
+        for (uint8_t i = 0; i < MAX_PARAM_NO; i++) {
+            if (strcmp(param, param_table[i].param) == 0) {
+                uint8_t size = param_table[i].size;                         // get param size
+                uint8_t value8;
+                uint16_t value16;
+                uint32_t value32;
+                switch (size) {                                             // cast value to the correct data type according to param table size info
+                case 8:
+                    value8 = (uint8_t)strtoul(str_value, NULL, 0);
+                    param_set(param, &value8, 8);
+                    retval = 0;
+            	    break;
+                case 16:
+                    value16 = (uint16_t)strtoul(str_value, NULL, 0);
+                    param_set(param, &value16, 16);
+                    retval = 0;
+                    break;
+                case 32:
+                    value32 = (uint32_t)strtoul(str_value, NULL, 0);
+                    param_set(param, &value32, 32);
+                    retval = 0;
+                    break;
+                }                    
+                i = MAX_PARAM_NO;                                   // exit loop
+                retval = 0;
+            }
+	    }
+    }
+    if (is_param_op == 0) {
+	    for (uint8_t i = 0; i < MAX_CMD_NO; i++) {
+            if (strcmp(command, cmd_table[i].cmd) == 0) {
+                retval = cmd_exec(i);
+                i = MAX_CMD_NO;                             // exit loop
+            }
+	    } 
+    }
+    
     switch (retval) {                                   // select appropriate feedback to return
     case -1:
-        printf("FAIL. Command %s not found in command table!\r\n", string);
+        printf("FAIL. Command %s not found in command table!\r\n", command);
     	return retval;
     case -2:
-        printf("FAIL. Failed to execute command %s!\r\n", string);
+        printf("FAIL. Failed to execute command %s!\r\n", command);
         return retval;
     case -3:
-        printf("FAIL. Invalid options/parameters for command %s!\r\n", string);
+        printf("FAIL. Invalid options/parameters for command %s!\r\n", command);
         return retval;
     case 0:
-        printf("OK. Command %s executed successfully!\r\n", string);
+        printf("OK. Command %s executed successfully!\r\n", command);
         return retval;
     }
     return retval;
