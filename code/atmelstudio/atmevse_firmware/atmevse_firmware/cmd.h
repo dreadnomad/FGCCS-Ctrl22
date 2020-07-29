@@ -22,15 +22,13 @@
 /*
     Defines
     *************************************************/
-#define NO_SYS_CMD 4            // number of predefined system commands (echo, status, get, set)
-#define MAX_CMD_NO 20           // max number of commands in cmd table
-#define MAX_CMD_LEN 48          // max length of command names
-#define CMD_GET 0x3F            // marker for get commands (question mark, ASCII 0x3F)
-#define CMD_SET 0x3D            // marker for set commands (equal sign, ASCII 0x3D)
+#define CMD_GET 0x3F            // marker for get commands (?)
+#define CMD_SET 0x3D            // marker for set commands (=)
+#define CMD_SPLIT 0x20          // marker for options (space)
 #define CMD_STATUS "??"         // alias for "status" command ("??")
-#define CMD_END 0x0A            // marker for command end (\n, ASCII 0x0A)
-#define MAX_PARAM_NO 20         // max number of parameters in param table
-#define MAX_PARAM_LEN 48        // max length of param names
+#define CMD_MULTILINE_START 0x24// marker for multiline start ($)
+#define CMD_MULTILINE_END 0x23  // marker for multiline end (#)
+
 
 /*
     Typedefs
@@ -52,10 +50,10 @@ typedef struct {
 /*
     Function prototypes
     *************************************************/
-void cmd_init();
-int8_t cmd_add(char *cmd_string, int8_t (*cmd_func_ptr)());
+int8_t param_get(char *param_string, uint32_t *param_value);
+int8_t param_set(char *param_string, void *param_new_val_ptr);
+int8_t cmd_exec(uint8_t index);
 int8_t cmd_parse(char *string);
-int8_t param_add(char *param_string, void *param_value_ptr, uint8_t size);
 int8_t sys_status();                                                                // display all available commands and parameters
 
 #endif

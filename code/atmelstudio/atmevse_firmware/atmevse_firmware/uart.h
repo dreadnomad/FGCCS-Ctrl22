@@ -21,9 +21,13 @@
 /*
     Defines
     *************************************************/
-#define USART0_BAUD_RATE(BAUD_RATE) ((float)(F_CPU * 64 / (16 * (float)BAUD_RATE)) + 0.5)
+#define USART_BAUD_RATE(BAUD_RATE) ((float)(F_CPU * 64 / (16 * (float)BAUD_RATE)) + 0.5)
 #define BUFFER_SIZE 64                                                                      // Size of receiver ring buffer
 #define MAX_LINE_LEN 60                                                                     // Maximum number of chars on cmd line input
+/* Baud Rates for USARTn */
+#define BAUD0 115200
+#define BAUD1 9600
+#define BAUD2 9600
 
 /*
     Typedefs
@@ -40,5 +44,8 @@ typedef struct {
 void uart_init();
 int uart0_printChar(char c, FILE *stream);
 char * uart0_readLine();
+int uart1_printChar(char c, FILE *stream);
+void uart1_sendString(char *str);
+char * uart1_readLine();
 
 #endif
