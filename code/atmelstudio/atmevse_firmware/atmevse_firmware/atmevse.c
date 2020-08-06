@@ -202,9 +202,9 @@ void init(void) {
     /* PWM init (using TCA, Dual Slope PWM) */
     /* Set Output Port to PORTA */
     PORTMUX.TCAROUTEA = PORTMUX_TCA0_PORTA_gc;
-    /* Set PA2 to output, default: low */
+    /* Set PA2 to output, default: high */
     PORTA.DIRSET = PWM_OUT;
-    PORTA.OUTCLR = PWM_OUT;                                
+    PORTA.OUTSET = PWM_OUT;                                
     /* Setup TCA Clock and enable it */                                
     TCA0.SINGLE.CTRLA |= (TCA_PRESCALER_BM | TCA_SINGLE_ENABLE_bm);
     /* Set to dual slope PWM */
@@ -264,6 +264,7 @@ int8_t pwm_on() {
 
 int8_t pwm_off() {
     TCA0.SINGLE.CTRLB &= ~TCA_SINGLE_CMP2EN_bm;
+    PORTA.OUTSET = PWM_OUT;
     return 0;
 }
 
@@ -505,20 +506,19 @@ int main(void) {
     uint8_t timeout = 5;
     uint16_t pwm_count = 0;
 #ifdef TESTING
-//     pwm_on();
-//     pwm_set_duty_cycle(10);
+    pwm_on();
+    pwm_set_duty_cycle(10);
     while (1) {
-/*        pwm_count = TCA0.SINGLE.CNT;*/
-        input = uart0_readLine();
-        cmd_parse(input);
-//         if ((TCA0 > 1) && (pwm_count < 30)) {
-//             readCP();
-//             printf("CP high level: %d\r\n", cpVal);
-//         }
-//         if ((TCA0.SINGLE.CNT > 600) && (TCA0.SINGLE.CNT < 620)) {
-//             readCP();
-//             printf("CP low level: %d\r\n", cpVal);
-//         }
+//         input = uart0_readLine();
+//         cmd_parse(input);
+        if ((TCA0.SINGLE.CNT > 1) && (TCA0.SINGLE.CNT < 30)) {
+            readCP();
+            printf("CP high level: %d\r\n", cpVal);
+        }
+        if ((TCA0.SINGLE.CNT > 600) && (TCA0.SINGLE.CNT < 620)) {
+            readCP();
+            printf("CP low level: %d\r\n", cpVal);
+        }
         ;
     }
 #endif
