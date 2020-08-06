@@ -9,8 +9,8 @@
  * Header file
  */ 
 
-#ifndef ATMEVSE_CMD
-#define ATMEVSE_CMD
+#ifndef ATMEVSE_CMD_H
+#define ATMEVSE_CMD_H
 
 /*
     Includes

@@ -30,8 +30,8 @@
 /*
     Variables
     *************************************************/
-extern cmd_table_t cmd_table[CMD_NO];
-extern param_table_t param_table[PARAM_NO];
+extern cmd_table_t cmd_table[NO_CMD];
+extern param_table_t param_table[NO_PARAM];
 
 /*
     Static function declarations
@@ -72,7 +72,7 @@ int8_t cmd_exec(uint8_t index) {
 int8_t cmd_parse(char *string) {
     int8_t retval = -1;                                 // set initial return value to -1 -> no valid command
     char *command = string;
-    char *param;
+    char *param = NULL;
     uint8_t is_param_op = 0;
     if (strcmp((const char *)string, "??") == 0) {
         command = "status";
@@ -103,10 +103,10 @@ int8_t cmd_parse(char *string) {
         }
     }
     if (is_param_op == 0) {        
-	    for (uint8_t i = 0; i < CMD_NO; i++) {
+	    for (uint8_t i = 0; i < NO_CMD; i++) {
             if (strcmp(command, cmd_table[i].cmd) == 0) {
                 retval = cmd_exec(i);
-                i = CMD_NO;                             // exit loop
+                i = NO_CMD;                             // exit loop
             }
 	    } 
     }
@@ -133,7 +133,7 @@ int8_t cmd_parse(char *string) {
 
 int8_t param_get(char *param_string, uint32_t *param_value) {
     int8_t retval = -4;                                         // default return value -4 -> parameter not found
-    for (uint8_t i = 0; i < PARAM_NO; i++) {
+    for (uint8_t i = 0; i < NO_PARAM; i++) {
         if (strcmp((const char *)param_string, (const char *)param_table[i].param) == 0) {
             cli();
             switch (param_table[i].size) {                      // cast pointer to the correct data type according to param table size info
@@ -148,7 +148,7 @@ int8_t param_get(char *param_string, uint32_t *param_value) {
                 break;               
             }
             sei();
-            i = PARAM_NO;                                   // exit loop
+            i = NO_PARAM;                                   // exit loop
             retval = 0;
         }
     }
@@ -157,7 +157,7 @@ int8_t param_get(char *param_string, uint32_t *param_value) {
 
 int8_t param_set(char *param_string, void *param_new_val_ptr) {
     int8_t retval = -4;                                                     // default return value -2 -> parameter not found
-    for (uint8_t i = 0; i < PARAM_NO; i++) {
+    for (uint8_t i = 0; i < NO_PARAM; i++) {
         if (strcmp(param_string, param_table[i].param) == 0) {
             cli();
             switch (param_table[i].size) {                                           // cast pointer to the correct data type according to param table size info
@@ -177,7 +177,7 @@ int8_t param_set(char *param_string, void *param_new_val_ptr) {
                 retval = -3;                                                // default return value -3 -> invalid value size               
             }
             sei();
-            i = PARAM_NO;                                               // exit loop
+            i = NO_PARAM;                                               // exit loop
         }
     }
     return retval;
@@ -185,14 +185,14 @@ int8_t param_set(char *param_string, void *param_new_val_ptr) {
 
 int8_t sys_status() {
     printf("$ Available commands:\r\n");                      // print all defined commands in cmd table
-    for (uint8_t i = 0; i < CMD_NO; i++) {
+    for (uint8_t i = 0; i < NO_CMD; i++) {
         const char* cmd = (const char*)cmd_table[i].cmd;
         if (strcmp(cmd, "\0") != 0) {
             printf("$ %s\r\n", cmd);
         }
     }
     printf("$ Defined parameters:\r\n");                      // print all defined parameters in param table
-    for (uint8_t i = 0; i < PARAM_NO; i++) {
+    for (uint8_t i = 0; i < NO_PARAM; i++) {
         uint32_t param_value = 0;
         if (strcmp((const char *)param_table[i].param, "\0") != 0) {
             param_get(param_table[i].param, &param_value);

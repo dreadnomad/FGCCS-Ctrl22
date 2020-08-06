@@ -14,12 +14,59 @@
     *************************************************/
 #include <stdint-gcc.h>
 
-#ifndef ATMEVSE
-#define ATMEVSE
+#ifndef ATMEVSE_H
+#define ATMEVSE_H
 
 /*
     Defines
     *************************************************/
+/* Testing / Production config */
+#define DEBUG_P                     // Debug print enable/disable
+#define TESTING                     // Run the testing main loop
+// #define PRODUCTION                  // Run the production main loop
+
+/* Config switches */
+#define USART_SEL 0                 // Select main UART channel (0: UART0, 1: UART1/RS485)                                                                      // Select main uart (0: uart0, 1: uart1 (rs485), 2: uart2
+#define ICAL 100                    // I_rms calibration value * 100 for current transformers
+#define MAX_MAINS 32                // Max current [A] per phase the Mains connection can supply
+#define MAX_CURRENT 13              // Max current [A] the EV will accept
+#define MIN_CURRENT 6               // Min current [A] the EV will accept
+#define NO_PHASE 3                  // Number of connected Mains phases
+#define MODE MODE_NORMAL            // EVSE mode
+#define MODE_NORMAL 0               // Normal mode (standalone operation)
+#define MODE_MESH 1                 // Mesh mode (network of EVSE stations connected via WiFi)
+#define CABLE_CONF 0                // Cable config: 0: Type 2 Socket, 1: Fixed Cable
+#define LOCK_MODE 1                 // Lock config: 0: No lock, 1: Solenoid Lock
+#define SWITCH 1                    // Switch config: 0: Charge on cable plugin, 1: Charge start/stop via Button
+#define CHARGEDELAY 60              // Seconds to wait after overcurrent before trying again
+#define TIMEOUT 1000                // Milliseconds until reset if no input from ESP/Server
+
+/* States */
+#define STATE_A 1                   // No vehicle connected
+#define STATE_B 2                   // Vehicle connected, not ready for charging
+#define STATE_C 3                   // Vehicle connected, ready for charging
+
+/* Errors */
+#define NO_ERROR 0                  // All OK
+#define LESS_MIN_CURRENT 1          // Less than MIN_CURRENT available
+#define NO_CURRENT 2                // No current
+#define TEMP_HIGH 4                 // Temperature too high
+#define NO_COMM 8                   // No communication with ESP/Server
+
+/* Pilot levels */
+#define PILOT_NOK 0
+#define PILOT_12V 1
+#define PILOT_9V 2
+#define PILOT_6V 3
+#define PILOT_DIODE 4
+
+/* Debug printing */
+#ifdef DEBUG_P
+#define DEBUG_PRINT(x) printf(x)    // Use DEBUG_PRINT for debugging messages in code
+#else
+#define DEBUG_PRINT(x)
+#endif
+
 /* CPU Frequency, used for baud rate calculation */
 #define F_CPU 10000000UL
 /* PWM Frequency and period calculation according to app note TB3217 */
@@ -28,19 +75,40 @@
 #define TCA_PRESCALER 8
 #define TCA_PRESCALER_BM TCA_SINGLE_CLKSEL_DIV8_gc                      // The prescaler division bitmask must be set according to TCA_PRESCALER
 #define PWM_PERIOD(FREQ) (uint16_t)(F_CPU / (2 * TCA_PRESCALER * FREQ))
+/* Define register shortcuts for TCA counter */
+/*#define PWM_COUNT TCA0.SINGLE.CNT*/
+// #define PWM_PERIOD_REG TCA0.SINGLE.PERBUF
+// #define PWM_HIGH_TOP (uint16_t)(PWM_PERIOD_REG * 0.05)
+// #define PWM_HIGH_BOT 1
+// #define PWM_LOW_TOP (uint16_t)(PWM_PERIOD_REG)
+// #define PWM_LOW_BOT (uint16_t)(PWM_PERIOD_REG * 0.9)
 
-/* cmd and param tables, update according to definitions in atmevse.c */
-#define PARAM_NO 6             // number of parameters in param table
-#define CMD_NO 19               // number of commands in cmd table
+/* cmd and param tables */
+#define NO_PARAM 33             // number of parameters in param table
+#define NO_CMD 25               // number of commands in cmd table
 
-/* Select main uart channel */
-#define USART_SEL 0                                                                         // Select main uart (0: uart0, 1: uart1 (rs485), 2: uart2
-
-/* Define pin bitmasks for cable lock R, W, B */
+/* Define pin bitmasks */
+#define LED PIN3_bm
+#define BUTTON PIN4_bm
 #define LOCK_W PIN2_bm
 #define LOCK_R PIN7_bm
 #define LOCK_B PIN2_bm
-#define BUTTON PIN4_bm
+#define SSR1 PIN6_bm
+#define SSR2 PIN5_bm
+#define SSR3 PIN4_bm
+#define RELAY PIN3_bm
+#define CT0 PIN5_bm
+#define CT0_AIN ADC_MUXPOS_AIN5_gc
+#define CT1 PIN6_bm
+#define CT1_AIN ADC_MUXPOS_AIN6_gc
+#define CT2 PIN7_bm
+#define CT2_AIN ADC_MUXPOS_AIN7_gc
+#define CP PIN1_bm
+#define CP_AIN ADC_MUXPOS_AIN1_gc 
+#define PP PIN0_bm
+#define PP_AIN ADC_MUXPOS_AIN0_gc
+#define PWM_OUT PIN2_bm
+
 
 /*
     Typedefs
@@ -49,6 +117,35 @@
 /*
     Global declarations
     *************************************************/
+/* parameters in param_table */
+extern uint16_t ctVal[NO_PHASE];
+extern uint16_t Irms[NO_PHASE];
+extern uint16_t ppVal;
+extern uint16_t cpVal;
+extern uint8_t pilot;
+extern uint16_t temperature;
+extern uint8_t dutyCycle;
+extern uint32_t systime;                // System time counter [ms] (overflow after ~49 days)
+extern uint16_t auxTimer1, auxTimer2;   // auxiliary timers
+extern uint8_t lockstate;
+extern volatile uint8_t buttonstate;
+extern uint16_t Ical;
+extern uint8_t maxMains;
+extern uint8_t maxCurrent;
+extern uint8_t minCurrent;
+extern uint8_t mode;
+extern uint8_t lock;
+extern uint8_t cableConf;
+extern uint8_t switchMode;
+extern uint8_t state;
+extern uint8_t error;
+extern uint8_t nextState;
+extern uint8_t maxCapacity;             // Max current capability of the cable
+extern uint16_t chargeCurrent;
+extern uint16_t Imeasured;
+extern uint16_t Isum;
+extern uint8_t chargeDelay;
+extern uint8_t access;                  // controls access to charging states
 
 /*
     Function prototypes
@@ -65,10 +162,16 @@ int8_t ssr2_on();
 int8_t ssr2_off();
 int8_t ssr3_on();
 int8_t ssr3_off();
-int8_t lock();
-int8_t unlock();
+int8_t all_ssr_on();
+int8_t all_ssr_off();
+int8_t lock_cable();
+int8_t unlock_cable();
 int8_t lock_off();
 int8_t relay_on();
 int8_t relay_off();
+int8_t readCP();
+int8_t readPP();
+int8_t readCT();
+int8_t readTemp();
 
 #endif

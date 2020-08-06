@@ -13,15 +13,14 @@
 #include <util/delay.h>
 
 /* PWM Frequency and period calculation according to app note TB3217 */
-#define PWM_FREQ 1000
-#define PWM_DUTY_CYCLE (float)0.5
-#define TCA_PRESCALER 8
-#define TCA_PRESCALER_BM TCA_SINGLE_CLKSEL_DIV8_gc                      // The prescaler division bitmask must be set according to TCA_PRESCALER
-#define PWM_PERIOD(FREQ) (uint16_t)(F_CPU / (2 * TCA_PRESCALER * FREQ))
+// #define PWM_FREQ 1000
+// #define PWM_DUTY_CYCLE (float)0.5
+// #define TCA_PRESCALER 8
+// #define TCA_PRESCALER_BM TCA_SINGLE_CLKSEL_DIV8_gc                      // The prescaler division bitmask must be set according to TCA_PRESCALER
+// #define PWM_PERIOD(FREQ) (uint16_t)(F_CPU / (2 * TCA_PRESCALER * FREQ))
 
 volatile uint8_t buttonstate = 0;
 volatile uint8_t duty_cycle = 50;
-volatile uint8_t duty_cycle_old;
 
 void init(void) {
     CPU_CCP = CCP_IOREG_gc;
@@ -34,54 +33,35 @@ void init(void) {
     
     PORTD.DIRSET = PIN3_bm;
     PORTD.DIRCLR = PIN4_bm;
-    PORTD.PIN4CTRL |= PORT_ISC_FALLING_gc;
+    PORTD.PIN4CTRL &= ~PORT_ISC_gm;
+    PORTD.PIN4CTRL = PORT_ISC_RISING_gc;
+    PORTD.PIN4CTRL &= ~PORT_PULLUPEN_bm;
     
-    /* PWM init (using TCA, Dual Slope PWM) */
-    /* Set Output Port to PORTA */
-    PORTMUX.TCAROUTEA = PORTMUX_TCA0_PORTA_gc;
-    /* Set PA2 to output */
-    PORTA.DIR |= PIN2_bm;                                
-    /* Setup TCA Clock and enable it */                                
-    TCA0.SINGLE.CTRLA |= (TCA_PRESCALER_BM | TCA_SINGLE_ENABLE_bm);
-    /* Set to dual slope PWM */
-    TCA0.SINGLE.CTRLB |= TCA_SINGLE_WGMODE_DSBOTTOM_gc;
-    /* Set timer to count clock ticks */
-    TCA0.SINGLE.EVCTRL &= ~(TCA_SINGLE_CNTEI_bm);
-    /* Setup TCA period for desired FREQUENCY */
-    TCA0.SINGLE.PERBUF = PWM_PERIOD(PWM_FREQ);
-    /* Setup duty cycle */
-    TCA0.SINGLE.CMP2BUF = (uint16_t)((1.0/100) * duty_cycle * PWM_PERIOD(PWM_FREQ));
-    duty_cycle_old = duty_cycle;
-    /* Disable PWM output by default */
-    TCA0.SINGLE.CTRLB |= TCA_SINGLE_CMP2EN_bm;
+    /* RTC setup */
+    while (RTC.STATUS > 0) {
+        ; /* Wait for all register to be synchronized */    
+    }
+    RTC.CLKSEL = RTC_CLKSEL_INT1K_gc;
+    RTC.PITINTCTRL |= RTC_PI_bm;
+    RTC.PITCTRLA = (RTC_PERIOD_CYC1024_gc | RTC_PITEN_bm);
     
+}
+
+ISR(RTC_PIT_vect) {
+    RTC.PITINTFLAGS = RTC_PI_bm;
+    PORTD.OUTTGL = PIN3_bm;
 }
 
 ISR(PORTD_PORT_vect) {
-//     if (PORTD.OUT & PIN3_bm) {
-//         PORTD.OUTCLR = PIN3_bm;
-//     }
-//     else {
-//         PORTD.OUTSET = PIN3_bm;
-//     }
+    PORTD.OUTTGL = PIN3_bm;
     PORTD.INTFLAGS = PORT_INT4_bm;
 }
-
-// ISR(TCB0_INT_vect) {
-//     buttonstate = ~buttonstate;
-//     TCB0.INTFLAGS |= TCB_CAPT_bm; 
-// }
 
 int main(void) {
     init();
     sei();
     while (1) {
-        if (PORTD.IN & PIN4_bm) {
-            PORTD.OUTSET = PIN3_bm;
-        }
-        else {
-            PORTD.OUTCLR = PIN3_bm;
-        }
+        buttonstate = (PORTD.IN & PIN4_bm) ? 1 : 0;
         ;
     }
     return 0;

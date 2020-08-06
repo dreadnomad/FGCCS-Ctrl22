@@ -29,7 +29,8 @@
 static FILE uart0_stream = FDEV_SETUP_STREAM(uart0_printChar, NULL, _FDEV_SETUP_WRITE);      // uart0: setup user defined stream for printf()
 static FILE uart1_stream = FDEV_SETUP_STREAM(uart1_printChar, NULL, _FDEV_SETUP_WRITE);      // uart1: setup user defined stream for printf()
 static char buffer[MAX_LINE_LEN];
-static ringbuffer_t rxbuffer;
+extern ringbuffer_t rxbuffer;
+extern ringbuffer_t txbuffer;
 
 /*
     ISR definitions

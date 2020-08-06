@@ -9,8 +9,8 @@
  * Header file
  */ 
 
-#ifndef ATMEVSE_UART
-#define ATMEVSE_UART
+#ifndef ATMEVSE_UART_H
+#define ATMEVSE_UART_H
 
 /*
     Includes
