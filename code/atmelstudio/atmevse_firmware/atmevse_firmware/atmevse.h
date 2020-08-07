@@ -17,13 +17,14 @@
 #ifndef ATMEVSE_H
 #define ATMEVSE_H
 
+#include "uart.h"
 /*
     Defines
     *************************************************/
 /* Testing / Production config */
 #define DEBUG_P                     // Debug print enable/disable
-#define TESTING                     // Run the testing main loop
-// #define PRODUCTION                  // Run the production main loop
+// #define TESTING                     // Run the testing main loop
+#define PRODUCTION                  // Run the production main loop
 
 /* Config switches */
 #define USART_SEL 0                 // Select main UART channel (0: UART0, 1: UART1/RS485)                                                                      // Select main uart (0: uart0, 1: uart1 (rs485), 2: uart2
@@ -84,7 +85,7 @@
 // #define PWM_LOW_BOT (uint16_t)(PWM_PERIOD_REG * 0.9)
 
 /* cmd and param tables */
-#define NO_PARAM 33             // number of parameters in param table
+#define NO_PARAM 34             // number of parameters in param table
 #define NO_CMD 25               // number of commands in cmd table
 
 /* Define pin bitmasks */
@@ -126,6 +127,7 @@ extern uint8_t pilot;
 extern uint16_t temperature;
 extern uint8_t dutyCycle;
 extern uint32_t systime;                // System time counter [ms] (overflow after ~49 days)
+extern uint32_t sectime;                // time counter [s] (overflow after ~8000 years)
 extern uint16_t auxTimer1, auxTimer2;   // auxiliary timers
 extern uint8_t lockstate;
 extern volatile uint8_t buttonstate;
@@ -146,6 +148,11 @@ extern uint16_t Imeasured;
 extern uint16_t Isum;
 extern uint8_t chargeDelay;
 extern uint8_t access;                  // controls access to charging states
+
+/* input string for UART */
+extern char input[MAX_LINE_LEN];
+extern uint8_t rxflag;
+extern uint8_t idx;
 
 /*
     Function prototypes

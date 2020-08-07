@@ -43,6 +43,7 @@ typedef struct {
     *************************************************/
 void uart_init();
 int uart0_printChar(char c, FILE *stream);
+void uart0_readLoop();
 char * uart0_readLine();
 int uart1_printChar(char c, FILE *stream);
 void uart1_sendString(char *str);

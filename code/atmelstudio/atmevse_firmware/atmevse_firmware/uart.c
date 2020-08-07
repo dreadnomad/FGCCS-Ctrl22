@@ -107,6 +107,20 @@ static uint8_t uart0_readChar() {
     return USART0.RXDATAL;
 }
 
+void uart0_readLoop(){
+    if (USART0.STATUS & USART_RXCIF_bm) {
+        char c = USART0.RXDATAL;
+        if ((c != '\r') && (c != '\n')) {
+            input[idx++] = c;    
+        }
+        if (c == '\n') {
+            input[idx] = '\0';
+            idx = 0;
+            rxflag = 1;
+        }        
+    }
+}
+
 char * uart0_readLine() {                             // Read a single line from uart0 RX
     uint8_t index = 0;
     char c;

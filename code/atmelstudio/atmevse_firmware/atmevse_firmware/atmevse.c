@@ -40,6 +40,7 @@ uint8_t pilot = PILOT_NOK;
 uint16_t temperature = 0;
 uint8_t dutyCycle = 50;
 uint32_t systime = 0;
+uint32_t sectime = 0;
 uint16_t auxTimer1 = 0;
 uint16_t auxTimer2 = 0;;
 volatile uint8_t buttonstate = 0;
@@ -67,8 +68,9 @@ static int8_t sigrow_offset;
 static uint8_t sigrow_gain;
 /* PWM last duty cycle */
 static uint8_t duty_cycle_old = 0;
-/* input string for polling-based UART */
-static char *input;
+char input[MAX_LINE_LEN];
+uint8_t rxflag = 0;
+uint8_t idx = 0;
 
 /* CMD and PARAM tables */
 cmd_table_t cmd_table[NO_CMD] = {
@@ -112,6 +114,7 @@ param_table_t param_table[NO_PARAM] = {
     {"temperature", &temperature, 16},
     {"dutyCycle", &dutyCycle, 8},
     {"systime", &systime, 32},
+    {"sectime", &sectime, 32},
     {"auxTimer1", &auxTimer1, 16},
     {"auxTimer2", &auxTimer2, 16},
     {"lockstate", &lockstate, 8},
@@ -146,7 +149,7 @@ ringbuffer_t txbuffer;
 void init(void) {
     /* System init */
     CPU_CCP = CCP_IOREG_gc;
-    CPUINT.CTRLA &= ~CPUINT_IVSEL_bm;
+    CPUINT.CTRLA |= CPUINT_IVSEL_bm;
     CPU_CCP = CCP_IOREG_gc;                                             // enable writing to protected register
     CLKCTRL.MCLKCTRLB = (CLKCTRL_PDIV_2X_gc | CLKCTRL_PEN_bm);          // set prescaler to 2 and enable it
     
@@ -160,6 +163,7 @@ void init(void) {
     /* Button on PD4 -> Input */
     PORTD.DIRCLR = BUTTON;
     /* Button interrupt config: disable Pullup, sense rising edge */
+    PORTD.PIN4CTRL &= ~(PORT_ISC_gm);
     PORTD.PIN4CTRL |= PORT_ISC_RISING_gc;
     PORTD.PIN4CTRL &= ~PORT_PULLUPEN_bm;
     /* SSRs on PA4-6 -> Output, default low */
@@ -219,6 +223,14 @@ void init(void) {
     /* Disable PWM output by default */
     TCA0.SINGLE.CTRLB &= ~TCA_SINGLE_CMP2EN_bm;
     
+    /* Timer B init (1ms counter) */
+    TCB0.CTRLA |= (TCB_CLKSEL_CLKTCA_gc);
+    TCB0.CTRLB |= (TCB_CNTMODE_INT_gc);
+    TCB0.EVCTRL &= ~(TCB_CAPTEI_bm);
+    TCB0.INTCTRL |= TCB_CAPT_bm;
+    TCB0.CCMP = 0xFFFF;
+    TCB0.CTRLA |= TCB_ENABLE_bm;
+    
     /* ADC init */
     /* Get calibration values from SIGROW */
     sigrow_offset = SIGROW.TEMPSENSE1;
@@ -240,6 +252,8 @@ void init(void) {
     #ifdef ATMEVSE_UART_H
         uart_init();
     #endif
+    rxbuffer.read = 0;
+    rxbuffer.write = 0;
 }
 
 int8_t led_toggle() {
@@ -490,7 +504,12 @@ int8_t readTemp() {
 /* ISR */
 ISR(PORTD_PORT_vect) {    
     led_toggle();
-    PORTD.INTFLAGS |= PORT_INT4_bm;
+    PORTD.INTFLAGS = PORT_INT4_bm;
+}
+
+ISR(TCB0_INT_vect) {
+    printf("Interrupt!\r\n");
+    TCB0.INTFLAGS = TCB_CAPT_bm;
 }
 
 /*
@@ -504,25 +523,20 @@ int main(void) {
     uint8_t count = 0;
     uint8_t diodeCheck = 0;
     uint8_t timeout = 5;
-    uint16_t pwm_count = 0;
+    uint16_t mstime = 0;
 #ifdef TESTING
     pwm_on();
-    pwm_set_duty_cycle(10);
     while (1) {
-//         input = uart0_readLine();
-//         cmd_parse(input);
-        if ((TCA0.SINGLE.CNT > 1) && (TCA0.SINGLE.CNT < 30)) {
-            readCP();
-            printf("CP high level: %d\r\n", cpVal);
+        uart0_readLoop();
+        if (rxflag == 1) {
+            cmd_parse(input);
+            rxflag = 0;
+            input[0] = '\0';
         }
-        if ((TCA0.SINGLE.CNT > 600) && (TCA0.SINGLE.CNT < 620)) {
-            readCP();
-            printf("CP low level: %d\r\n", cpVal);
-        }
-        ;
     }
 #endif
 #ifdef PRODUCTION
+    access = 1;
     while (1) {
         /* EVSE STATE A - No Vehicle connected */
         if (state == STATE_A) {
@@ -553,6 +567,7 @@ int main(void) {
                             chargeCurrent = maxCurrent;
                         }
                         state = STATE_B;
+                        pwm_on();
                         DEBUG_PRINT("STATE A -> B\r\n");
                     }
                 }
@@ -562,11 +577,12 @@ int main(void) {
                 }
             } 
         }
+        /* END OF STATE A */
         
         /* EVSE STATE B - Vehicle connected, not ready for charging */
         if (state == STATE_B) {
-            /* TODO: find condition to measure CP while PWM output is high */
-            if (1) {
+            /* Check at beginning of PWM period for high level */
+            if ((TCA0.SINGLE.CNT > 1) && (TCA0.SINGLE.CNT < 30)) {
                 readCP();
                 /* Disconnected? */
                 if (pilot == PILOT_12V) {
@@ -611,20 +627,80 @@ int main(void) {
                     }
                 }
             }
-            /* TODO: find condition to measure CP while PWM output is low */
-            if (1) {
-                readCP();
-                if (pilot == PILOT_DIODE) {
-                    diodeCheck = 1;
-                }
-                else {
-                    diodeCheck = 0;
-                }                
+            /* Check at the end of PWM period for low level */
+            if (TCA0.SINGLE.CNT > 550) {
+                while (TCA0.SINGLE.CNT < 600);                              // Blocking, so low level is not missed at high duty cycles                  
+	            if ((TCA0.SINGLE.CNT > 600) && (TCA0.SINGLE.CNT < 620)) {
+	                readCP();
+	                if (pilot == PILOT_DIODE) {
+	                    diodeCheck = 1;
+	                }
+	                else {
+	                    diodeCheck = 0;
+	                }                
+	            }
             }
         }
+        /* END OF STATE B */
         
         /* EVSE STATE C - Vehicle connected, ready for charging */
         if (state == STATE_C) {
+            /* Measure CP at ~5% of PWM cycle */
+            if ((TCA0.SINGLE.CNT > 1) && (TCA0.SINGLE.CNT < 30)) {
+                readCP();
+                /* Disconnect or Error? */
+                if ((pilot == PILOT_12V) || (pilot == PILOT_NOK)) {
+                    if (nextState == STATE_A) {
+                        if (count++ > 25) {
+                            all_ssr_off();
+                            state = STATE_A;
+                            DEBUG_PRINT("STATE C -> A\r\n");
+                        }
+                    }
+                    else {
+                        nextState = STATE_A;
+                        count = 0;
+                    }
+                }
+                /* No charge requested by EV */
+                else if (pilot == PILOT_9V) {
+                    if (nextState == STATE_B) {
+                        if (count++ > 25) {
+                            all_ssr_off();
+                            state = STATE_B;
+                            DEBUG_PRINT("STATE C -> B\r\n");
+                            diodeCheck = 0;
+                        }
+                    }
+                    else {
+                        nextState = STATE_B;
+                        count = 0;
+                    }
+                }
+                /* No state to switch to */
+                else {
+                    nextState = 0; 
+                }                
+            }
+        }
+        /* END OF STATE C */
+        
+        /* UART reading and command parsing section */
+        uart0_readLoop();
+        if (rxflag == 1) {
+            cmd_parse(input);
+            rxflag = 0;
+            input[0] = '\0';
+        }
+        
+        /* Millisecond timer */
+        if (TCB0.CNT >= 625) {
+            systime++;
+            TCB0.CNT = 0;
+        }
+        /* Seconds timer */
+        if (systime >= 1000) {
+            sectime++;
             
         }
     }
