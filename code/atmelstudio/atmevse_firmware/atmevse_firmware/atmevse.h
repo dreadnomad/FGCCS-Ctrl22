@@ -41,7 +41,7 @@
 #define SWITCH 1                    // Switch config: 0: Charge on cable plugin, 1: Charge start/stop via Button
 #define CHARGEDELAY 60              // Seconds to wait after overcurrent before trying again
 #define TIMEOUT 1000                // Milliseconds until reset if no input from ESP/Server
-
+#define MAX_TEMP 150                // Maximum safe operating temperature
 /* States */
 #define STATE_A 1                   // No vehicle connected
 #define STATE_B 2                   // Vehicle connected, not ready for charging

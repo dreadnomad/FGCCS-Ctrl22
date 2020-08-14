@@ -148,8 +148,10 @@ ringbuffer_t txbuffer;
 
 void init(void) {
     /* System init */
+    /* Interrupt config */
     CPU_CCP = CCP_IOREG_gc;
     CPUINT.CTRLA |= CPUINT_IVSEL_bm;
+    CPUINT.CTRLA |= CPUINT_LVL0RR_bm;
     CPU_CCP = CCP_IOREG_gc;                                             // enable writing to protected register
     CLKCTRL.MCLKCTRLB = (CLKCTRL_PDIV_2X_gc | CLKCTRL_PEN_bm);          // set prescaler to 2 and enable it
     
@@ -292,6 +294,23 @@ int8_t pwm_set_duty_cycle(uint8_t duty_cycle) {
         return -1;
     }
 }
+
+int8_t set_current(uint16_t current) {
+    /* Current over 6A and under 51A */
+    if ((current >= 60) && (current <= 510)) {
+        dutyCycle = (uint8_t)(current / 6);
+    }    
+    /* Current above 51A: dutyCycle = (Current / 25) + 64 */
+    else if ((current > 510) && (current <= 800)) {
+        dutyCycle = (uint8_t)(current / 25) + 64;
+    }
+    /* If invalid current: use 6A */
+    else {
+        dutyCycle = 10;
+    }
+    pwm_set_duty_cycle(dutyCycle);
+}
+
 
 int8_t ssr1_on() {
     PORTA.OUTSET = SSR1;
@@ -512,6 +531,17 @@ ISR(TCB0_INT_vect) {
     TCB0.INTFLAGS = TCB_CAPT_bm;
 }
 
+ISR(USART0_RXC_vect) {
+    char c = USART0_RXDATAL;
+    if ((c != '\r') && (c != '\n')) {
+        rxbuffer.data[rxbuffer.write++] = c;
+    }
+    if (c == '\n') {
+        rxbuffer.data[rxbuffer.write++] = '\0';
+        rxflag = 1;
+        }   
+}
+
 /*
     Application
     *************************************************/
@@ -523,20 +553,22 @@ int main(void) {
     uint8_t count = 0;
     uint8_t diodeCheck = 0;
     uint8_t timeout = 5;
-    uint16_t mstime = 0;
 #ifdef TESTING
-    pwm_on();
     while (1) {
-        uart0_readLoop();
-        if (rxflag == 1) {
-            cmd_parse(input);
+         if (rxflag == 1) {
+            uint8_t rxlen = rxbuffer.write - rxbuffer.read;
+            for (uint8_t i = 0; i < rxlen; i++) {
+                input[i] = rxbuffer.data[rxbuffer.read++];
+            }
+            printf("%s\r\n", input);
             rxflag = 0;
-            input[0] = '\0';
-        }
+        }    
     }
 #endif
 #ifdef PRODUCTION
     access = 1;
+    DEBUG_PRINT("ACCESS BIT SET TO 1...\r\n");
+    DEBUG_PRINT("COMING UP INTO STATE A...\r\n");
     while (1) {
         /* EVSE STATE A - No Vehicle connected */
         if (state == STATE_A) {
@@ -567,7 +599,6 @@ int main(void) {
                             chargeCurrent = maxCurrent;
                         }
                         state = STATE_B;
-                        pwm_on();
                         DEBUG_PRINT("STATE A -> B\r\n");
                     }
                 }
@@ -581,6 +612,9 @@ int main(void) {
         
         /* EVSE STATE B - Vehicle connected, not ready for charging */
         if (state == STATE_B) {
+            /* Set current and enable PWM */
+            set_current(chargeCurrent);
+            pwm_on();
             /* Check at beginning of PWM period for high level */
             if ((TCA0.SINGLE.CNT > 1) && (TCA0.SINGLE.CNT < 30)) {
                 readCP();
@@ -699,8 +733,24 @@ int main(void) {
             TCB0.CNT = 0;
         }
         /* Seconds timer */
+        /* Current measurement, temperature measurement... */
         if (systime >= 1000) {
             sectime++;
+            readTemp();
+            
+            if (temperature >= MAX_TEMP) {
+                error |= TEMP_HIGH; 
+                state = STATE_A;            // Error, stop charging
+                DEBUG_PRINT("Overtemperature condition detected...stopping charge. \r\n");
+            }
+            if ((temperature < (MAX_TEMP - 10)) && (error & TEMP_HIGH)) {
+                error &= ~TEMP_HIGH;        // Clear error on cooling down
+            }
+            
+            /* Periodically check for changed chargeCurrent */
+            if ((chargeCurrent != maxCurrent) && (chargeCurrent <= maxCapacity)) {
+                set_current(chargeCurrent);
+            }
             
         }
     }

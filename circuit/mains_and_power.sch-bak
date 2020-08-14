@@ -4,14 +4,14 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 4
-Title ""
-Date "2020-06-01"
-Rev "1.0"
+Title "FGCCS-Ctrl22"
+Date "2020-08-11"
+Rev "1.1"
 Comp ""
-Comment1 "DONE: Replaced buck regulator AOZ1280 -> AP5100"
-Comment2 "DONE: Edit SSR connections"
-Comment3 "TODO: verify CT input circuit in sim (maybe rectify signal?)"
-Comment4 "DONE: add bias voltage (VDD/2)"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
 $EndDescr
 $Comp
 L smartevse:Varistor RV3
@@ -661,21 +661,6 @@ NoConn ~ 9400 4250
 NoConn ~ 9400 4450
 Text Notes 9000 5400 2    50   ~ 0
 12V Inverter\n
-$Comp
-L smartevse:Screw_Terminal_01x10 J1
-U 1 1 5E9A97C9
-P 900 2850
-F 0 "J1" H 818 3467 50  0000 C CNN
-F 1 "Screw_Terminal_01x10" H 818 3376 50  0000 C CNN
-F 2 "atmevse-footprints:CUI_TB005-762-10GR" H 900 2850 50  0001 C CNN
-F 3 "https://www.phoenixcontact.com/online/portal/us?uri=pxc-oc-itemdetail:pid=1707111&library=usen&pdfmode=direct&pdflanguage=en" H 900 2850 50  0001 C CNN
-F 4 "" H 900 2850 50  0001 C CNN "Part"
-F 5 "Mouser" H 900 2850 50  0001 C CNN "Supplier"
-F 6 "490-TB005-762-10BE" H 900 2850 50  0001 C CNN "PartNo"
-	1    900  2850
-	-1   0    0    -1  
-$EndComp
-NoConn ~ 1100 2550
 Wire Notes Line
 	550  750  550  4100
 Wire Notes Line
@@ -733,38 +718,26 @@ SSR_L2
 Text HLabel 5900 4000 2    50   Input ~ 0
 SSR_L3
 Wire Wire Line
-	1100 2650 1550 2650
-Wire Wire Line
-	1550 2650 1550 1900
-Wire Wire Line
 	1550 1900 3300 1900
 Text Label 1200 2450 0    50   ~ 0
 PE
 Text Label 1600 1900 0    50   ~ 0
 C_L1
 Wire Wire Line
-	1600 2200 1600 2750
-Wire Wire Line
-	1600 2750 1100 2750
-Wire Wire Line
 	1600 2200 3200 2200
 Text Label 1600 2200 0    50   ~ 0
 C_L2
 Wire Wire Line
-	1100 2850 1650 2850
-Wire Wire Line
-	1650 2850 1650 2500
-Wire Wire Line
 	1650 2500 3100 2500
 Text Label 1650 2500 0    50   ~ 0
 C_L3
-Text Label 1750 3050 0    50   ~ 0
+Text Label 1750 3150 0    50   ~ 0
 N
 Wire Wire Line
 	3300 2200 3300 3050
 Connection ~ 3300 3050
 Wire Wire Line
-	3300 3050 3300 5200
+	3300 3050 3300 3150
 Wire Wire Line
 	3200 2500 3200 3050
 Connection ~ 3200 3050
@@ -772,7 +745,6 @@ Wire Wire Line
 	3200 3050 3300 3050
 Wire Wire Line
 	3100 2800 3100 3050
-Connection ~ 3100 3050
 Wire Wire Line
 	3100 3050 3200 3050
 $Comp
@@ -809,12 +781,11 @@ Wire Wire Line
 	4250 3350 4250 3800
 Text Label 1700 3350 0    50   ~ 0
 L
-NoConn ~ 1100 3250
 $Comp
 L smartevse:FuseT1.25 F2
 U 1 1 5ECD985B
 P 2050 3350
-F 0 "F2" V 1853 3350 50  0000 C CNN
+F 0 "F2" V 2150 3350 50  0000 C CNN
 F 1 "T1.25A" V 1944 3350 50  0000 C CNN
 F 2 "smartevse-footprints:TE5" V 1980 3350 50  0001 C CNN
 F 3 "https://www.mouser.de/datasheet/2/240/Littelfuse_Fuse_392_Datasheet.pdf-795005.pdf" H 2050 3350 50  0001 C CNN
@@ -898,13 +869,60 @@ Wire Wire Line
 Wire Wire Line
 	10350 1850 10150 1850
 Wire Wire Line
-	1100 3050 1650 3050
+	1100 3150 1300 3150
+$Comp
+L Connector:Screw_Terminal_01x05 J?
+U 1 1 5F37F01F
+P 900 2650
+F 0 "J?" H 818 3067 50  0000 C CNN
+F 1 "Screw_Terminal_01x05" H 818 2976 50  0000 C CNN
+F 2 "" H 900 2650 50  0001 C CNN
+F 3 "~" H 900 2650 50  0001 C CNN
+	1    900  2650
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Connector:Screw_Terminal_01x05 J?
+U 1 1 5F3809ED
+P 900 3150
+F 0 "J?" H 900 2850 50  0000 C CNN
+F 1 "Screw_Terminal_01x05" H 850 2750 50  0000 C CNN
+F 2 "" H 900 3150 50  0001 C CNN
+F 3 "~" H 900 3150 50  0001 C CNN
+	1    900  3150
+	-1   0    0    -1  
+$EndComp
+NoConn ~ 1100 3250
 Wire Wire Line
-	1100 3150 1650 3150
+	1300 2550 1100 2550
 Wire Wire Line
-	1650 3150 1650 3050
-Connection ~ 1650 3050
+	1100 2750 1300 2750
+Connection ~ 1300 2750
 Wire Wire Line
-	1650 3050 3100 3050
-NoConn ~ 1100 2950
+	1300 2750 1300 2550
+Wire Wire Line
+	1100 2950 1300 2950
+Connection ~ 1300 2950
+Wire Wire Line
+	1300 2950 1300 2750
+Wire Wire Line
+	1300 2950 1300 3150
+Connection ~ 1300 3150
+Wire Wire Line
+	1300 3150 3300 3150
+Connection ~ 3300 3150
+Wire Wire Line
+	3300 3150 3300 5200
+Wire Wire Line
+	1550 1900 1550 2650
+Wire Wire Line
+	1550 2650 1100 2650
+Wire Wire Line
+	1600 2200 1600 2850
+Wire Wire Line
+	1600 2850 1100 2850
+Wire Wire Line
+	1650 2500 1650 3050
+Wire Wire Line
+	1650 3050 1100 3050
 $EndSCHEMATC

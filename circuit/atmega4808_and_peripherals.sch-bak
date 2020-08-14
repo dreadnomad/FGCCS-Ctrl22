@@ -4,13 +4,13 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 3 4
-Title ""
-Date "2020-06-01"
-Rev "1.0"
+Title "FGCCS-Ctrl22"
+Date "2020-08-11"
+Rev "1.1"
 Comp ""
-Comment1 "DONE: ESP32 circuit"
-Comment2 "DONE: ATmega UART2 connector (J3)"
-Comment3 "TODO: LED check"
+Comment1 ""
+Comment2 ""
+Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
@@ -319,8 +319,22 @@ RS485 Driver\n
 $Comp
 L Device:R_Small R3
 U 1 1 5E9D7D11
+P 850 5350
+F 0 "R3" V 750 5200 50  0000 C CNN
+F 1 "100" V 745 5350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 850 5350 50  0001 C CNN
+F 3 "~" H 850 5350 50  0001 C CNN
+F 4 "" H 850 5350 50  0001 C CNN "Part"
+F 5 "594-MCT06030C1000FP5 " H 850 5350 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 850 5350 50  0001 C CNN "Supplier"
+	1    850  5350
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R4
+U 1 1 5E9D8F6A
 P 850 5550
-F 0 "R3" V 750 5400 50  0000 C CNN
+F 0 "R4" V 750 5400 50  0000 C CNN
 F 1 "100" V 745 5550 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 850 5550 50  0001 C CNN
 F 3 "~" H 850 5550 50  0001 C CNN
@@ -331,10 +345,24 @@ F 6 "Mouser" H 850 5550 50  0001 C CNN "Supplier"
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small R4
-U 1 1 5E9D8F6A
+L Device:R_Small R6
+U 1 1 5E9D91A8
+P 850 5950
+F 0 "R6" V 750 5800 50  0000 C CNN
+F 1 "100" V 745 5950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 850 5950 50  0001 C CNN
+F 3 "~" H 850 5950 50  0001 C CNN
+F 4 "" H 850 5950 50  0001 C CNN "Part"
+F 5 "594-MCT06030C1000FP5 " H 850 5950 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 850 5950 50  0001 C CNN "Supplier"
+	1    850  5950
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R5
+U 1 1 5E9D94F8
 P 850 5750
-F 0 "R4" V 750 5600 50  0000 C CNN
+F 0 "R5" V 750 5600 50  0000 C CNN
 F 1 "100" V 745 5750 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 850 5750 50  0001 C CNN
 F 3 "~" H 850 5750 50  0001 C CNN
@@ -344,43 +372,11 @@ F 6 "Mouser" H 850 5750 50  0001 C CNN "Supplier"
 	1    850  5750
 	0    1    1    0   
 $EndComp
-$Comp
-L Device:R_Small R6
-U 1 1 5E9D91A8
-P 1200 5750
-F 0 "R6" V 1100 5600 50  0000 C CNN
-F 1 "100" V 1095 5750 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 1200 5750 50  0001 C CNN
-F 3 "~" H 1200 5750 50  0001 C CNN
-F 4 "" H 1200 5750 50  0001 C CNN "Part"
-F 5 "594-MCT06030C1000FP5 " H 1200 5750 50  0001 C CNN "PartNo"
-F 6 "Mouser" H 1200 5750 50  0001 C CNN "Supplier"
-	1    1200 5750
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_Small R5
-U 1 1 5E9D94F8
-P 1200 5550
-F 0 "R5" V 1100 5400 50  0000 C CNN
-F 1 "100" V 1095 5550 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 1200 5550 50  0001 C CNN
-F 3 "~" H 1200 5550 50  0001 C CNN
-F 4 "" H 1200 5550 50  0001 C CNN "Part"
-F 5 "594-MCT06030C1000FP5 " H 1200 5550 50  0001 C CNN "PartNo"
-F 6 "Mouser" H 1200 5550 50  0001 C CNN "Supplier"
-	1    1200 5550
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	950  5550 1000 5550
 Wire Wire Line
-	1100 5750 1000 5750
-Wire Wire Line
 	1000 5550 1000 5750
 Connection ~ 1000 5550
-Wire Wire Line
-	1000 5550 1100 5550
 Connection ~ 1000 5750
 Wire Wire Line
 	1000 5750 950  5750
@@ -396,22 +392,16 @@ Connection ~ 650  5550
 $Comp
 L power:+12V #PWR013
 U 1 1 5E9DE707
-P 650 5350
-F 0 "#PWR013" H 650 5200 50  0001 C CNN
-F 1 "+12V" H 665 5523 50  0000 C CNN
-F 2 "" H 650 5350 50  0001 C CNN
-F 3 "" H 650 5350 50  0001 C CNN
-	1    650  5350
+P 650 5250
+F 0 "#PWR013" H 650 5100 50  0001 C CNN
+F 1 "+12V" H 665 5423 50  0000 C CNN
+F 2 "" H 650 5250 50  0001 C CNN
+F 3 "" H 650 5250 50  0001 C CNN
+	1    650  5250
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
 	2100 5550 2100 5750
-Wire Wire Line
-	1300 5550 1300 5750
-Connection ~ 1300 5550
-Connection ~ 1300 5750
-Wire Wire Line
-	1300 5750 1300 6000
 $Comp
 L Device:CP_Small C12
 U 1 1 5E9E3618
@@ -775,8 +765,6 @@ Wire Wire Line
 	6350 3500 6900 3500
 Wire Wire Line
 	6350 3650 6900 3650
-Wire Wire Line
-	6350 4400 7000 4400
 Text Label 7000 4400 2    50   ~ 0
 ATmega_RESET
 Text Label 6900 3500 2    50   ~ 0
@@ -796,114 +784,72 @@ F 4 "Mouser" H 9550 4400 50  0001 C CNN "Supplier"
 	-1   0    0    -1  
 $EndComp
 $Comp
-L Connector_Generic:Conn_02x04_Top_Bottom J4
-U 1 1 5EC1E322
-P 9200 1150
-F 0 "J4" H 9250 1467 50  0000 C CNN
-F 1 "Conn_02x04_Top_Bottom" H 9250 1376 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical" H 9200 1150 50  0001 C CNN
-F 3 "~" H 9200 1150 50  0001 C CNN
-F 4 "" H 9200 1150 50  0001 C CNN "Part"
-F 5 "710-61300821121" H 9200 1150 50  0001 C CNN "PartNo"
-F 6 "Mouser" H 9200 1150 50  0001 C CNN "Supplier"
-	1    9200 1150
-	1    0    0    -1  
-$EndComp
-$Comp
 L Connector_Generic:Conn_02x04_Top_Bottom J5
 U 1 1 5EC1F0B2
-P 9200 1800
-F 0 "J5" H 9250 2117 50  0000 C CNN
-F 1 "Conn_02x04_Top_Bottom" H 9250 2026 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical" H 9200 1800 50  0001 C CNN
-F 3 "~" H 9200 1800 50  0001 C CNN
-F 4 "" H 9200 1800 50  0001 C CNN "Part"
-F 5 "710-61300821121" H 9200 1800 50  0001 C CNN "PartNo"
-F 6 "Mouser" H 9200 1800 50  0001 C CNN "Supplier"
-	1    9200 1800
+P 9100 2100
+F 0 "J5" H 9150 1800 50  0000 C CNN
+F 1 "Conn_02x04_Top_Bottom" H 9150 2326 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical" H 9100 2100 50  0001 C CNN
+F 3 "~" H 9100 2100 50  0001 C CNN
+F 4 "" H 9100 2100 50  0001 C CNN "Part"
+F 5 "710-61300821121" H 9100 2100 50  0001 C CNN "PartNo"
+F 6 "Mouser" H 9100 2100 50  0001 C CNN "Supplier"
+	1    9100 2100
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
 	10150 3200 10500 3200
 Wire Wire Line
-	10500 3200 10500 1800
-Wire Wire Line
-	10500 1800 9500 1800
+	10500 3200 10500 2300
 Wire Wire Line
 	8950 3200 8700 3200
 Wire Wire Line
-	8700 3200 8700 2500
-Wire Wire Line
-	8700 2500 9750 2500
-Wire Wire Line
-	9750 2500 9750 1900
-Wire Wire Line
-	9750 1900 9500 1900
-Wire Wire Line
-	9750 1700 9500 1700
+	9650 2000 9400 2000
 $Comp
 L power:GND #PWR033
 U 1 1 5EC2FAAE
-P 9750 1700
-F 0 "#PWR033" H 9750 1450 50  0001 C CNN
-F 1 "GND" V 9755 1572 50  0000 R CNN
-F 2 "" H 9750 1700 50  0001 C CNN
-F 3 "" H 9750 1700 50  0001 C CNN
-	1    9750 1700
+P 9650 2000
+F 0 "#PWR033" H 9650 1750 50  0001 C CNN
+F 1 "GND" V 9655 1872 50  0000 R CNN
+F 2 "" H 9650 2000 50  0001 C CNN
+F 3 "" H 9650 2000 50  0001 C CNN
+	1    9650 2000
 	0    -1   -1   0   
 $EndComp
 $Comp
 L power:GND #PWR032
 U 1 1 5EC306B7
-P 9750 1050
-F 0 "#PWR032" H 9750 800 50  0001 C CNN
-F 1 "GND" V 9755 922 50  0000 R CNN
-F 2 "" H 9750 1050 50  0001 C CNN
-F 3 "" H 9750 1050 50  0001 C CNN
-	1    9750 1050
+P 9750 750
+F 0 "#PWR032" H 9750 500 50  0001 C CNN
+F 1 "GND" V 9755 622 50  0000 R CNN
+F 2 "" H 9750 750 50  0001 C CNN
+F 3 "" H 9750 750 50  0001 C CNN
+	1    9750 750 
 	0    -1   -1   0   
 $EndComp
 $Comp
 L power:GND #PWR030
 U 1 1 5EC30AAE
-P 8700 1050
-F 0 "#PWR030" H 8700 800 50  0001 C CNN
-F 1 "GND" V 8705 922 50  0000 R CNN
-F 2 "" H 8700 1050 50  0001 C CNN
-F 3 "" H 8700 1050 50  0001 C CNN
-	1    8700 1050
+P 8700 750
+F 0 "#PWR030" H 8700 500 50  0001 C CNN
+F 1 "GND" V 8705 622 50  0000 R CNN
+F 2 "" H 8700 750 50  0001 C CNN
+F 3 "" H 8700 750 50  0001 C CNN
+	1    8700 750 
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	8700 1050 9000 1050
-Wire Wire Line
-	9500 1050 9750 1050
-Wire Wire Line
-	9000 1150 8300 1150
-Text Label 8300 1150 0    50   ~ 0
+Text Label 8300 900  0    50   ~ 0
 ATmega_TX0
-Wire Wire Line
-	9000 1250 8300 1250
-Text Label 8300 1250 0    50   ~ 0
+Text Label 8300 1100 0    50   ~ 0
 ATmega_RX0
-Wire Wire Line
-	9000 1350 8300 1350
-Text Label 8300 1350 0    50   ~ 0
+Text Label 8300 1300 0    50   ~ 0
 ATmega_RESET
 Text Label 8350 3300 0    50   ~ 0
 ESP_TX0
 Text Label 8350 3500 0    50   ~ 0
 ESP_RX0
 Wire Wire Line
-	8300 3300 8300 1900
-Wire Wire Line
-	8300 1900 9000 1900
-Wire Wire Line
 	8300 3300 8950 3300
-Wire Wire Line
-	9000 1800 8200 1800
-Wire Wire Line
-	8200 1800 8200 3500
 Wire Wire Line
 	8200 3500 8950 3500
 Wire Wire Line
@@ -919,55 +865,30 @@ ESP_RX2
 Text Label 8350 4300 0    50   ~ 0
 ESP_TX2
 Wire Wire Line
-	9500 1150 10100 1150
+	9500 900  10100 900 
 Wire Wire Line
-	9500 1250 10100 1250
+	9500 1100 10100 1100
 Wire Wire Line
-	10100 1350 9500 1350
-Text Label 9750 1350 0    50   ~ 0
+	10100 1300 9500 1300
+Text Label 9750 1300 0    50   ~ 0
 ESP_IO12
-Text Label 9750 1250 0    50   ~ 0
+Text Label 9750 1100 0    50   ~ 0
 ESP_TX2
-Text Label 9750 1150 0    50   ~ 0
+Text Label 9750 900  0    50   ~ 0
 ESP_RX2
-Wire Wire Line
-	9000 1700 7900 1700
-Wire Wire Line
-	7900 1700 7900 4250
 Text Label 7900 1700 0    50   ~ 0
 ATmega_UDPI
-Wire Wire Line
-	10200 2150 9500 2150
-Wire Wire Line
-	8750 2150 8750 2000
-Wire Wire Line
-	8750 2000 9000 2000
-Wire Wire Line
-	9500 2000 9500 2150
-Connection ~ 9500 2150
-Wire Wire Line
-	9500 2150 8750 2150
-Wire Wire Line
-	10200 2150 10200 2100
 $Comp
 L power:+3.3V #PWR034
 U 1 1 5ECB15D8
-P 10200 2100
-F 0 "#PWR034" H 10200 1950 50  0001 C CNN
-F 1 "+3.3V" H 10215 2273 50  0000 C CNN
-F 2 "" H 10200 2100 50  0001 C CNN
-F 3 "" H 10200 2100 50  0001 C CNN
-	1    10200 2100
+P 10000 2000
+F 0 "#PWR034" H 10000 1850 50  0001 C CNN
+F 1 "+3.3V" H 10015 2173 50  0000 C CNN
+F 2 "" H 10000 2000 50  0001 C CNN
+F 3 "" H 10000 2000 50  0001 C CNN
+	1    10000 2000
 	1    0    0    -1  
 $EndComp
-Wire Notes Line
-	8250 700  8250 2200
-Wire Notes Line
-	8250 2200 10300 2200
-Wire Notes Line
-	10300 2200 10300 700 
-Wire Notes Line
-	10300 700  8250 700 
 Text Notes 8450 650  0    50   ~ 0
 ATmega/ESP Programming & Serial Comms\n
 $Comp
@@ -1127,7 +1048,6 @@ NoConn ~ 8950 3600
 NoConn ~ 8950 3700
 NoConn ~ 8950 3900
 NoConn ~ 8950 4000
-NoConn ~ 8950 4100
 NoConn ~ 8950 4400
 NoConn ~ 8950 4500
 NoConn ~ 8950 4600
@@ -1229,4 +1149,159 @@ Wire Notes Line
 	5000 1700 5000 750 
 Text Notes 5200 700  0    50   ~ 0
 ATmega UART2 Connector\n
+Wire Wire Line
+	6350 4400 7200 4400
+$Comp
+L Device:R_Small R36
+U 1 1 5EE08814
+P 7200 4500
+F 0 "R36" H 7259 4546 50  0000 L CNN
+F 1 "Reset Pulldown" H 7259 4455 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7200 4500 50  0001 C CNN
+F 3 "~" H 7200 4500 50  0001 C CNN
+	1    7200 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR029
+U 1 1 5EE08CC5
+P 7200 4600
+F 0 "#PWR029" H 7200 4350 50  0001 C CNN
+F 1 "GND" H 7205 4427 50  0000 C CNN
+F 2 "" H 7200 4600 50  0001 C CNN
+F 3 "" H 7200 4600 50  0001 C CNN
+	1    7200 4600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	650  5750 650  5950
+Wire Wire Line
+	650  5950 750  5950
+Wire Wire Line
+	1300 5550 1300 6000
+Connection ~ 650  5750
+Wire Wire Line
+	650  5350 750  5350
+Connection ~ 650  5350
+Wire Wire Line
+	950  5350 1000 5350
+Wire Wire Line
+	1000 5350 1000 5550
+Wire Wire Line
+	950  5950 1000 5950
+Wire Wire Line
+	1000 5950 1000 5750
+Wire Wire Line
+	1000 5550 1300 5550
+Connection ~ 1300 5550
+Wire Wire Line
+	650  5250 650  5350
+Text Label 8350 4100 0    50   ~ 0
+ESP_IO15
+$Comp
+L Connector_Generic:Conn_01x04 J?
+U 1 1 5F466074
+P 9300 1550
+F 0 "J?" H 9450 1350 50  0000 C CNN
+F 1 "Conn_01x04" H 9600 1450 50  0000 C CNN
+F 2 "" H 9300 1550 50  0001 C CNN
+F 3 "~" H 9300 1550 50  0001 C CNN
+	1    9300 1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9100 750  9750 750 
+Connection ~ 9100 750 
+$Comp
+L Device:R_Small R?
+U 1 1 5F47B25C
+P 9400 900
+F 0 "R?" V 9350 1050 50  0000 C CNN
+F 1 "1k" V 9295 900 50  0000 C CNN
+F 2 "" H 9400 900 50  0001 C CNN
+F 3 "~" H 9400 900 50  0001 C CNN
+	1    9400 900 
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 5F47BC59
+P 9400 1100
+F 0 "R?" V 9350 1250 50  0000 C CNN
+F 1 "1k" V 9295 1100 50  0000 C CNN
+F 2 "" H 9400 1100 50  0001 C CNN
+F 3 "~" H 9400 1100 50  0001 C CNN
+	1    9400 1100
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 5F47BE53
+P 9400 1300
+F 0 "R?" V 9350 1450 50  0000 C CNN
+F 1 "1k" V 9295 1300 50  0000 C CNN
+F 2 "" H 9400 1300 50  0001 C CNN
+F 3 "~" H 9400 1300 50  0001 C CNN
+	1    9400 1300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8300 900  9000 900 
+Wire Wire Line
+	8300 1100 8900 1100
+Wire Wire Line
+	8300 1300 8800 1300
+Wire Wire Line
+	9100 750  9100 1450
+Wire Wire Line
+	9000 1550 9100 1550
+Wire Wire Line
+	8700 750  9100 750 
+Wire Wire Line
+	9000 900  9000 1550
+Connection ~ 9000 900 
+Wire Wire Line
+	9000 900  9300 900 
+Wire Wire Line
+	8900 1100 8900 1650
+Wire Wire Line
+	8900 1650 9100 1650
+Connection ~ 8900 1100
+Wire Wire Line
+	8900 1100 9300 1100
+Wire Wire Line
+	8800 1300 8800 1750
+Wire Wire Line
+	8800 1750 9100 1750
+Connection ~ 8800 1300
+Wire Wire Line
+	8800 1300 9300 1300
+Wire Wire Line
+	10000 2000 10000 2100
+Wire Wire Line
+	10000 2100 9400 2100
+Wire Wire Line
+	8900 2000 7900 2000
+Wire Wire Line
+	7900 2000 7900 4250
+Wire Wire Line
+	8900 2100 8300 2100
+Wire Wire Line
+	8300 2100 8300 3300
+Wire Wire Line
+	8900 2200 8200 2200
+Wire Wire Line
+	8200 2200 8200 3500
+Wire Wire Line
+	8950 4100 8200 4100
+Wire Wire Line
+	8900 2300 8700 2300
+Wire Wire Line
+	8700 2300 8700 3200
+Wire Wire Line
+	9400 2300 10500 2300
+Text Label 9700 2200 0    50   ~ 0
+ESP_IO15
+Wire Wire Line
+	9700 2200 9400 2200
 $EndSCHEMATC

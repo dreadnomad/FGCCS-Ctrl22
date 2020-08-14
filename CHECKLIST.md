@@ -1,5 +1,6 @@
 # CHECKLIST
 
+## BASIC FUNCTIONALITY
 - LED circuit [x]
 - Button interrupt [ ]
 	-> Interrupts not working
@@ -11,7 +12,8 @@
 	-> only top of pwm waveform is cut off...maybe look at different ssr?
 - Temperature Sensor [ ]
 	Conversion works, but value is way off...
-- Power SSR [ ]
+- Power SSR [x]
+	-> dry test with 12V DC on L1 worked
 - RS485 [ ]
 - Charger Lock [ ]
 	Truth Table:
@@ -22,7 +24,19 @@
 	-> B = 0 :: Unlocked
 	
 	Half working....output pins damaged? -> U8 replaced, unlock works, lock doesn't
+	
+	-> probably not enough current to lock?
 - UART command interpreter [x]
 	-> working with hardcoded cmd & param table
+	-> polling based UART drops chars
 - Timers [ ]
+	-> imprecise timer can be implemented via polling the CNT register
 	-> Interrupts not working
+
+## TODO in firmware:
+- Timers via interrupt
+- Button handler
+- interrupt-based uart OR reduced BAUD
+- temp measurement
+- CT measurement and RMS calculation
+- Calculate and Set current functions
