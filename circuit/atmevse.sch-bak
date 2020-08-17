@@ -201,4 +201,6 @@ Wire Wire Line
 	1900 6000 1900 6150
 Wire Wire Line
 	2300 6000 2300 6150
+Text Notes 600  2400 0    79   ~ 0
+Revision 1.1\nÄnderungsliste:\n- Aufteilung der Anschlussklemmen auf zwei Terminalblöcke je Platinenseite\n   aufgrund von Trennstegen im Hutschienengehäuse. \n   (J1 -> J1, J2; J2 -> J6, J7)\n- Zusätzliche Schottkydioden BAT54S an den Analogeingängen für CP und \n   CT0-CT2 zum Schutz der uC-Pins vor Spannungsspitzen\n   (D8 - D11)\n- Veränderte Pin-Belegung und Footprint für J4 und J5: \n   J5 mit zusätzlichem ESP GPIO 15 auf Pin 7 als Programmierschnittstelle\n   J4 jetzt einreihig als serielle Schnittstelle, nur im Bedarfsfall bestückt\n- Angepasste Pinbelegung auf J6 und J7: 12V von J2, Pin 3 -> J6, Pin 6\n- Angepasste Pinbelegung auf J1 und J2: Separate Klemme für N für jedes Schütz\n- Strombegrenzung an 12V-Schiene bei U8: 4x 100 Ohm paralell -> 25 Ohm statt zuvor 50 Ohm \n- C16 ist ein polarisierter Tantal-Kondensator: Symbol entsprechend angepasst
 $EndSCHEMATC

@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 5
+Sheet 2 4
 Title "FGCCS-Ctrl22"
 Date "2020-08-11"
 Rev "1.1"
@@ -871,10 +871,10 @@ Wire Wire Line
 Wire Wire Line
 	1100 3150 1300 3150
 $Comp
-L Connector:Screw_Terminal_01x05 J?
+L Connector:Screw_Terminal_01x05 J1
 U 1 1 5F37F01F
 P 900 2650
-F 0 "J?" H 818 3067 50  0000 C CNN
+F 0 "J1" H 818 3067 50  0000 C CNN
 F 1 "Screw_Terminal_01x05" H 818 2976 50  0000 C CNN
 F 2 "" H 900 2650 50  0001 C CNN
 F 3 "~" H 900 2650 50  0001 C CNN
@@ -882,10 +882,10 @@ F 3 "~" H 900 2650 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L Connector:Screw_Terminal_01x05 J?
+L Connector:Screw_Terminal_01x05 J2
 U 1 1 5F3809ED
 P 900 3150
-F 0 "J?" H 900 2850 50  0000 C CNN
+F 0 "J2" H 900 2850 50  0000 C CNN
 F 1 "Screw_Terminal_01x05" H 850 2750 50  0000 C CNN
 F 2 "" H 900 3150 50  0001 C CNN
 F 3 "~" H 900 3150 50  0001 C CNN

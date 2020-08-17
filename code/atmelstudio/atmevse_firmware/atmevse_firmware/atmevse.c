@@ -309,6 +309,7 @@ int8_t set_current(uint16_t current) {
         dutyCycle = 10;
     }
     pwm_set_duty_cycle(dutyCycle);
+    return 0;
 }
 
 
@@ -554,15 +555,18 @@ int main(void) {
     uint8_t diodeCheck = 0;
     uint8_t timeout = 5;
 #ifdef TESTING
+    char *line;
     while (1) {
-         if (rxflag == 1) {
-            uint8_t rxlen = rxbuffer.write - rxbuffer.read;
-            for (uint8_t i = 0; i < rxlen; i++) {
-                input[i] = rxbuffer.data[rxbuffer.read++];
-            }
-            printf("%s\r\n", input);
-            rxflag = 0;
-        }    
+//          if (rxflag == 1) {
+//             uint8_t rxlen = rxbuffer.write - rxbuffer.read;
+//             for (uint8_t i = 0; i < rxlen; i++) {
+//                 input[i] = rxbuffer.data[rxbuffer.read++];
+//             }
+//             printf("%s\r\n", input);
+//             rxflag = 0;
+//         }    
+        line = uart0_readLine();
+        cmd_parse(line);
     }
 #endif
 #ifdef PRODUCTION

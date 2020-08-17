@@ -23,8 +23,8 @@
     *************************************************/
 /* Testing / Production config */
 #define DEBUG_P                     // Debug print enable/disable
-// #define TESTING                     // Run the testing main loop
-#define PRODUCTION                  // Run the production main loop
+#define TESTING                     // Run the testing main loop
+/*#define PRODUCTION*/                  // Run the production main loop
 
 /* Config switches */
 #define USART_SEL 0                 // Select main UART channel (0: UART0, 1: UART1/RS485)                                                                      // Select main uart (0: uart0, 1: uart1 (rs485), 2: uart2
