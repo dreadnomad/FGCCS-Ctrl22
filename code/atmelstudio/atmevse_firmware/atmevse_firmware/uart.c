@@ -41,9 +41,9 @@ extern ringbuffer_t txbuffer;
     *************************************************/
 void uart_init() {
     /* Setup stream for printf() */  
-    #if USART_SEL == 0
+    #if UART_SEL == 0
         stdout = &uart0_stream;
-    #elif USART_SEL == 1
+    #elif UART_SEL == 1
         stdout = &uart1_stream;
     #endif
     
@@ -73,7 +73,7 @@ void uart_init() {
     PORTC.DIRSET = PIN3_bm;                                                
     PORTC.OUTCLR = PIN3_bm;
     
-    # ifdef ATMEVSE_UART2
+    # ifdef AVR_UART2
     /* USART2 Config (Secondary comms, by default disabled) */
     /* Baud rate */
     USART2.BAUD = (uint16_t)USART_BAUD_RATE(BAUD2);
@@ -157,7 +157,7 @@ static void uart1_sendChar(char c) {
     PORTC.OUTCLR = PIN3_bm;
 }
 
-int uart1_printChar(char c, FILE *stream) {         // Wrapper for uar1_sendChar() using printf()
+int uart1_printChar(char c, FILE *stream) {         // Wrapper for uart1_sendChar() using printf()
     uart1_sendChar(c);
     return 0;
 }
@@ -195,3 +195,50 @@ char * uart1_readLine() {                             // Read a single line from
         }
     }
 }
+
+#ifdef AVR_UART2
+static void uart2_sendChar(char c) {
+    /* Send char c to TX1 pin */
+    while (!(USART2.STATUS & USART_DREIF_bm)) {     // Check for completed transmission
+        ;
+    }
+    USART2.TXDATAL = c;
+    while (!(USART2.STATUS & USART_DREIF_bm)) {     // Check for completed transmission
+        ;
+    }
+}
+
+void uart2_sendString(char *str) {
+    for (size_t i = 0; i < strlen(str); i++) {
+        uart2_sendChar(str[i]);
+    }
+}
+
+static uint8_t uart2_readChar() {
+    while (!(USART2.STATUS & USART_RXCIF_bm)) {
+        ;
+    }
+    return USART2.RXDATAL;
+}
+
+char * uart2_readLine() {                             // Read a single line from uart2 RX
+    uint8_t index = 0;
+    char c;
+    
+    while (1) {
+        c = uart2_readChar();
+        if ((c != '\n') && (c != '\r')) {
+            buffer[index++] = c;
+            if (index > MAX_LINE_LEN) {
+                snprintf(buffer, sizeof(buffer), "Input too long, maximum no. of chars allowed: %d", MAX_LINE_LEN);
+                return buffer;
+            }
+        }
+        if (c == '\n') {
+            buffer[index] = '\0';
+            index = 0;
+            return buffer;
+        }
+    }
+}
+#endif

@@ -4,6 +4,7 @@
 - LED circuit [x]
 - Button interrupt [ ]
 	-> Interrupts not working
+	-> Conflict with Bootloader FIXXXXX IT!!!!!
 - PWM output [x]
 - Pilot ADC input [x]
 - CT ADC input [ ]

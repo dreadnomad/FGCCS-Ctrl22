@@ -27,7 +27,7 @@
 /*#define PRODUCTION*/                  // Run the production main loop
 
 /* Config switches */
-#define USART_SEL 0                 // Select main UART channel (0: UART0, 1: UART1/RS485)                                                                      // Select main uart (0: uart0, 1: uart1 (rs485), 2: uart2
+#define UART_SEL 0                 // Select main UART channel (0: UART0, 1: UART1/RS485)                                                                      // Select main uart (0: uart0, 1: uart1 (rs485), 2: uart2
 #define ICAL 100                    // I_rms calibration value * 100 for current transformers
 #define MAX_MAINS 32                // Max current [A] per phase the Mains connection can supply
 #define MAX_CURRENT 13              // Max current [A] the EV will accept
@@ -37,11 +37,13 @@
 #define MODE_NORMAL 0               // Normal mode (standalone operation)
 #define MODE_MESH 1                 // Mesh mode (network of EVSE stations connected via WiFi)
 #define CABLE_CONF 0                // Cable config: 0: Type 2 Socket, 1: Fixed Cable
-#define LOCK_MODE 1                 // Lock config: 0: No lock, 1: Solenoid Lock
+#define LOCK_MODE 0                 // Lock config: 0: No lock, 1: Solenoid Lock
 #define SWITCH 1                    // Switch config: 0: Charge on cable plugin, 1: Charge start/stop via Button
 #define CHARGEDELAY 60              // Seconds to wait after overcurrent before trying again
 #define TIMEOUT 1000                // Milliseconds until reset if no input from ESP/Server
 #define MAX_TEMP 150                // Maximum safe operating temperature
+#define MAX_LOCK_ATTEMPTS 3         // Maximum locking attempts before giving up
+#define MAX_UNLOCK_ATTEMPTS 3       // Maximum unlocking attempts before giving up
 /* States */
 #define STATE_A 1                   // No vehicle connected
 #define STATE_B 2                   // Vehicle connected, not ready for charging
@@ -53,6 +55,8 @@
 #define NO_CURRENT 2                // No current
 #define TEMP_HIGH 4                 // Temperature too high
 #define NO_COMM 8                   // No communication with ESP/Server
+#define LOCK_FAILED 16              // Cable locking failed
+#define UNLOCK_FAILED 32            // Cable unlocking failed
 
 /* Pilot levels */
 #define PILOT_NOK 0

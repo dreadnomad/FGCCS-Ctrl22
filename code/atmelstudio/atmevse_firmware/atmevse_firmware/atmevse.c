@@ -68,9 +68,11 @@ static int8_t sigrow_offset;
 static uint8_t sigrow_gain;
 /* PWM last duty cycle */
 static uint8_t duty_cycle_old = 0;
+/* UART variables */
 char input[MAX_LINE_LEN];
 uint8_t rxflag = 0;
 uint8_t idx = 0;
+
 
 /* CMD and PARAM tables */
 cmd_table_t cmd_table[NO_CMD] = {
@@ -529,6 +531,7 @@ ISR(PORTD_PORT_vect) {
 
 ISR(TCB0_INT_vect) {
     printf("Interrupt!\r\n");
+    led_toggle();
     TCB0.INTFLAGS = TCB_CAPT_bm;
 }
 
@@ -554,26 +557,35 @@ int main(void) {
     uint8_t count = 0;
     uint8_t diodeCheck = 0;
     uint8_t timeout = 5;
+    uint8_t buttonstate_old = 0;
+    uint8_t lockAttempts = 0;
+    uint8_t unlockAttempts = 0;
 #ifdef TESTING
     char *line;
     while (1) {
-//          if (rxflag == 1) {
-//             uint8_t rxlen = rxbuffer.write - rxbuffer.read;
-//             for (uint8_t i = 0; i < rxlen; i++) {
-//                 input[i] = rxbuffer.data[rxbuffer.read++];
-//             }
-//             printf("%s\r\n", input);
-//             rxflag = 0;
-//         }    
-        line = uart0_readLine();
-        cmd_parse(line);
+        ;
     }
 #endif
 #ifdef PRODUCTION
-    access = 1;
-    DEBUG_PRINT("ACCESS BIT SET TO 1...\r\n");
-    DEBUG_PRINT("COMING UP INTO STATE A...\r\n");
+    if (!SWITCH) {
+        access = 1;
+        DEBUG_PRINT("ACCESS BIT SET TO 1...\r\n");
+    }
+    else {
+        access = 0;
+    }
+    DEBUG_PRINT("INITIALIZED...\r\n");
+    DEBUG_PRINT("CURRENT STATE: A...\r\n");
     while (1) {
+        
+        /* Check for new char in RX buffer */
+        uart0_readLoop();
+        if (rxflag == 1) {
+            cmd_parse(input);
+            rxflag = 0;
+            input[0] = '\0';
+        }
+        
         /* EVSE STATE A - No Vehicle connected */
         if (state == STATE_A) {
             /* Turn off PWM and set PWM output to static +12V*/
@@ -581,7 +593,22 @@ int main(void) {
             PORTA.OUTSET = PWM_OUT;
             all_ssr_off();
             readCP();
-            
+            /* Unlock cable in socket */
+            if (LOCK_MODE) {
+	            if ((lockstate == 1) && ((error & UNLOCK_FAILED) == 0)) {
+	                unlock_cable();
+	                if ((lockstate == 1)) {
+	                    unlockAttempts++;
+	                    if (unlockAttempts >= MAX_UNLOCK_ATTEMPTS) {
+	                        error |= UNLOCK_FAILED;
+	                        DEBUG_PRINT("MAX UNLOCK ATTEMPTS EXCEEDED, PLEASE UNLOCK MANUALLY...\r\n");
+	                    }
+	                }
+	                else {
+	                    unlockAttempts = 0;
+	                }
+	            }
+            }
             /* Check if vehicle disconnected / forced to State A and clear errors */
             if (pilot == PILOT_12V) {
                 error &= ~(LESS_MIN_CURRENT);
@@ -614,6 +641,14 @@ int main(void) {
         }
         /* END OF STATE A */
         
+        /* Check for new char in RX buffer */
+        uart0_readLoop();
+        if (rxflag == 1) {
+            cmd_parse(input);
+            rxflag = 0;
+            input[0] = '\0';
+        }
+        
         /* EVSE STATE B - Vehicle connected, not ready for charging */
         if (state == STATE_B) {
             /* Set current and enable PWM */
@@ -645,6 +680,23 @@ int main(void) {
                                 diodeCheck = 0;
                                 state = STATE_C;
                                 DEBUG_PRINT("STATE B -> C\r\n");
+                                /* Lock cable in socket */
+                                if (LOCK_MODE) {
+	                                if ((lockstate == 0) && ((error & LOCK_FAILED) == 0)) {
+	                                    lock_cable();
+	                                    if (lockstate == 0) {
+	                                        lockAttempts++;
+	                                        if (lockAttempts >= MAX_LOCK_ATTEMPTS) {
+	                                            error |= LOCK_FAILED;
+	                                            DEBUG_PRINT("MAX LOCK ATTEMPTS EXCEEDED...\r\n");
+	                                        }
+	                                    }
+	                                    else {
+	                                        lockAttempts = 0;
+	                                    }
+	                                } 
+                                }
+                               
                                 /* TODO if no current available -> error |= NO_CURRENT */
                             }
                         }
@@ -680,7 +732,14 @@ int main(void) {
             }
         }
         /* END OF STATE B */
-        
+        /* Check for new char in RX buffer */
+        uart0_readLoop();
+        if (rxflag == 1) {
+            cmd_parse(input);
+            rxflag = 0;
+            input[0] = '\0';
+        }
+             
         /* EVSE STATE C - Vehicle connected, ready for charging */
         if (state == STATE_C) {
             /* Measure CP at ~5% of PWM cycle */
@@ -756,7 +815,22 @@ int main(void) {
                 set_current(chargeCurrent);
             }
             
+            /* Check for manual unlocking */
+            if(LOCK_MODE) {
+                if ((lockstate == 0) && (error & UNLOCK_FAILED)) {
+                    error &= ~UNLOCK_FAILED;
+                    unlockAttempts = 0;
+                }
+            }            
         }
+        /* TODO: implement access-bit toggling */
+        /* Get buttonstate */
+        buttonstate = (PORTD.IN & BUTTON) ? 1 : 0;
+        /* Detect state change */
+        if (buttonstate != buttonstate_old) {
+            led_toggle();
+        }
+        buttonstate_old = buttonstate;
     }
 #endif
 }

@@ -41,25 +41,6 @@ extern param_table_t param_table[NO_PARAM];
     Function definitions
     *************************************************/
 
-/**
- 	@brief		Initialization routine for command and parameter table
- 	@param		None
- 	@return		Void
- */
-
-/**
- 	@brief		Add command to command table
- 	@param		char *cmd_string        - Command name for invocation
-    @param      int8_t (*cmd_func_ptr)  - Pointer to the function corresponding to command
- 	@return		0                       - Success
-                -1                      - Command table is full, no command added
-    @details    This function adds already defined functions to the command table for remote execution via serial protocol.
-                Currently only functions without arguments are implemented.
-                Functions to be added must have the following declaration:
-                int8_t cmd_func();
-                Excepted are system commands, which are used to deal with parameter get/set operations and status reports.
- */
-
 int8_t cmd_exec(uint8_t index) {
     int8_t retval = -2;                                 // set inital return value to -2 -> general failure
     /* Find and execute command from cmd table */
