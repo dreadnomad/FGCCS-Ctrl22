@@ -153,7 +153,6 @@ void init(void) {
     /* Interrupt config */
     CPU_CCP = CCP_IOREG_gc;
     CPUINT.CTRLA |= CPUINT_IVSEL_bm;
-    CPUINT.CTRLA |= CPUINT_LVL0RR_bm;
     CPU_CCP = CCP_IOREG_gc;                                             // enable writing to protected register
     CLKCTRL.MCLKCTRLB = (CLKCTRL_PDIV_2X_gc | CLKCTRL_PEN_bm);          // set prescaler to 2 and enable it
     
@@ -363,7 +362,7 @@ int8_t lock_cable() {
     /* Lock cable: R = 12V, W = 0V */
     PORTA.OUTSET = LOCK_R;
     PORTC.OUTCLR = LOCK_W;
-    _delay_ms(300);                 // 300ms pulse
+    _delay_ms(500);                 // 300ms pulse
     /* Pulse off: R = W = 12V */
     lock_off();
     /* Check lock state */
@@ -563,7 +562,8 @@ int main(void) {
 #ifdef TESTING
     char *line;
     while (1) {
-        ;
+        line = uart0_readLine();
+        cmd_parse(line);
     }
 #endif
 #ifdef PRODUCTION

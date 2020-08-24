@@ -4,3 +4,5 @@
 2. AVR Reset Pulldown resistor value?
 3. C16 is polarized tantalum cap, mark on PCB accordingly
 4. Maybe include status LED for power supply?
+5. Increase resistors on button input (button press can dissipate over 1W!!!) 1k w/o voltage divider
+6. Can U8 supply enough current to unlock the solenoid?? -> 25 ohms * 4 -> 100 ohms / 1W ?? in SMD??
