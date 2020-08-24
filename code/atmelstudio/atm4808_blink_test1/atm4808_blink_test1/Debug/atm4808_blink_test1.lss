@@ -5,7 +5,7 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .data         00000000  00802800  00802800  0000015a  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000106  00000000  00000000  00000054  2**1
+  1 .text         00000106  00000200  00000200  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   2 .comment      00000030  00000000  00000000  0000015a  2**0
                   CONTENTS, READONLY
@@ -30,141 +30,141 @@ Idx Name          Size      VMA       LMA       File off  Algn
 
 Disassembly of section .text:
 
-00000000 <__vectors>:
-   0:	0c 94 48 00 	jmp	0x90	; 0x90 <__ctors_end>
-   4:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-   8:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-   c:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  10:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  14:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  18:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  1c:	0c 94 69 00 	jmp	0xd2	; 0xd2 <__vector_7>
-  20:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  24:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  28:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  2c:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  30:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  34:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  38:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  3c:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  40:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  44:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  48:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  4c:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  50:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  54:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  58:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  5c:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  60:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  64:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  68:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  6c:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  70:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  74:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  78:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  7c:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  80:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  84:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  88:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
-  8c:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__bad_interrupt>
+00000200 <__vectors>:
+ 200:	0c 94 48 01 	jmp	0x290	; 0x290 <__ctors_end>
+ 204:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 208:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 20c:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 210:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 214:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 218:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 21c:	0c 94 69 01 	jmp	0x2d2	; 0x2d2 <__vector_7>
+ 220:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 224:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 228:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 22c:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 230:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 234:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 238:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 23c:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 240:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 244:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 248:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 24c:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 250:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 254:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 258:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 25c:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 260:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 264:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 268:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 26c:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 270:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 274:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 278:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 27c:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 280:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 284:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 288:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
+ 28c:	0c 94 52 01 	jmp	0x2a4	; 0x2a4 <__bad_interrupt>
 
-00000090 <__ctors_end>:
-  90:	11 24       	eor	r1, r1
-  92:	1f be       	out	0x3f, r1	; 63
-  94:	cf ef       	ldi	r28, 0xFF	; 255
-  96:	cd bf       	out	0x3d, r28	; 61
-  98:	df e3       	ldi	r29, 0x3F	; 63
-  9a:	de bf       	out	0x3e, r29	; 62
-  9c:	0e 94 7b 00 	call	0xf6	; 0xf6 <main>
-  a0:	0c 94 81 00 	jmp	0x102	; 0x102 <_exit>
+00000290 <__ctors_end>:
+ 290:	11 24       	eor	r1, r1
+ 292:	1f be       	out	0x3f, r1	; 63
+ 294:	cf ef       	ldi	r28, 0xFF	; 255
+ 296:	cd bf       	out	0x3d, r28	; 61
+ 298:	df e3       	ldi	r29, 0x3F	; 63
+ 29a:	de bf       	out	0x3e, r29	; 62
+ 29c:	0e 94 7b 01 	call	0x2f6	; 0x2f6 <main>
+ 2a0:	0c 94 81 01 	jmp	0x302	; 0x302 <_exit>
 
-000000a4 <__bad_interrupt>:
-  a4:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+000002a4 <__bad_interrupt>:
+ 2a4:	0c 94 00 01 	jmp	0x200	; 0x200 <__vectors>
 
-000000a8 <TCA0_init>:
-void TCA0_init(void);
-void PORT_init(void);
+000002a8 <TCA0_init>:
 void TCA0_init(void)
 {
+//     CPU_CCP = CCP_IOREG_gc;
+//     CPUINT.CTRLA |= CPUINT_IVSEL_bm; 
     /* enable overflow interrupt */
     TCA0.SINGLE.INTCTRL = TCA_SINGLE_OVF_bm;
-  a8:	e0 e0       	ldi	r30, 0x00	; 0
-  aa:	fa e0       	ldi	r31, 0x0A	; 10
-  ac:	81 e0       	ldi	r24, 0x01	; 1
-  ae:	82 87       	std	Z+10, r24	; 0x0a
+ 2a8:	e0 e0       	ldi	r30, 0x00	; 0
+ 2aa:	fa e0       	ldi	r31, 0x0A	; 10
+ 2ac:	81 e0       	ldi	r24, 0x01	; 1
+ 2ae:	82 87       	std	Z+10, r24	; 0x0a
     /* set Normal mode */
     TCA0.SINGLE.CTRLB = TCA_SINGLE_WGMODE_NORMAL_gc;
-  b0:	11 82       	std	Z+1, r1	; 0x01
+ 2b0:	11 82       	std	Z+1, r1	; 0x01
     /* disable event counting */
     TCA0.SINGLE.EVCTRL &= ~(TCA_SINGLE_CNTEI_bm);
-  b2:	81 85       	ldd	r24, Z+9	; 0x09
-  b4:	8e 7f       	andi	r24, 0xFE	; 254
-  b6:	81 87       	std	Z+9, r24	; 0x09
+ 2b2:	81 85       	ldd	r24, Z+9	; 0x09
+ 2b4:	8e 7f       	andi	r24, 0xFE	; 254
+ 2b6:	81 87       	std	Z+9, r24	; 0x09
     /* set the period */
     TCA0.SINGLE.PER = PERIOD_EXAMPLE_VALUE;
-  b8:	86 eb       	ldi	r24, 0xB6	; 182
-  ba:	9c e0       	ldi	r25, 0x0C	; 12
-  bc:	86 a3       	std	Z+38, r24	; 0x26
-  be:	97 a3       	std	Z+39, r25	; 0x27
+ 2b8:	86 eb       	ldi	r24, 0xB6	; 182
+ 2ba:	9c e0       	ldi	r25, 0x0C	; 12
+ 2bc:	86 a3       	std	Z+38, r24	; 0x26
+ 2be:	97 a3       	std	Z+39, r25	; 0x27
     TCA0.SINGLE.CTRLA = TCA_SINGLE_CLKSEL_DIV256_gc /* set clock
-  c0:	8d e0       	ldi	r24, 0x0D	; 13
-  c2:	80 83       	st	Z, r24
-  c4:	08 95       	ret
+ 2c0:	8d e0       	ldi	r24, 0x0D	; 13
+ 2c2:	80 83       	st	Z, r24
+ 2c4:	08 95       	ret
 
-000000c6 <PORT_init>:
+000002c6 <PORT_init>:
     | TCA_SINGLE_ENABLE_bm; /* start timer */
 }
 void PORT_init(void)
 {
     /* set pin 0 of PORT A as output */
     PORTD.DIR |= PIN3_bm;
-  c6:	e0 e6       	ldi	r30, 0x60	; 96
-  c8:	f4 e0       	ldi	r31, 0x04	; 4
-  ca:	80 81       	ld	r24, Z
-  cc:	88 60       	ori	r24, 0x08	; 8
-  ce:	80 83       	st	Z, r24
-  d0:	08 95       	ret
+ 2c6:	e0 e6       	ldi	r30, 0x60	; 96
+ 2c8:	f4 e0       	ldi	r31, 0x04	; 4
+ 2ca:	80 81       	ld	r24, Z
+ 2cc:	88 60       	ori	r24, 0x08	; 8
+ 2ce:	80 83       	st	Z, r24
+ 2d0:	08 95       	ret
 
-000000d2 <__vector_7>:
+000002d2 <__vector_7>:
 }
 ISR(TCA0_OVF_vect)
 {
-  d2:	1f 92       	push	r1
-  d4:	0f 92       	push	r0
-  d6:	0f b6       	in	r0, 0x3f	; 63
-  d8:	0f 92       	push	r0
-  da:	11 24       	eor	r1, r1
-  dc:	8f 93       	push	r24
+ 2d2:	1f 92       	push	r1
+ 2d4:	0f 92       	push	r0
+ 2d6:	0f b6       	in	r0, 0x3f	; 63
+ 2d8:	0f 92       	push	r0
+ 2da:	11 24       	eor	r1, r1
+ 2dc:	8f 93       	push	r24
     /* Toggle PIN 0 of PORT A */
     PORTD.OUTTGL = PIN3_bm;
-  de:	88 e0       	ldi	r24, 0x08	; 8
-  e0:	80 93 67 04 	sts	0x0467, r24	; 0x800467 <__TEXT_REGION_LENGTH__+0x7f4467>
+ 2de:	88 e0       	ldi	r24, 0x08	; 8
+ 2e0:	80 93 67 04 	sts	0x0467, r24	; 0x800467 <__TEXT_REGION_LENGTH__+0x7f4467>
     /* The interrupt flag has to be cleared manually */
     TCA0.SINGLE.INTFLAGS = TCA_SINGLE_OVF_bm;
-  e4:	81 e0       	ldi	r24, 0x01	; 1
-  e6:	80 93 0b 0a 	sts	0x0A0B, r24	; 0x800a0b <__TEXT_REGION_LENGTH__+0x7f4a0b>
+ 2e4:	81 e0       	ldi	r24, 0x01	; 1
+ 2e6:	80 93 0b 0a 	sts	0x0A0B, r24	; 0x800a0b <__TEXT_REGION_LENGTH__+0x7f4a0b>
 }
-  ea:	8f 91       	pop	r24
-  ec:	0f 90       	pop	r0
-  ee:	0f be       	out	0x3f, r0	; 63
-  f0:	0f 90       	pop	r0
-  f2:	1f 90       	pop	r1
-  f4:	18 95       	reti
+ 2ea:	8f 91       	pop	r24
+ 2ec:	0f 90       	pop	r0
+ 2ee:	0f be       	out	0x3f, r0	; 63
+ 2f0:	0f 90       	pop	r0
+ 2f2:	1f 90       	pop	r1
+ 2f4:	18 95       	reti
 
-000000f6 <main>:
+000002f6 <main>:
 int main(void)
 {
     PORT_init();
-  f6:	0e 94 63 00 	call	0xc6	; 0xc6 <PORT_init>
+ 2f6:	0e 94 63 01 	call	0x2c6	; 0x2c6 <PORT_init>
     TCA0_init();
-  fa:	0e 94 54 00 	call	0xa8	; 0xa8 <TCA0_init>
+ 2fa:	0e 94 54 01 	call	0x2a8	; 0x2a8 <TCA0_init>
     /* enable global interrupts */
     sei();
-  fe:	78 94       	sei
- 100:	ff cf       	rjmp	.-2      	; 0x100 <__EEPROM_REGION_LENGTH__>
+ 2fe:	78 94       	sei
+ 300:	ff cf       	rjmp	.-2      	; 0x300 <main+0xa>
 
-00000102 <_exit>:
- 102:	f8 94       	cli
+00000302 <_exit>:
+ 302:	f8 94       	cli
 
-00000104 <__stop_program>:
- 104:	ff cf       	rjmp	.-2      	; 0x104 <__stop_program>
+00000304 <__stop_program>:
+ 304:	ff cf       	rjmp	.-2      	; 0x304 <__stop_program>

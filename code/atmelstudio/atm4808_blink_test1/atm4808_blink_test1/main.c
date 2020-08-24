@@ -6,6 +6,8 @@ void TCA0_init(void);
 void PORT_init(void);
 void TCA0_init(void)
 {
+//     CPU_CCP = CCP_IOREG_gc;
+//     CPUINT.CTRLA |= CPUINT_IVSEL_bm; 
     /* enable overflow interrupt */
     TCA0.SINGLE.INTCTRL = TCA_SINGLE_OVF_bm;
     /* set Normal mode */
