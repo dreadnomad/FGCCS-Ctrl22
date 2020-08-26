@@ -1,0 +1,44 @@
+#!/bin/sh
+
+## Build script for FGCCS-Ctrl22 Project ##
+EXECFLAG=1
+if [ $1 = "-b" ]; then
+    BUILDFLAG=1
+    UPLOADFLAG=0    
+elif [ $1 = "-bu" ] || [ $1 = "-ub" ]; then
+    BUILDFLAG=1
+    UPLOADFLAG=1
+else
+    BUILDFLAG=0
+    UPLOADFLAG=0
+fi
+
+echo "BUILDFLAG=$BUILDFLAG"
+echo "UPLOADFLAG=$UPLOADFLAG"
+
+if [ $EXECFLAG -eq 1 ]; then
+    BUILD_DIR=$HOME/ba/ba-atmevse/code/atmelstudio/atmevse_firmware/atmevse_firmware/linux
+    PROD_DIR=$HOME/ba/ba-atmevse/production
+    NEW_DIR=build_`date +%s`
+
+    BUILD_NAME='atmevse_firmware'
+
+# Build the binary and hex file #
+    if [ $BUILDFLAG -eq 1 ]; then
+        echo "Building application..."
+        cd $BUILD_DIR
+        make all
+        mkdir -p $PROD_DIR/$NEW_DIR
+        cd $PROD_DIR/$NEW_DIR
+        cp $BUILD_DIR/$BUILD_NAME.hex $BUILD_DIR/$BUILD_NAME.elf .
+    fi
+
+# Upload to MCU via telnet #
+    if [ $UPLOADFLAG -eq 1 ]; then
+        echo "Uploading application to controller..."
+        cd $PROD_DIR
+        ./upload-telnet $NEW_DIR/$BUILD_NAME.hex
+    fi
+fi
+echo "Success..."
+exit 0

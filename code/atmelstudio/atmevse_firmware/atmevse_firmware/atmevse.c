@@ -9,10 +9,9 @@
  */ 
 
 /* TODO:
- * - Port PIC code to ATmega -> WIP
- *  - Work out State B & C conditions and functions
- *  - Get a timer to work
- * - Build application for hardware testing -> mostly done
+ * - Current measurement calibration
+ * - Temp measurement calibration
+ * - Interrupts
  */
 
 /*
@@ -63,6 +62,7 @@ uint16_t Imeasured = 0;                 // Max measured current in all phases [A
 uint16_t Isum = 0;                      // Sum of all measured phase currents [A * 10]
 uint8_t chargeDelay = CHARGEDELAY;
 uint8_t access = 0;
+uint8_t runlevel = 0;
 
 /* Calibration values for internal temperature sensor */
 static int8_t sigrow_offset;
@@ -152,7 +152,8 @@ param_table_t param_table[NO_PARAM] = {
     {"Imeasured", &Imeasured, 16},
     {"Isum", &Isum, 16},
     {"chargeDelay", &chargeDelay, 8},
-    {"access", &access, 8}
+    {"access", &access, 8},
+    {"runlevel", &runlevel, 8}
 };
 
 /* RX and TX ringbuffers */
@@ -248,7 +249,7 @@ void init(void) {
     TCB0.CTRLB |= (TCB_CNTMODE_INT_gc);
     TCB0.EVCTRL &= ~(TCB_CAPTEI_bm);
     TCB0.INTCTRL |= TCB_CAPT_bm;
-    TCB0.CCMP = 1250;
+    TCB0.CCMP = 0xFFFF;
     TCB0.CTRLA |= TCB_ENABLE_bm;
     
     /* ADC init */
@@ -258,9 +259,9 @@ void init(void) {
     /* Set VREF to 1.1V for temperature sensor */
     VREF.CTRLA |= VREF_ADC0REFSEL_1V1_gc;
     VREF.CTRLB |= VREF_ADC0REFEN_bm;
-    /* Set ADC prescaler to 4 and reference to VDD */
+    /* Set ADC prescaler to 8 and reference to VDD */
     ADC0.CTRLC |= (ADC_PRESC_DIV8_gc | ADC_REFSEL_VDDREF_gc);
-    /* 16 Clock cycle init delay on ADC startup */
+    /* 0 Clock cycle init delay on ADC startup */
     ADC0.CTRLD |= ADC_INITDLY_DLY0_gc;
     /* Set up sampling length and capacitance (important for tempsens) */
     ADC0.SAMPCTRL = 64;
@@ -508,7 +509,6 @@ int8_t readCT() {
 
 int8_t measureCurrent() {
     int32_t sumI = 0;
-    uint8_t input[NO_PHASE];
     
 /*    led_on();*/
     for (uint16_t ct = 0; ct < NO_PHASE; ct++) {
@@ -608,27 +608,28 @@ int8_t cp_volt() {
 }
 
 /* ISR */
-ISR(PORTD_PORT_vect) {    
-    led_toggle();
-    PORTD.INTFLAGS = PORT_INT4_bm;
-}
-
-ISR(TCB0_INT_vect) {
-    /*printf("Interrupt!\r\n");*/
-    led_toggle();
-    TCB0.INTFLAGS = TCB_CAPT_bm;
-}
-
-ISR(USART0_RXC_vect) {
-    char c = USART0_RXDATAL;
-    if ((c != '\r') && (c != '\n')) {
-        rxbuffer.data[rxbuffer.write++] = c;
-    }
-    if (c == '\n') {
-        rxbuffer.data[rxbuffer.write++] = '\0';
-        rxflag = 1;
-        }   
-}
+// ISR(PORTD_PORT_vect) {    
+//     led_toggle();
+//     PORTD.INTFLAGS = PORT_INT4_bm;
+// }
+// 
+// ISR(TCB0_INT_vect) {
+//     mstime++;
+//     systime++;
+//     led_toggle();
+//     TCB0.INTFLAGS = TCB_CAPT_bm;
+// }
+// 
+// ISR(USART0_RXC_vect) {
+//     char c = USART0_RXDATAL;
+//     if ((c != '\r') && (c != '\n')) {
+//         rxbuffer.data[rxbuffer.write++] = c;
+//     }
+//     if (c == '\n') {
+//         rxbuffer.data[rxbuffer.write++] = '\0';
+//         rxflag = 1;
+//         }   
+// }
 
 /*
     Application
@@ -646,6 +647,8 @@ int main(void) {
     uint8_t unlockAttempts = 0;
 
 #ifdef TESTING
+    runlevel = 0;
+    DEBUG_PRINT("TEST MODE...\r\n");
     char *line;
     while (1) {
         line = uart0_readLine();
@@ -653,7 +656,8 @@ int main(void) {
     }
 #endif
 #ifdef PRODUCTION
-
+    runlevel = 1;
+    DEBUG_PRINT("PRODUCTION MODE...\r\n");
     DEBUG_PRINT("INITIALIZED...\r\n");
     DEBUG_PRINT("CURRENT STATE: A...\r\n");
     if (!SWITCH) {
@@ -711,7 +715,7 @@ int main(void) {
                         diodeCheck = 0;
                         readPP();
                         if (maxCurrent > maxCapacity) {
-                            chargeCurrent = maxCapacity * 10;
+                            chargeCurrent = maxCapacity;
                         }
                         else {
                             chargeCurrent = maxCurrent;
@@ -739,7 +743,7 @@ int main(void) {
         /* EVSE STATE B - Vehicle connected, not ready for charging */
         if (state == STATE_B) {
             /* Set current and enable PWM */
-            set_current(chargeCurrent);
+            set_current(chargeCurrent * 10);
             pwm_on();
             /* Check at beginning of PWM period for high level */
             if ((TCA0.SINGLE.CNT > 1) && (TCA0.SINGLE.CNT < 30)) {
@@ -761,8 +765,6 @@ int main(void) {
                     if ((nextState == STATE_C) && (diodeCheck == 1) && (access == 1)) {
                         if (count++ > 25) {
                             if ((error == NO_ERROR) && (chargeDelay == 0)) {
-                                /* TODO: check for available current */
-                                /* TODO: calculate current */
                                 all_ssr_on();
                                 diodeCheck = 0;
                                 state = STATE_C;
@@ -783,8 +785,6 @@ int main(void) {
 	                                    }
 	                                } 
                                 }
-                               
-                                /* TODO if no current available -> error |= NO_CURRENT */
                             }
                         }
                     }
@@ -829,6 +829,7 @@ int main(void) {
              
         /* EVSE STATE C - Vehicle connected, ready for charging */
         if (state == STATE_C) {
+            
             /* Measure CP at ~5% of PWM cycle */
             if ((TCA0.SINGLE.CNT > 1) && (TCA0.SINGLE.CNT < 30)) {
                 readCP();
@@ -861,15 +862,28 @@ int main(void) {
                         count = 0;
                     }
                 }
-                else if (access != 1) {
-                    /* Charge manually stopped */
-                    nextState = STATE_B;
-                    count = 0;
-                }
                 
                 /* No state to switch to */
                 else {
-                    nextState = 0; 
+                    if (access != 1) {
+                        /* Charge manually stopped */
+                        if (nextState == STATE_B) {
+                            if (count++ > 25) {
+                                all_ssr_off();
+                                state = STATE_B;
+                                DEBUG_PRINT("STATE C -> B\r\n");
+                                diodeCheck = 0;
+                            }
+                        }
+                        else {
+                            nextState = STATE_B;
+                            count = 0;
+                        }
+                    }
+                    else {
+                        nextState = 0;
+                    }
+                   
                 }                
             }
         }
@@ -907,11 +921,13 @@ int main(void) {
             
             /* Periodically check for changed chargeCurrent */
             if ((chargeCurrent != maxCurrent) && (chargeCurrent <= maxCapacity)) {
-                set_current(chargeCurrent);
+                set_current(chargeCurrent * 10);
             }
             /* Current measurement */
             measureCurrent();
-            
+//             for (uint8_t n = 0; n < NO_PHASE; n++) {
+//                 printf("Current Phase %d = %d\r\n", n, Irms[n]);            
+//             }
             /* Check for manual unlocking */
             if(LOCK_MODE) {
                 if ((lockstate == 0) && (error & UNLOCK_FAILED)) {

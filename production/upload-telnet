@@ -1,0 +1,4 @@
+#!/bin/sh
+# Upload cmdline for atmevse via telnet/ESP32
+
+avrdude -p m4808 -D -P net:192.168.4.1:2323 -c arduino -U flash:w:./$1 

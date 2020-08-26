@@ -21,14 +21,14 @@
     *************************************************/
 /* Testing / Production config */
 #define DEBUG_P                     // Debug print enable/disable
-#define TESTING                     // Run the testing main loop
-/*#define PRODUCTION*/                  // Run the production main loop
+/*#define TESTING*/                     // Run the testing main loop
+#define PRODUCTION                  // Run the production main loop
 
 /* Config switches */
 #define UART_SEL 0                 // Select main UART channel (0: UART0, 1: UART1/RS485)                                                                      // Select main uart (0: uart0, 1: uart1 (rs485), 2: uart2
 #define ICAL 100                    // I_rms calibration value * 100 for current transformers
 #define MAX_MAINS 32                // Max current [A] per phase the Mains connection can supply
-#define MAX_CURRENT 13              // Max current [A] the EV will accept
+#define MAX_CURRENT 32              // Max current [A] the EV will accept
 #define MIN_CURRENT 6               // Min current [A] the EV will accept
 #define NO_PHASE 3                  // Number of connected Mains phases
 #define MODE MODE_NORMAL            // EVSE mode
