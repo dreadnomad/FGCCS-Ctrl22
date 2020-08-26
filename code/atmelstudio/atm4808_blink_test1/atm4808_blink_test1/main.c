@@ -6,8 +6,7 @@ void TCA0_init(void);
 void PORT_init(void);
 void TCA0_init(void)
 {
-//     CPU_CCP = CCP_IOREG_gc;
-//     CPUINT.CTRLA |= CPUINT_IVSEL_bm; 
+ 
     /* enable overflow interrupt */
     TCA0.SINGLE.INTCTRL = TCA_SINGLE_OVF_bm;
     /* set Normal mode */
@@ -23,15 +22,25 @@ void TCA0_init(void)
 void PORT_init(void)
 {
     /* set pin 0 of PORT A as output */
-    PORTD.DIR |= PIN3_bm;
+    PORTD.DIRSET = PIN3_bm;
+    
+    PORTD.DIRCLR = PIN4_bm;
+    PORTD.PIN4CTRL |= PORT_ISC_BOTHEDGES_gc;
+       
 }
-ISR(TCA0_OVF_vect)
-{
-    /* Toggle PIN 0 of PORT A */
+// ISR(TCA0_OVF_vect)
+// {
+//     /* Toggle PIN 0 of PORT A */
+//     PORTD.OUTTGL = PIN3_bm;
+//     /* The interrupt flag has to be cleared manually */
+//     TCA0.SINGLE.INTFLAGS = TCA_SINGLE_OVF_bm;
+// }
+
+ISR(PORTD_PORT_vect) {
     PORTD.OUTTGL = PIN3_bm;
-    /* The interrupt flag has to be cleared manually */
-    TCA0.SINGLE.INTFLAGS = TCA_SINGLE_OVF_bm;
+    PORTD.INTFLAGS = PORT_INT4_bm;
 }
+
 int main(void)
 {
     PORT_init();

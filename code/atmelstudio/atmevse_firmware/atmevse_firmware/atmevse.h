@@ -16,8 +16,6 @@
 
 #ifndef ATMEVSE_H
 #define ATMEVSE_H
-
-#include "uart.h"
 /*
     Defines
     *************************************************/
@@ -41,9 +39,10 @@
 #define SWITCH 1                    // Switch config: 0: Charge on cable plugin, 1: Charge start/stop via Button
 #define CHARGEDELAY 60              // Seconds to wait after overcurrent before trying again
 #define TIMEOUT 1000                // Milliseconds until reset if no input from ESP/Server
-#define MAX_TEMP 150                // Maximum safe operating temperature
+#define MAX_TEMP 340                // Maximum safe operating temperature in K (340 K = 67 C)
 #define MAX_LOCK_ATTEMPTS 3         // Maximum locking attempts before giving up
 #define MAX_UNLOCK_ATTEMPTS 3       // Maximum unlocking attempts before giving up
+
 /* States */
 #define STATE_A 1                   // No vehicle connected
 #define STATE_B 2                   // Vehicle connected, not ready for charging
@@ -72,6 +71,12 @@
 #define DEBUG_PRINT(x)
 #endif
 
+/* Maximum number of chars on cmd line input */
+#define MAX_LINE_LEN 64
+
+/* No. of samples for CT measurement */
+#define SAMPLES 512
+
 /* CPU Frequency, used for baud rate calculation */
 #define F_CPU 10000000UL
 /* PWM Frequency and period calculation according to app note TB3217 */
@@ -90,7 +95,7 @@
 
 /* cmd and param tables */
 #define NO_PARAM 34             // number of parameters in param table
-#define NO_CMD 25               // number of commands in cmd table
+#define NO_CMD 28               // number of commands in cmd table
 
 /* Define pin bitmasks */
 #define LED PIN3_bm
@@ -183,6 +188,9 @@ int8_t relay_off();
 int8_t readCP();
 int8_t readPP();
 int8_t readCT();
+int8_t measureCurrent();
 int8_t readTemp();
+int8_t pp_ohm();
+int8_t cp_volt();
 
 #endif

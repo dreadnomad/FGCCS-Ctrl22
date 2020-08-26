@@ -18,7 +18,6 @@
 #include "atmevse.h"
 #include "uart.h"
 #include <avr/io.h>
-#include <avr/interrupt.h>
 #include <stdint-gcc.h>
 #include <string.h>
 #include <stdio.h>

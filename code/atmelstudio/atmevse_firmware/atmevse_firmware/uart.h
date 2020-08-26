@@ -23,7 +23,6 @@
     *************************************************/
 #define USART_BAUD_RATE(BAUD_RATE) ((float)(F_CPU * 64 / (16 * (float)BAUD_RATE)) + 0.5)
 #define BUFFER_SIZE 64                                                                      // Size of receiver ring buffer
-#define MAX_LINE_LEN 64                                                                     // Maximum number of chars on cmd line input
 /* Baud Rates for USARTn */
 #define BAUD0 115200
 #define BAUD1 9600

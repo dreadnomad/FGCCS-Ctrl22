@@ -27,12 +27,13 @@
 #include <stdint-gcc.h>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 /*
     Globals
     *************************************************/
 /* externally modifiable parameters */
-uint16_t ctVal[] = {0, 0, 0};
+uint16_t ctVal[] = {512, 512, 512};
 uint16_t Irms[] = {0, 0, 0};            // RMS current per Phase [A * 10] (23 = 2.3A)
 uint16_t ppVal = 0;
 uint16_t cpVal= 0;
@@ -66,13 +67,24 @@ uint8_t access = 0;
 /* Calibration values for internal temperature sensor */
 static int8_t sigrow_offset;
 static uint8_t sigrow_gain;
+
+uint8_t access_lock = 0;
+uint16_t mstime = 0;
+
 /* PWM last duty cycle */
 static uint8_t duty_cycle_old = 0;
+
 /* UART variables */
 char input[MAX_LINE_LEN];
 uint8_t rxflag = 0;
 uint8_t idx = 0;
 
+/* Current measurement globals */
+double tempIrms[NO_PHASE];
+int16_t lastSampleI, sampleI, tempI;        // sample holds ADC value
+int32_t filteredI, filtI_div4, tempL;
+int64_t sqI;
+int32_t filteredCT[3] = {0, 0, 0};
 
 /* CMD and PARAM tables */
 cmd_table_t cmd_table[NO_CMD] = {
@@ -100,7 +112,10 @@ cmd_table_t cmd_table[NO_CMD] = {
     {"read_cp", *readCP},
     {"read_pp", *readPP},
     {"read_ct", *readCT},
-    {"read_temp", *readTemp}
+    {"measureCurrent", *measureCurrent},
+    {"read_temp", *readTemp},
+    {"pp_ohm", *pp_ohm},
+    {"cp_volt", *cp_volt}
 };
 
 param_table_t param_table[NO_PARAM] = {
@@ -150,15 +165,11 @@ ringbuffer_t txbuffer;
 
 void init(void) {
     /* System init */
-    /* Interrupt config */
-    CPU_CCP = CCP_IOREG_gc;
-    CPUINT.CTRLA |= CPUINT_IVSEL_bm;
     CPU_CCP = CCP_IOREG_gc;                                             // enable writing to protected register
     CLKCTRL.MCLKCTRLB = (CLKCTRL_PDIV_2X_gc | CLKCTRL_PEN_bm);          // set prescaler to 2 and enable it
     
-    uint16_t i = 0;
-    while (i < UINT16_MAX) {                      // wait for clock to stabilize
-        i++;
+    while (CLKCTRL.MCLKSTATUS & CLKCTRL_SOSC_bm) {
+        ;
     }
     /* GPIO init */
     /* control LED on PD3 -> Output, default low (off) */
@@ -226,12 +237,18 @@ void init(void) {
     /* Disable PWM output by default */
     TCA0.SINGLE.CTRLB &= ~TCA_SINGLE_CMP2EN_bm;
     
+    /* RTC init (1ms counter) */
+    RTC.CLKSEL |= RTC_CLKSEL_INT1K_gc;
+    RTC.PITINTCTRL |= RTC_PI_bm;
+    RTC.PITCTRLA |= RTC_PERIOD_CYC1024_gc;
+    RTC.PITCTRLA |= RTC_PITEN_bm;
+    
     /* Timer B init (1ms counter) */
     TCB0.CTRLA |= (TCB_CLKSEL_CLKTCA_gc);
     TCB0.CTRLB |= (TCB_CNTMODE_INT_gc);
     TCB0.EVCTRL &= ~(TCB_CAPTEI_bm);
     TCB0.INTCTRL |= TCB_CAPT_bm;
-    TCB0.CCMP = 0xFFFF;
+    TCB0.CCMP = 1250;
     TCB0.CTRLA |= TCB_ENABLE_bm;
     
     /* ADC init */
@@ -242,11 +259,11 @@ void init(void) {
     VREF.CTRLA |= VREF_ADC0REFSEL_1V1_gc;
     VREF.CTRLB |= VREF_ADC0REFEN_bm;
     /* Set ADC prescaler to 4 and reference to VDD */
-    ADC0.CTRLC |= (ADC_PRESC_DIV64_gc | ADC_REFSEL_VDDREF_gc);
+    ADC0.CTRLC |= (ADC_PRESC_DIV8_gc | ADC_REFSEL_VDDREF_gc);
     /* 16 Clock cycle init delay on ADC startup */
     ADC0.CTRLD |= ADC_INITDLY_DLY0_gc;
     /* Set up sampling length and capacitance (important for tempsens) */
-    ADC0.SAMPCTRL = 5;
+    ADC0.SAMPCTRL = 64;
     ADC0.CTRLC |= ADC_SAMPCAP_bm;
     /* Set ADC Resolution to 10bit and enable ADC */
     ADC0.CTRLA |= (ADC_RESSEL_10BIT_gc | ADC_ENABLE_bm);
@@ -444,13 +461,13 @@ int8_t readPP() {
     ppVal = ADC0.RES;
     ADC0.INTFLAGS = ADC_RESRDY_bm;
     maxCapacity = 13;                                   // No Resistor: Max Capacity 13A
-    if ((ppVal > 394) && (ppVal < 434)) {           // 680R: Max Capacity 16A
-        maxCapacity = 16;
+    if ((ppVal > 260) && (ppVal < 480)) {           // 680R: Max Capacity 20A
+        maxCapacity = 20;
     }
-    else if ((ppVal > 175) && (ppVal < 193)) {      // 220R: Max Capacity 32A
+    else if ((ppVal > 150) && (ppVal < 220)) {      // 220R: Max Capacity 32A
         maxCapacity = 32;
     }
-    else if ((ppVal > 88) && (ppVal < 98)) {        // 100R: Max Capacity 63A
+    else if ((ppVal > 75) && (ppVal < 120)) {        // 100R: Max Capacity 63A
         maxCapacity = 63;
     }
     if (cableConf) {
@@ -489,13 +506,51 @@ int8_t readCT() {
     return 0;
 }
 
+int8_t measureCurrent() {
+    int32_t sumI = 0;
+    uint8_t input[NO_PHASE];
+    
+/*    led_on();*/
+    for (uint16_t ct = 0; ct < NO_PHASE; ct++) {
+        
+        /* Get sample and filter values */
+        sampleI = ctVal[ct];
+        filteredI = filteredCT[ct];
+        
+        for (uint16_t n = 0; n < SAMPLES; n++) {
+            readCT();
+            lastSampleI = sampleI;
+            sampleI = ctVal[ct];
+            tempI = sampleI - lastSampleI;
+            tempL = (uint32_t)tempI << 8;
+            tempL += filteredI;
+            filteredI = tempL - (tempL >> 8);
+            
+            filtI_div4 = filteredI >> 2;
+            sqI = filtI_div4 * filtI_div4;
+            sqI = sqI >> 12;
+            sumI += sqI;
+        }    
+        ctVal[ct] = sampleI;
+        filteredCT[ct] = filteredI;
+        tempIrms[ct] = sqrt((double)sumI/SAMPLES);
+    }
+    
+    for (uint8_t i = 0; i < NO_PHASE; i++) {
+        Irms[i] = (uint16_t)(tempIrms[i] * 10);
+    }
+/*    led_off();*/
+    return 0;
+    
+}
+
 int8_t readTemp() {
     /* Temporarily disable ADC */
     ADC0.CTRLA &= ~ADC_ENABLE_bm;
     /* Setup ADC module */
     ADC0.CTRLC |= ADC_REFSEL_INTREF_gc;
     ADC0.MUXPOS = ADC_MUXPOS_TEMPSENSE_gc;
-    ADC0.CTRLD |= ADC_INITDLY_DLY16_gc;
+    ADC0.CTRLD |= ADC_INITDLY_DLY64_gc;
     /* Reenable ADC */
     ADC0.CTRLA |= ADC_ENABLE_bm;
     /* delay until ADC is stabilized */
@@ -511,7 +566,7 @@ int8_t readTemp() {
     temp *= sigrow_gain;
     temp += 0x80;
     temp >>= 8;
-    temperature = temp;
+    temperature = temp;     // Temp in Kelvin
     /* Reset ADC */
     ADC0.CTRLA &= ~ADC_ENABLE_bm; 
     ADC0.CTRLC |= ADC_REFSEL_VDDREF_gc;
@@ -520,7 +575,37 @@ int8_t readTemp() {
     
     ADC0.INTFLAGS = ADC_RESRDY_bm;
     return 0;
-}            
+}    
+
+int8_t toggle_access() {
+    if (access_lock == 0) {
+	    if (access == 0) {
+	        access = 1;
+	    }
+	    else if (access == 1) {
+	        access = 0;
+	    }
+    }
+    return 0;
+}        
+
+int8_t pp_ohm() {
+    /* Calculate resistor value from ADC value */
+    readPP();
+    float rtemp = (1000 * ((float)ppVal / 1024)) / (1 - ((float)ppVal / 1024));
+    uint16_t r = (uint16_t)rtemp;
+    printf("R_PP = %d\r\n", r);
+    return 0;
+}
+
+int8_t cp_volt() {
+    /* Calculate voltage on cp line from ADC value */
+    readCP();
+    float tempvolt = (((float)cpVal / 1024) * 24) - 12;
+    uint16_t volt = (uint16_t)tempvolt;
+    printf("V_CP = %d\r\n", volt);
+    return 0;
+}
 
 /* ISR */
 ISR(PORTD_PORT_vect) {    
@@ -529,7 +614,7 @@ ISR(PORTD_PORT_vect) {
 }
 
 ISR(TCB0_INT_vect) {
-    printf("Interrupt!\r\n");
+    /*printf("Interrupt!\r\n");*/
     led_toggle();
     TCB0.INTFLAGS = TCB_CAPT_bm;
 }
@@ -559,6 +644,7 @@ int main(void) {
     uint8_t buttonstate_old = 0;
     uint8_t lockAttempts = 0;
     uint8_t unlockAttempts = 0;
+
 #ifdef TESTING
     char *line;
     while (1) {
@@ -567,6 +653,9 @@ int main(void) {
     }
 #endif
 #ifdef PRODUCTION
+
+    DEBUG_PRINT("INITIALIZED...\r\n");
+    DEBUG_PRINT("CURRENT STATE: A...\r\n");
     if (!SWITCH) {
         access = 1;
         DEBUG_PRINT("ACCESS BIT SET TO 1...\r\n");
@@ -574,8 +663,6 @@ int main(void) {
     else {
         access = 0;
     }
-    DEBUG_PRINT("INITIALIZED...\r\n");
-    DEBUG_PRINT("CURRENT STATE: A...\r\n");
     while (1) {
         
         /* Check for new char in RX buffer */
@@ -618,7 +705,7 @@ int main(void) {
             /* Switch to State B? */
             if (pilot == PILOT_9V) {
                 /* Access to charging is only permitted if access == 1 */
-                if ((nextState == STATE_B) && access) {
+                if ((nextState == STATE_B)) {
                     /* Repeat 25 times to ensure all is OK */
                     if ((count++ > 25) && (error == NO_ERROR) && (chargeDelay == 0)) {
                         diodeCheck = 0;
@@ -671,7 +758,7 @@ int main(void) {
                     }
                 }
                 else if (pilot == PILOT_6V) {
-                    if ((nextState == STATE_C) && (diodeCheck == 1)) {
+                    if ((nextState == STATE_C) && (diodeCheck == 1) && (access == 1)) {
                         if (count++ > 25) {
                             if ((error == NO_ERROR) && (chargeDelay == 0)) {
                                 /* TODO: check for available current */
@@ -774,6 +861,12 @@ int main(void) {
                         count = 0;
                     }
                 }
+                else if (access != 1) {
+                    /* Charge manually stopped */
+                    nextState = STATE_B;
+                    count = 0;
+                }
+                
                 /* No state to switch to */
                 else {
                     nextState = 0; 
@@ -791,13 +884,15 @@ int main(void) {
         }
         
         /* Millisecond timer */
-        if (TCB0.CNT >= 625) {
+        if (TCB0.CNT >= 1250) {
             systime++;
+            mstime++;
             TCB0.CNT = 0;
         }
         /* Seconds timer */
-        /* Current measurement, temperature measurement... */
-        if (systime >= 1000) {
+        /* Periodic actions */
+        if (mstime >= 1000) {
+            mstime = 0;
             sectime++;
             readTemp();
             
@@ -814,6 +909,8 @@ int main(void) {
             if ((chargeCurrent != maxCurrent) && (chargeCurrent <= maxCapacity)) {
                 set_current(chargeCurrent);
             }
+            /* Current measurement */
+            measureCurrent();
             
             /* Check for manual unlocking */
             if(LOCK_MODE) {
@@ -821,14 +918,24 @@ int main(void) {
                     error &= ~UNLOCK_FAILED;
                     unlockAttempts = 0;
                 }
-            }            
+            }
+            access_lock = 0;            
         }
-        /* TODO: implement access-bit toggling */
+        
         /* Get buttonstate */
         buttonstate = (PORTD.IN & BUTTON) ? 1 : 0;
-        /* Detect state change */
+        /* Detect state change with debouncing */
         if (buttonstate != buttonstate_old) {
-            led_toggle();
+            _delay_ms(80);
+            buttonstate = (PORTD.IN & BUTTON) ? 1 : 0;
+            if (buttonstate != buttonstate_old) {
+                /* detect rising edge, lock access toggling for 1sec. */
+                if (buttonstate == 1) {
+                    toggle_access();
+                    access_lock = 1;                    
+                }
+
+            }
         }
         buttonstate_old = buttonstate;
     }
