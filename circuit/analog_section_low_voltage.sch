@@ -1053,7 +1053,7 @@ U 1 1 5F3444D0
 P 8700 2600
 F 0 "J6" H 8780 2642 50  0000 L CNN
 F 1 "Screw_Terminal_01x09" H 8780 2551 50  0000 L CNN
-F 2 "" H 8700 2600 50  0001 C CNN
+F 2 "atmevse-footprints:lv_screw_9pin_1" H 8700 2600 50  0001 C CNN
 F 3 "~" H 8700 2600 50  0001 C CNN
 	1    8700 2600
 	1    0    0    -1  
@@ -1064,7 +1064,7 @@ U 1 1 5F34567E
 P 8700 3500
 F 0 "J7" H 8780 3542 50  0000 L CNN
 F 1 "Screw_Terminal_01x09" H 8780 3451 50  0000 L CNN
-F 2 "" H 8700 3500 50  0001 C CNN
+F 2 "atmevse-footprints:lv_screw_9pin_2" H 8700 3500 50  0001 C CNN
 F 3 "~" H 8700 3500 50  0001 C CNN
 	1    8700 3500
 	1    0    0    -1  
@@ -1099,7 +1099,7 @@ U 1 1 5F402191
 P 1350 5500
 F 0 "D8" V 1396 5588 50  0000 L CNN
 F 1 "BAT54S" V 1305 5588 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 1425 5625 50  0001 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23_Handsoldering" H 1425 5625 50  0001 L CNN
 F 3 "https://www.diodes.com/assets/Datasheets/ds11005.pdf" H 1230 5500 50  0001 C CNN
 	1    1350 5500
 	0    -1   -1   0   
@@ -1110,7 +1110,7 @@ U 1 1 5F403CE8
 P 1350 6400
 F 0 "D9" V 1396 6488 50  0000 L CNN
 F 1 "BAT54S" V 1305 6488 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 1425 6525 50  0001 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23_Handsoldering" H 1425 6525 50  0001 L CNN
 F 3 "https://www.diodes.com/assets/Datasheets/ds11005.pdf" H 1230 6400 50  0001 C CNN
 	1    1350 6400
 	0    -1   -1   0   
@@ -1121,7 +1121,7 @@ U 1 1 5F404582
 P 1350 7300
 F 0 "D10" V 1396 7388 50  0000 L CNN
 F 1 "BAT54S" V 1305 7388 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 1425 7425 50  0001 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23_Handsoldering" H 1425 7425 50  0001 L CNN
 F 3 "https://www.diodes.com/assets/Datasheets/ds11005.pdf" H 1230 7300 50  0001 C CNN
 	1    1350 7300
 	0    -1   -1   0   
@@ -1232,7 +1232,7 @@ U 1 1 5F4367A4
 P 3450 2000
 F 0 "D11" V 3496 2088 50  0000 L CNN
 F 1 "BAT54S" V 3405 2088 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 3525 2125 50  0001 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23_Handsoldering" H 3525 2125 50  0001 L CNN
 F 3 "https://www.diodes.com/assets/Datasheets/ds11005.pdf" H 3330 2000 50  0001 C CNN
 	1    3450 2000
 	0    -1   -1   0   

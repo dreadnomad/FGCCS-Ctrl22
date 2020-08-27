@@ -876,7 +876,7 @@ U 1 1 5F37F01F
 P 900 2650
 F 0 "J1" H 818 3067 50  0000 C CNN
 F 1 "Screw_Terminal_01x05" H 818 2976 50  0000 C CNN
-F 2 "" H 900 2650 50  0001 C CNN
+F 2 "atmevse-footprints:hv_screw_5pin_1" H 900 2650 50  0001 C CNN
 F 3 "~" H 900 2650 50  0001 C CNN
 	1    900  2650
 	-1   0    0    -1  
@@ -887,7 +887,7 @@ U 1 1 5F3809ED
 P 900 3150
 F 0 "J2" H 900 2850 50  0000 C CNN
 F 1 "Screw_Terminal_01x05" H 850 2750 50  0000 C CNN
-F 2 "" H 900 3150 50  0001 C CNN
+F 2 "atmevse-footprints:hv_screw_5pin_2" H 900 3150 50  0001 C CNN
 F 3 "~" H 900 3150 50  0001 C CNN
 	1    900  3150
 	-1   0    0    -1  
