@@ -175,29 +175,25 @@ Solid State Relays
 Text Notes 1200 1200 0    50   ~ 0
 Mains Input & Contactor Output\n
 $Comp
-L smartevse:MPM-05-12 U4
+L Converter_ACDC:IRM-10-12 U4
 U 1 1 5E9A96BD
 P 5200 5000
 F 0 "U4" H 5200 5447 42  0000 C CNN
-F 1 "MPM-05-12" H 5200 5368 42  0000 C CNN
+F 1 "IRM-10-12" H 5200 5368 42  0000 C CNN
 F 2 "Converter_ACDC:Converter_ACDC_MeanWell_IRM-10-xx_THT" H 5200 5000 50  0001 C CNN
-F 3 "https://www.meanwell.com/webapp/product/search.aspx?prod=MPM-05" H 5200 5000 50  0001 C CNN
+F 3 "https://www.meanwell.com/Upload/PDF/IRM-10/IRM-10-SPEC.PDF" H 5200 5000 50  0001 C CNN
 F 4 "" H 5200 5000 50  0001 C CNN "Part"
 F 5 "709-IRM10-12" H 5200 5000 50  0001 C CNN "PartNo"
 F 6 "Mouser" H 5200 5000 50  0001 C CNN "Supplier"
 	1    5200 5000
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	3300 5200 4600 5200
 Text Label 4700 2100 2    50   ~ 0
 C_L1
 Text Label 4700 3100 2    50   ~ 0
 C_L2
 Text Label 4700 4100 2    50   ~ 0
 C_L3
-Wire Wire Line
-	5900 5200 5800 5200
 $Comp
 L power:GND #PWR06
 U 1 1 5E9A96CF
@@ -220,8 +216,6 @@ F 3 "" H 5900 4800 50  0001 C CNN
 	1    5900 4800
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5900 4800 5800 4800
 Text Notes 5550 5550 2    50   ~ 0
 12V Power Supply
 $Comp
@@ -767,11 +761,7 @@ Wire Wire Line
 Connection ~ 4250 2800
 Wire Wire Line
 	4250 2800 4250 1800
-Wire Wire Line
-	4250 3800 4250 4800
 Connection ~ 4250 3800
-Wire Wire Line
-	4250 4800 4600 4800
 Wire Wire Line
 	4250 2800 4250 3350
 Wire Wire Line
@@ -910,9 +900,6 @@ Wire Wire Line
 Connection ~ 1300 3150
 Wire Wire Line
 	1300 3150 3300 3150
-Connection ~ 3300 3150
-Wire Wire Line
-	3300 3150 3300 5200
 Wire Wire Line
 	1550 1900 1550 2650
 Wire Wire Line
@@ -925,4 +912,21 @@ Wire Wire Line
 	1650 2500 1650 3050
 Wire Wire Line
 	1650 3050 1100 3050
+Wire Wire Line
+	4250 4900 4800 4900
+Wire Wire Line
+	4250 3800 4250 4900
+Wire Wire Line
+	3300 3150 3300 5100
+Wire Wire Line
+	3300 5100 4800 5100
+Connection ~ 3300 3150
+Wire Wire Line
+	5600 4900 5900 4900
+Wire Wire Line
+	5900 4900 5900 4800
+Wire Wire Line
+	5900 5200 5900 5100
+Wire Wire Line
+	5900 5100 5600 5100
 $EndSCHEMATC

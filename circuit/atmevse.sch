@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 4
 Title "FGCCS-Ctrl22"
-Date "2020-08-11"
+Date "2020-08-27"
 Rev "1.1"
 Comp ""
 Comment1 ""
@@ -14,97 +14,97 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Sheet
-S 2300 2700 1800 1350
+S 2450 3100 1800 1350
 U 5E98FA8A
 F0 "Mains and Power Circuitry" 50
 F1 "mains_and_power.sch" 50
-F2 "SSR_L1" I R 4100 3200 50 
-F3 "SSR_L2" I R 4100 3350 50 
-F4 "SSR_L3" I R 4100 3500 50 
+F2 "SSR_L1" I R 4250 3600 50 
+F3 "SSR_L2" I R 4250 3750 50 
+F4 "SSR_L3" I R 4250 3900 50 
 $EndSheet
-Text Notes 2800 3550 0    50   ~ 10
+Text Notes 2950 3950 0    50   ~ 10
 Mains Input Connector \nContactor Relays\n12V Power Supply\n3.3V DC Converter\n-12V Voltage Inverter
 $Sheet
-S 4850 2700 1750 2200
+S 5000 3100 1750 2200
 U 5E9B0066
 F0 "ATmega4808 and Peripherals" 50
 F1 "atmega4808_and_peripherals.sch" 50
-F2 "SSR_L3" O L 4850 3500 50 
-F3 "SSR_L2" O L 4850 3350 50 
-F4 "SSR_L1" O L 4850 3200 50 
-F5 "RS485_A" B R 6600 2800 50 
-F6 "RS485_B" B R 6600 2950 50 
-F7 "Lock_W" O R 6600 3400 50 
-F8 "Lock_R" O R 6600 3250 50 
-F9 "Lock_B" I R 6600 3100 50 
-F10 "LED" O R 6600 3550 50 
-F11 "CT0" I R 6600 4450 50 
-F12 "CT1" I R 6600 4600 50 
-F13 "CT2" I R 6600 4750 50 
-F14 "Button" I R 6600 3700 50 
-F15 "PP" I R 6600 3850 50 
-F16 "CP" I R 6600 4000 50 
-F17 "PWM_Out" O R 6600 4150 50 
-F18 "Signal_Relay" O R 6600 4300 50 
+F2 "SSR_L3" O L 5000 3900 50 
+F3 "SSR_L2" O L 5000 3750 50 
+F4 "SSR_L1" O L 5000 3600 50 
+F5 "RS485_A" B R 6750 3200 50 
+F6 "RS485_B" B R 6750 3350 50 
+F7 "Lock_W" O R 6750 3800 50 
+F8 "Lock_R" O R 6750 3650 50 
+F9 "Lock_B" I R 6750 3500 50 
+F10 "LED" O R 6750 3950 50 
+F11 "CT0" I R 6750 4850 50 
+F12 "CT1" I R 6750 5000 50 
+F13 "CT2" I R 6750 5150 50 
+F14 "Button" I R 6750 4100 50 
+F15 "PP" I R 6750 4250 50 
+F16 "CP" I R 6750 4400 50 
+F17 "PWM_Out" O R 6750 4550 50 
+F18 "Signal_Relay" O R 6750 4700 50 
 $EndSheet
-Text Notes 5450 3850 0    50   ~ 10
+Text Notes 5600 4250 0    50   ~ 10
 ATmega4808\nESP32\nRS485 Transceiver\nLock Actuator\nTemperature Sensor
 $Sheet
-S 7200 2700 1750 2200
+S 7350 3100 1750 2200
 U 5E903BF9
 F0 "Analog Section and Low Voltage Outputs" 50
 F1 "analog_section_low_voltage.sch" 50
-F2 "PWM_Out" I L 7200 4150 50 
-F3 "CP" O L 7200 4000 50 
-F4 "LED" I L 7200 3550 50 
-F5 "RS485_A" B L 7200 2800 50 
-F6 "RS485_B" B L 7200 2950 50 
-F7 "Lock_B" O L 7200 3100 50 
-F8 "Lock_R" I L 7200 3250 50 
-F9 "Lock_W" I L 7200 3400 50 
-F10 "PP" O L 7200 3850 50 
-F11 "Button" O L 7200 3700 50 
-F12 "CT0" O L 7200 4450 50 
-F13 "CT1" O L 7200 4600 50 
-F14 "CT2" O L 7200 4750 50 
-F15 "Signal_Relay" I L 7200 4300 50 
+F2 "PWM_Out" I L 7350 4550 50 
+F3 "CP" O L 7350 4400 50 
+F4 "LED" I L 7350 3950 50 
+F5 "RS485_A" B L 7350 3200 50 
+F6 "RS485_B" B L 7350 3350 50 
+F7 "Lock_B" O L 7350 3500 50 
+F8 "Lock_R" I L 7350 3650 50 
+F9 "Lock_W" I L 7350 3800 50 
+F10 "PP" O L 7350 4250 50 
+F11 "Button" O L 7350 4100 50 
+F12 "CT0" O L 7350 4850 50 
+F13 "CT1" O L 7350 5000 50 
+F14 "CT2" O L 7350 5150 50 
+F15 "Signal_Relay" I L 7350 4700 50 
 $EndSheet
 Wire Wire Line
-	6600 2800 7200 2800
+	6750 3200 7350 3200
 Wire Wire Line
-	7200 2950 6600 2950
+	7350 3350 6750 3350
 Wire Wire Line
-	6600 3100 7200 3100
+	6750 3500 7350 3500
 Wire Wire Line
-	7200 3250 6600 3250
+	7350 3650 6750 3650
 Wire Wire Line
-	6600 3400 7200 3400
+	6750 3800 7350 3800
 Wire Wire Line
-	6600 3550 7200 3550
+	6750 3950 7350 3950
 Wire Wire Line
-	6600 3850 7200 3850
+	6750 4250 7350 4250
 Wire Wire Line
-	6600 4000 7200 4000
+	6750 4400 7350 4400
 Wire Wire Line
-	6600 4150 7200 4150
+	6750 4550 7350 4550
 Wire Wire Line
-	7200 4300 6600 4300
+	7350 4700 6750 4700
 Wire Wire Line
-	6600 3700 7200 3700
-Text Notes 8700 3900 2    50   ~ 10
+	6750 4100 7350 4100
+Text Notes 8850 4300 2    50   ~ 10
 Analog Section\n-Opamp Buffer\n- Comparator\nLow Voltage I/O Connector\nSignal Relays
 Wire Wire Line
-	4850 3200 4100 3200
+	5000 3600 4250 3600
 Wire Wire Line
-	4850 3350 4100 3350
+	5000 3750 4250 3750
 Wire Wire Line
-	4850 3500 4100 3500
+	5000 3900 4250 3900
 Wire Wire Line
-	6600 4450 7200 4450
+	6750 4850 7350 4850
 Wire Wire Line
-	6600 4600 7200 4600
+	6750 5000 7350 5000
 Wire Wire Line
-	6600 4750 7200 4750
+	6750 5150 7350 5150
 $Comp
 L power:+3.3V #PWR0110
 U 1 1 5ED97DE8
@@ -201,6 +201,8 @@ Wire Wire Line
 	1900 6000 1900 6150
 Wire Wire Line
 	2300 6000 2300 6150
-Text Notes 600  2500 0    79   ~ 0
-Revision 1.1\nÄnderungsliste:\n- Aufteilung der Anschlussklemmen auf zwei Terminalblöcke je Platinenseite\n   aufgrund von Trennstegen im Hutschienengehäuse. \n   (J1 -> J1, J2; J2 -> J6, J7)\n- Zusätzliche Schottkydioden BAT54S an den Analogeingängen für CP und \n   CT0-CT2 zum Schutz der uC-Pins vor Spannungsspitzen\n   (D8 - D11)\n- Veränderte Pin-Belegung und Footprint für J4 und J5: \n   J5 mit zusätzlichem ESP GPIO 15 auf Pin 7 als Programmierschnittstelle\n   J4 jetzt einreihig als serielle Schnittstelle, nur im Bedarfsfall bestückt\n- Angepasste Pinbelegung auf J6 und J7: 12V von J2, Pin 3 -> J6, Pin 6\n- Angepasste Pinbelegung auf J1 und J2: Separate Klemme für N für jedes Schütz\n- Strombegrenzung an 12V-Schiene bei U8: 4x 100 Ohm paralell -> 25 Ohm statt zuvor 50 Ohm \n- C16 ist ein polarisierter Tantal-Kondensator: Symbol entsprechend angepasst\n- Taster-Eingangsbeschaltung angepasst: R24 100 Ohm -> 1k Ohm, redundante Zener-Diode und Spannungsteiler entfernt (D8, R34)
+Text Notes 600  2500 0    71   ~ 0
+Revision 1.1\nÄnderungsliste Schaltplan:\n- Aufteilung der Anschlussklemmen auf zwei Terminalblöcke je Platinenseite\n   aufgrund von Trennstegen im Hutschienengehäuse. \n   (J1 -> J1, J2; J2 -> J6, J7)\n- Zusätzliche Schottkydioden BAT54S an den Analogeingängen für CP und \n   CT0-CT2 zum Schutz der uC-Pins vor Spannungsspitzen\n   (D8 - D11)\n- Veränderte Pin-Belegung und Footprint für J4 und J5: \n   J5 mit zusätzlichem ESP GPIO 15 auf Pin 7 als Programmierschnittstelle\n   J4 jetzt einreihig als serielle Schnittstelle, nur im Bedarfsfall bestückt\n- Angepasste Pinbelegung auf J6 und J7: 12V von J2, Pin 3 -> J6, Pin 6\n- Angepasste Pinbelegung auf J1 und J2: Separate Klemme für N für jedes Schütz\n- Strombegrenzung an 12V-Schiene bei U8: 4x 100 Ohm paralell -> 25 Ohm statt zuvor 50 Ohm \n- C16 ist ein polarisierter Tantal-Kondensator: Symbol entsprechend angepasst\n- Taster-Eingangsbeschaltung angepasst: R24 100 Ohm -> 1k Ohm, redundante Zener-Diode und Spannungsteiler entfernt (D8, R34)
+Text Notes 7800 1450 0    71   ~ 0
+Änderungsliste Leiterplattenlayout:\n- Footprints für J3, J4 und J5 angepasst mit Beschriftung\n- Footprint für IRM-10-12-Netzteil korrigiert\n- ESP32 SoC auf Rückseite der Platine verlegt\n- Zusätzliche Bauelemente aus Schaltplan eingefügt
 $EndSCHEMATC
