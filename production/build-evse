@@ -17,11 +17,11 @@ echo "BUILDFLAG=$BUILDFLAG"
 echo "UPLOADFLAG=$UPLOADFLAG"
 
 if [ $EXECFLAG -eq 1 ]; then
-    BUILD_DIR=$HOME/ba/ba-atmevse/code/atmelstudio/atmevse_firmware/atmevse_firmware/linux
-    PROD_DIR=$HOME/ba/ba-atmevse/production
+    BUILD_DIR=$HOME/ba/FGCCS-Ctrl22/code/fgccs-firmware/linux
+    PROD_DIR=$HOME/ba/FGCCS-Ctrl22/production
     NEW_DIR=build_`date +%s`
 
-    BUILD_NAME='atmevse_firmware'
+    BUILD_NAME='fgccs-firmware'
 
 # Build the binary and hex file #
     if [ $BUILDFLAG -eq 1 ]; then

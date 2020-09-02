@@ -25,6 +25,6 @@ For the self compiled toolchain, a script is provided, but only tested on debian
 
 
 ## Programming the AVR
-- Bootloader programming is done via UPDI, which means a working UPDI programming adapter like the Atmel ICE or a solution like JTAG2UPDI (https://github.com/ElTangas/jtag2updi)
-- Once the Bootloader is flashed, application code may be uploaded with avrdude using a serial-usb adapter 
+- Bootloader programming is done via UPDI, which means a working UPDI programming adapter like the Atmel ICE or a solution like JTAG2UPDI (https://github.com/ElTangas/jtag2updi) or pyupdi (https://github.com/mraardvark/pyupdi) is required.
+- Once the Bootloader is flashed, application code may be uploaded with avrdude using a serial-usb adapter or via WiFi, if the ESP32-Module is installed and configured for telnet access
 - All necessary pins are exposed on the J4 4x1 pin header, namely RX0, TX0 and RESET. Connect RESET to the serial adapter's DTR or RTS pin via a 100nF cap so avrdude can reset the MCU

@@ -1,0 +1,4 @@
+#!/bin/sh
+# Upload cmdline for FGCCS firmware via Serial-USB-Adapter
+
+avrdude -p m4808 -D -P /dev/usb -c arduino -U flash:w:./$1 
