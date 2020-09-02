@@ -2,7 +2,7 @@
  * cmd.c
  *
  * Created: 18.05.2020 11:51:17
- * Author : ko07xiqa
+ * Author : Pascal Thurnherr
  * 
  * FGCCS-Ctrl22 firmware for EV supply equipment
  * Command interpreter module
